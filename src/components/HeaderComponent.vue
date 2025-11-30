@@ -201,13 +201,23 @@ import { mapStores } from 'pinia'
                     <span class="text-md relative px-3 pb-8 font-medium hover:opacity-75">
                         {{ item.name }}
                     </span>
-                    <ul
-                        class="absolute z-10 mt-4 hidden min-h-52 min-w-96 -translate-x-[50%] transform cursor-default grid-cols-2 gap-4 rounded-md bg-white px-6 py-4 drop-shadow-2xl duration-200 group-hover:grid group-hover:opacity-100"
+                    <div
+                        class="absolute z-10 mt-4 hidden min-h-52 min-w-96 -translate-x-[50%] transform cursor-default overflow-hidden rounded-md bg-white drop-shadow-2xl duration-200 group-hover:block group-hover:opacity-100"
                     >
-                        <li v-for="child in item.children" class="cursor-pointer hover:opacity-75">
-                            <span>{{ child.name }}</span>
-                        </li>
-                    </ul>
+                        <div class="bg-[#5c5c5c]">
+                            <h1 class="px-6 py-4 font-semibold text-white uppercase">
+                                {{ item.name }}
+                            </h1>
+                        </div>
+                        <ul class="grid grid-cols-2 gap-4 px-6 py-4">
+                            <li
+                                v-for="child in item.children"
+                                class="cursor-pointer hover:opacity-75"
+                            >
+                                <span>{{ child.name }}</span>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
             <!-- End list category -->
