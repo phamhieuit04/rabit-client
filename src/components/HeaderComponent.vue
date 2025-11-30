@@ -1,4 +1,5 @@
 <script setup>
+import { useUiStore } from '@/stores/ui'
 import {
     MapPin,
     MessageCircleQuestionMark,
@@ -10,7 +11,9 @@ import {
     Plus,
     LogIn,
     UserPlus2,
+    X,
 } from 'lucide-vue-next'
+import { mapStores } from 'pinia'
 </script>
 
 <template>
@@ -38,6 +41,59 @@ import {
                         <div @click="item.onClick" class="relative px-3 pb-6 hover:opacity-75">
                             <component :is="item.icon" />
                         </div>
+
+                        <!-- Start search card -->
+                        <div
+                            v-if="uiStore.displaySearchCard && item.type == 'search'"
+                            class="fixed top-0 right-0 left-0 z-10 min-h-96 cursor-default bg-white drop-shadow-xl"
+                        >
+                            <div class="container mx-auto flex flex-col items-center gap-8 py-12">
+                                <div class="flex w-full items-center justify-between">
+                                    <div class="flex grow items-center justify-center">
+                                        <div
+                                            class="flex w-[650px] items-center justify-between bg-[#f2f2f2]"
+                                        >
+                                            <input
+                                                type="text"
+                                                class="w-full px-6 py-4 outline-0"
+                                                placeholder="Tìm sản phẩm"
+                                            />
+                                            <div class="cursor-pointer px-4 hover:opacity-75">
+                                                <Search size="28" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        @click="uiStore.setDisplaySearchCard(false)"
+                                        class="cursor-pointer hover:opacity-75"
+                                    >
+                                        <X size="32" />
+                                    </div>
+                                </div>
+                                <h1
+                                    class="pt-6 text-3xl font-medium"
+                                    style="font-family: 'Ysabeau Office'"
+                                >
+                                    Danh mục nổi bật
+                                </h1>
+                                <ul class="flex gap-6">
+                                    <li
+                                        v-for="item in featuredCategories"
+                                        class="flex cursor-pointer flex-col gap-2 hover:opacity-75"
+                                    >
+                                        <img
+                                            :src="item.thumnail"
+                                            alt=""
+                                            class="max-w-70 object-contain"
+                                        />
+                                        <h1 class="font-semibold uppercase">
+                                            {{ item.name }}
+                                        </h1>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- End search card -->
 
                         <!-- Start cart hover card  -->
                         <div
@@ -184,7 +240,7 @@ export default {
                     icon: Search,
                     type: 'search',
                     onClick: () => {
-                        alert('Day la tim kiem')
+                        this.uiStore.setDisplaySearchCard(true)
                     },
                 },
                 {
@@ -314,7 +370,32 @@ export default {
                     ],
                 },
             ],
+            featuredCategories: [
+                {
+                    name: 'Sổ kẻ ngang',
+                    thumnail:
+                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/sl-072622-51930-13.jpg?v=1751438476727',
+                },
+                {
+                    name: 'Sổ kẻ ngang',
+                    thumnail:
+                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/sl-072622-51930-13.jpg?v=1751438476727',
+                },
+                {
+                    name: 'Sổ kẻ ngang',
+                    thumnail:
+                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/sl-072622-51930-13.jpg?v=1751438476727',
+                },
+                {
+                    name: 'Sổ kẻ ngang',
+                    thumnail:
+                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/sl-072622-51930-13.jpg?v=1751438476727',
+                },
+            ],
         }
+    },
+    computed: {
+        ...mapStores(useUiStore),
     },
 }
 </script>
