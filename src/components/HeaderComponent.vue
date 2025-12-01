@@ -13,6 +13,8 @@ import {
     LogIn,
     UserPlus2,
     X,
+    Languages,
+    Settings,
 } from 'lucide-vue-next'
 import { mapStores } from 'pinia'
 </script>
@@ -25,11 +27,16 @@ import { mapStores } from 'pinia'
                 <!-- Start left items -->
                 <ul class="flex min-w-2xs items-center gap-8">
                     <li
-                        v-for="item in leftItems"
                         class="flex cursor-pointer items-center justify-center gap-1.5 hover:opacity-75"
                     >
-                        <component :is="item.icon" @click="item.onClick" />
-                        <span>{{ item.title }}</span>
+                        <MapPin />
+                        <span>{{ $t('header.shop') }}</span>
+                    </li>
+                    <li
+                        class="flex cursor-pointer items-center justify-center gap-1.5 hover:opacity-75"
+                    >
+                        <MessageCircleQuestionMark />
+                        <span>{{ $t('header.contact') }}</span>
                     </li>
                 </ul>
                 <!-- End left items -->
@@ -174,7 +181,7 @@ import { mapStores } from 'pinia'
                                     <div class="flex size-8 items-center justify-center">
                                         <LogIn />
                                     </div>
-                                    <span>Đăng nhập</span>
+                                    <span>{{ $t('auth.login') }}</span>
                                 </li>
                                 <li
                                     class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md p-1 hover:bg-[#838380] hover:text-white"
@@ -182,11 +189,34 @@ import { mapStores } from 'pinia'
                                     <div class="flex size-8 items-center justify-center">
                                         <UserPlus2 />
                                     </div>
-                                    <span>Đăng ký </span>
+                                    <span>{{ $t('auth.signup') }}</span>
                                 </li>
                             </ul>
                         </div>
                         <!-- End profile hover card -->
+
+                        <!-- Start setting hover card -->
+                        <div
+                            v-if="item.type == 'settings'"
+                            class="absolute hidden min-h-12 w-60 -translate-x-[50%] cursor-default flex-col overflow-hidden rounded-md bg-white drop-shadow-2xl group-hover:flex group-hover:opacity-100"
+                        >
+                            <ul class="flex flex-col gap-4 p-4">
+                                <li
+                                    class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md px-3 py-2 hover:bg-[#838380] hover:text-white"
+                                >
+                                    <Languages />
+                                    <select v-model="$i18n.locale" class="w-full">
+                                        <option value="en" class="text-black">
+                                            {{ $t('settings.english') }}
+                                        </option>
+                                        <option value="vi" class="text-black">
+                                            {{ $t('settings.vietnamese') }}
+                                        </option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End setting hover card -->
                     </li>
                 </ul>
                 <!-- End right items -->
@@ -230,22 +260,6 @@ import { mapStores } from 'pinia'
 export default {
     data() {
         return {
-            leftItems: [
-                {
-                    icon: MapPin,
-                    title: 'Cửa hàng',
-                    onClick: () => {
-                        alert('Day la cua hang')
-                    },
-                },
-                {
-                    icon: MessageCircleQuestionMark,
-                    title: 'Liên hệ',
-                    onClick: () => {
-                        alert('Day la lien he')
-                    },
-                },
-            ],
             rightItems: [
                 {
                     icon: Search,
@@ -264,6 +278,11 @@ export default {
                 {
                     icon: CircleUser,
                     type: 'profile',
+                    onClick: () => {},
+                },
+                {
+                    icon: Settings,
+                    type: 'settings',
                     onClick: () => {},
                 },
             ],
