@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 export const useUiStore = defineStore('ui', {
     state: () => {
         return {
+            currentLocale: 'vi',
             displaySearchCard: false,
         }
     },
@@ -10,5 +11,11 @@ export const useUiStore = defineStore('ui', {
         setDisplaySearchCard(value) {
             this.displaySearchCard = value
         },
+        setCurrentLocale(locale) {
+            this.currentLocale = locale
+        },
+    },
+    persist: {
+        pick: ['currentLocale'],
     },
 })

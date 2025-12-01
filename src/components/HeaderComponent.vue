@@ -64,7 +64,7 @@ import { mapStores } from 'pinia'
                                             <input
                                                 type="text"
                                                 class="w-full px-6 py-4 outline-0"
-                                                placeholder="Tìm sản phẩm"
+                                                :placeholder="$t('search.placeholder')"
                                             />
                                             <div class="cursor-pointer px-4 hover:opacity-75">
                                                 <Search size="28" />
@@ -82,7 +82,7 @@ import { mapStores } from 'pinia'
                                     class="pt-6 text-3xl font-medium"
                                     style="font-family: 'Ysabeau Office'"
                                 >
-                                    Danh mục nổi bật
+                                    {{ $t('search.featuredCategories') }}
                                 </h1>
                                 <ul class="flex gap-6">
                                     <li
@@ -109,7 +109,7 @@ import { mapStores } from 'pinia'
                             class="absolute hidden min-h-80 w-96 -translate-x-[50%] cursor-default flex-col overflow-hidden rounded-md bg-white drop-shadow-2xl group-hover:flex group-hover:opacity-100"
                         >
                             <h1 class="border-b-2 border-gray-300 p-4 font-bold uppercase">
-                                Giỏ hàng
+                                {{ $t('cart.title') }}
                             </h1>
                             <ul
                                 class="flex max-h-96 grow flex-col gap-10 overflow-hidden overflow-x-hidden overflow-y-scroll p-4"
@@ -157,13 +157,13 @@ import { mapStores } from 'pinia'
                             </ul>
                             <div class="flex justify-between bg-[#f8f8f8] p-4">
                                 <div>
-                                    <h1 class="font-medium">Tổng tiền</h1>
+                                    <h1 class="font-medium">{{ $t('cart.totalBill') }}</h1>
                                     <p class="text-xl font-semibold">50.000đ</p>
                                 </div>
                                 <button
                                     class="cursor-pointer rounded-md bg-[#5c5c5c] px-6 py-2 text-white hover:opacity-75"
                                 >
-                                    Thanh toán
+                                    {{ $t('cart.checkout') }}
                                 </button>
                             </div>
                         </div>
@@ -205,7 +205,11 @@ import { mapStores } from 'pinia'
                                     class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md px-3 py-2 hover:bg-[#838380] hover:text-white"
                                 >
                                     <Languages />
-                                    <select v-model="$i18n.locale" class="w-full">
+                                    <select
+                                        v-model="$i18n.locale"
+                                        class="w-full border-0 outline-0"
+                                        @change="uiStore.setCurrentLocale($i18n.locale)"
+                                    >
                                         <option value="en" class="text-black">
                                             {{ $t('settings.english') }}
                                         </option>
@@ -226,7 +230,9 @@ import { mapStores } from 'pinia'
             <!-- Start list category -->
             <ul class="flex items-center justify-center py-6">
                 <li class="cursor-pointer">
-                    <span class="text-md px-3 font-medium hover:opacity-75">Trang chủ</span>
+                    <span class="text-md px-3 font-medium hover:opacity-75">
+                        {{ $t('header.home') }}
+                    </span>
                 </li>
                 <li v-for="item in categoriesStore.listCategory" class="group cursor-pointer">
                     <span class="text-md relative px-3 pb-8 font-medium hover:opacity-75">

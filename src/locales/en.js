@@ -2,6 +2,7 @@ export const en = {
     header: {
         shop: 'Shop',
         contact: 'Contact',
+        home: 'Home',
     },
     auth: {
         login: 'Log in',
@@ -12,5 +13,14 @@ export const en = {
         languages: 'Languages',
         english: 'English',
         vietnamese: 'Vietnamese',
+    },
+    cart: {
+        title: 'Your cart',
+        totalBill: 'Total bill',
+        checkout: 'Checkout',
+    },
+    search: {
+        placeholder: 'Search for everything',
+        featuredCategories: 'Featured categories',
     },
 }
