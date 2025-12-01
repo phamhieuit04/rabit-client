@@ -13,6 +13,8 @@ import {
     LogIn,
     UserPlus2,
     X,
+    Languages,
+    Settings,
 } from 'lucide-vue-next'
 import { mapStores } from 'pinia'
 </script>
@@ -25,11 +27,16 @@ import { mapStores } from 'pinia'
                 <!-- Start left items -->
                 <ul class="flex min-w-2xs items-center gap-8">
                     <li
-                        v-for="item in leftItems"
                         class="flex cursor-pointer items-center justify-center gap-1.5 hover:opacity-75"
                     >
-                        <component :is="item.icon" @click="item.onClick" />
-                        <span>{{ item.title }}</span>
+                        <MapPin />
+                        <span>{{ $t('header.shop') }}</span>
+                    </li>
+                    <li
+                        class="flex cursor-pointer items-center justify-center gap-1.5 hover:opacity-75"
+                    >
+                        <MessageCircleQuestionMark />
+                        <span>{{ $t('header.contact') }}</span>
                     </li>
                 </ul>
                 <!-- End left items -->
@@ -57,7 +64,7 @@ import { mapStores } from 'pinia'
                                             <input
                                                 type="text"
                                                 class="w-full px-6 py-4 outline-0"
-                                                placeholder="Tìm sản phẩm"
+                                                :placeholder="$t('search.placeholder')"
                                             />
                                             <div class="cursor-pointer px-4 hover:opacity-75">
                                                 <Search size="28" />
@@ -75,7 +82,7 @@ import { mapStores } from 'pinia'
                                     class="pt-6 text-3xl font-medium"
                                     style="font-family: 'Ysabeau Office'"
                                 >
-                                    Danh mục nổi bật
+                                    {{ $t('search.featuredCategories') }}
                                 </h1>
                                 <ul class="flex gap-6">
                                     <li
@@ -102,7 +109,7 @@ import { mapStores } from 'pinia'
                             class="absolute hidden min-h-80 w-96 -translate-x-[50%] cursor-default flex-col overflow-hidden rounded-md bg-white drop-shadow-2xl group-hover:flex group-hover:opacity-100"
                         >
                             <h1 class="border-b-2 border-gray-300 p-4 font-bold uppercase">
-                                Giỏ hàng
+                                {{ $t('cart.title') }}
                             </h1>
                             <ul
                                 class="flex max-h-96 grow flex-col gap-10 overflow-hidden overflow-x-hidden overflow-y-scroll p-4"
@@ -150,13 +157,13 @@ import { mapStores } from 'pinia'
                             </ul>
                             <div class="flex justify-between bg-[#f8f8f8] p-4">
                                 <div>
-                                    <h1 class="font-medium">Tổng tiền</h1>
+                                    <h1 class="font-medium">{{ $t('cart.totalBill') }}</h1>
                                     <p class="text-xl font-semibold">50.000đ</p>
                                 </div>
                                 <button
                                     class="cursor-pointer rounded-md bg-[#5c5c5c] px-6 py-2 text-white hover:opacity-75"
                                 >
-                                    Thanh toán
+                                    {{ $t('cart.checkout') }}
                                 </button>
                             </div>
                         </div>
@@ -174,7 +181,7 @@ import { mapStores } from 'pinia'
                                     <div class="flex size-8 items-center justify-center">
                                         <LogIn />
                                     </div>
-                                    <span>Đăng nhập</span>
+                                    <span>{{ $t('auth.login') }}</span>
                                 </li>
                                 <li
                                     class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md p-1 hover:bg-[#838380] hover:text-white"
@@ -182,11 +189,38 @@ import { mapStores } from 'pinia'
                                     <div class="flex size-8 items-center justify-center">
                                         <UserPlus2 />
                                     </div>
-                                    <span>Đăng ký </span>
+                                    <span>{{ $t('auth.signup') }}</span>
                                 </li>
                             </ul>
                         </div>
                         <!-- End profile hover card -->
+
+                        <!-- Start setting hover card -->
+                        <div
+                            v-if="item.type == 'settings'"
+                            class="absolute hidden min-h-12 w-60 -translate-x-[50%] cursor-default flex-col overflow-hidden rounded-md bg-white drop-shadow-2xl group-hover:flex group-hover:opacity-100"
+                        >
+                            <ul class="flex flex-col gap-4 p-4">
+                                <li
+                                    class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md px-3 hover:bg-[#838380] hover:text-white"
+                                >
+                                    <Languages />
+                                    <select
+                                        v-model="$i18n.locale"
+                                        class="w-full cursor-pointer border-0 py-2 outline-0"
+                                        @change="uiStore.setCurrentLocale($i18n.locale)"
+                                    >
+                                        <option value="en" class="text-black">
+                                            {{ $t('settings.english') }}
+                                        </option>
+                                        <option value="vi" class="text-black">
+                                            {{ $t('settings.vietnamese') }}
+                                        </option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End setting hover card -->
                     </li>
                 </ul>
                 <!-- End right items -->
@@ -196,7 +230,9 @@ import { mapStores } from 'pinia'
             <!-- Start list category -->
             <ul class="flex items-center justify-center py-6">
                 <li class="cursor-pointer">
-                    <span class="text-md px-3 font-medium hover:opacity-75">Trang chủ</span>
+                    <span class="text-md px-3 font-medium hover:opacity-75">
+                        {{ $t('header.home') }}
+                    </span>
                 </li>
                 <li v-for="item in categoriesStore.listCategory" class="group cursor-pointer">
                     <span class="text-md relative px-3 pb-8 font-medium hover:opacity-75">
@@ -230,22 +266,6 @@ import { mapStores } from 'pinia'
 export default {
     data() {
         return {
-            leftItems: [
-                {
-                    icon: MapPin,
-                    title: 'Cửa hàng',
-                    onClick: () => {
-                        alert('Day la cua hang')
-                    },
-                },
-                {
-                    icon: MessageCircleQuestionMark,
-                    title: 'Liên hệ',
-                    onClick: () => {
-                        alert('Day la lien he')
-                    },
-                },
-            ],
             rightItems: [
                 {
                     icon: Search,
@@ -264,6 +284,11 @@ export default {
                 {
                     icon: CircleUser,
                     type: 'profile',
+                    onClick: () => {},
+                },
+                {
+                    icon: Settings,
+                    type: 'settings',
                     onClick: () => {},
                 },
             ],

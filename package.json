@@ -20,12 +20,16 @@
     "pinia-plugin-persistedstate": "^4.7.1",
     "tailwindcss": "^4.1.17",
     "vue": "^3.5.25",
+    "vue-i18n": "^11.2.2",
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
+    "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.2",
+    "@vue/tsconfig": "^0.8.1",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.7.1",
+    "typescript": "^5.9.3",
     "vite": "^7.2.4",
     "vite-plugin-vue-devtools": "^8.0.5"
   }

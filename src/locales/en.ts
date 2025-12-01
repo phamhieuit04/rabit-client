@@ -1,0 +1,26 @@
+export const en: ILanguage = {
+    header: {
+        shop: 'Shop',
+        contact: 'Contact',
+        home: 'Home',
+    },
+    auth: {
+        login: 'Log in',
+        signup: 'Sign up',
+        logout: 'Log out',
+    },
+    settings: {
+        languages: 'Languages',
+        english: 'English',
+        vietnamese: 'Vietnamese',
+    },
+    cart: {
+        title: 'Your cart',
+        totalBill: 'Total bill',
+        checkout: 'Checkout',
+    },
+    search: {
+        placeholder: 'Search for everything',
+        featuredCategories: 'Featured categories',
+    },
+}
