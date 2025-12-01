@@ -1,3 +1,5 @@
+import type { ILanguage } from '@/interfaces/ILanguage'
+
 export const en: ILanguage = {
     header: {
         shop: 'Shop',
@@ -22,5 +24,10 @@ export const en: ILanguage = {
     search: {
         placeholder: 'Search for everything',
         featuredCategories: 'Featured categories',
+    },
+    products: {
+        title: 'New products',
+        title2: 'The best of the best',
+        showAll: 'Show all',
     },
 }

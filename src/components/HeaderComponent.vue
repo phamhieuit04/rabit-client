@@ -106,7 +106,7 @@ import { mapStores } from 'pinia'
                         <!-- Start cart hover card  -->
                         <div
                             v-if="item.type == 'cart'"
-                            class="absolute hidden min-h-80 w-96 -translate-x-[50%] cursor-default flex-col overflow-hidden rounded-md bg-white drop-shadow-2xl group-hover:flex group-hover:opacity-100"
+                            class="absolute z-10 hidden min-h-80 w-96 -translate-x-[50%] cursor-default flex-col overflow-hidden rounded-md bg-white drop-shadow-2xl group-hover:flex group-hover:opacity-100"
                         >
                             <h1 class="border-b-2 border-gray-300 p-4 font-bold uppercase">
                                 {{ $t('cart.title') }}
@@ -172,7 +172,7 @@ import { mapStores } from 'pinia'
                         <!-- Start profile hover card -->
                         <div
                             v-if="item.type == 'profile'"
-                            class="absolute hidden min-h-12 w-60 -translate-x-[50%] cursor-default flex-col overflow-hidden rounded-md bg-white drop-shadow-2xl group-hover:flex group-hover:opacity-100"
+                            class="absolute z-10 hidden min-h-12 w-60 -translate-x-[50%] cursor-default flex-col overflow-hidden rounded-md bg-white drop-shadow-2xl group-hover:flex group-hover:opacity-100"
                         >
                             <ul class="flex flex-col gap-4 p-4">
                                 <li
@@ -198,7 +198,7 @@ import { mapStores } from 'pinia'
                         <!-- Start setting hover card -->
                         <div
                             v-if="item.type == 'settings'"
-                            class="absolute hidden min-h-12 w-60 -translate-x-[50%] cursor-default flex-col overflow-hidden rounded-md bg-white drop-shadow-2xl group-hover:flex group-hover:opacity-100"
+                            class="absolute z-10 hidden min-h-12 w-60 -translate-x-[50%] cursor-default flex-col overflow-hidden rounded-md bg-white drop-shadow-2xl group-hover:flex group-hover:opacity-100"
                         >
                             <ul class="flex flex-col gap-4 p-4">
                                 <li

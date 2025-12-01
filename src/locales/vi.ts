@@ -1,3 +1,5 @@
+import type { ILanguage } from '@/interfaces/ILanguage'
+
 export const vi: ILanguage = {
     header: {
         shop: 'Cửa hàng',
@@ -22,5 +24,10 @@ export const vi: ILanguage = {
     search: {
         placeholder: 'Tìm kiếm sản phẩm',
         featuredCategories: 'Danh mục nổi bật',
+    },
+    products: {
+        title: 'Sản phẩm mới',
+        title2: 'Sản phẩm tốt nhất',
+        showAll: 'Xem tất cả',
     },
 }
