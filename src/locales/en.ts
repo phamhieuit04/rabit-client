@@ -1,4 +1,4 @@
-export const en = {
+export const en: ILanguage = {
     header: {
         shop: 'Shop',
         contact: 'Contact',

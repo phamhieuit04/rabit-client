@@ -202,12 +202,12 @@ import { mapStores } from 'pinia'
                         >
                             <ul class="flex flex-col gap-4 p-4">
                                 <li
-                                    class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md px-3 py-2 hover:bg-[#838380] hover:text-white"
+                                    class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md px-3 hover:bg-[#838380] hover:text-white"
                                 >
                                     <Languages />
                                     <select
                                         v-model="$i18n.locale"
-                                        class="w-full border-0 outline-0"
+                                        class="w-full cursor-pointer border-0 py-2 outline-0"
                                         @change="uiStore.setCurrentLocale($i18n.locale)"
                                     >
                                         <option value="en" class="text-black">

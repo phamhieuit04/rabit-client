@@ -1,4 +1,4 @@
-export const vi = {
+export const vi: ILanguage = {
     header: {
         shop: 'Cửa hàng',
         contact: 'Liên hệ',
