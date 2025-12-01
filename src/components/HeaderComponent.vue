@@ -1,4 +1,5 @@
 <script setup>
+import { useCategoriesStore } from '@/stores/categories'
 import { useUiStore } from '@/stores/ui'
 import {
     MapPin,
@@ -197,7 +198,7 @@ import { mapStores } from 'pinia'
                 <li class="cursor-pointer">
                     <span class="text-md px-3 font-medium hover:opacity-75">Trang chủ</span>
                 </li>
-                <li v-for="item in listCategory" class="group cursor-pointer">
+                <li v-for="item in categoriesStore.listCategory" class="group cursor-pointer">
                     <span class="text-md relative px-3 pb-8 font-medium hover:opacity-75">
                         {{ item.name }}
                     </span>
@@ -211,7 +212,7 @@ import { mapStores } from 'pinia'
                         </div>
                         <ul class="grid grid-cols-2 gap-4 px-6 py-4">
                             <li
-                                v-for="child in item.children"
+                                v-for="child in item.childrens"
                                 class="cursor-pointer hover:opacity-75"
                             >
                                 <span>{{ child.name }}</span>
@@ -266,120 +267,6 @@ export default {
                     onClick: () => {},
                 },
             ],
-            listCategory: [
-                {
-                    name: 'Sổ tay',
-                    children: [
-                        {
-                            name: 'Sổ kẻ ngang',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                    ],
-                },
-                {
-                    name: 'Sổ tay',
-                    children: [
-                        {
-                            name: 'Vở kẻ ngang',
-                        },
-                        {
-                            name: 'Vở chấm',
-                        },
-                    ],
-                },
-                {
-                    name: 'Sổ tay',
-                    children: [
-                        {
-                            name: 'Sổ kẻ ngang',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                    ],
-                },
-                {
-                    name: 'Sổ tay',
-                    children: [
-                        {
-                            name: 'Sổ kẻ ngang',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                    ],
-                },
-                {
-                    name: 'Sổ tay',
-                    children: [
-                        {
-                            name: 'Sổ kẻ ngang',
-                        },
-                        {
-                            name: 'Sổ chấm',
-                        },
-                    ],
-                },
-            ],
             featuredCategories: [
                 {
                     name: 'Sổ kẻ ngang',
@@ -404,8 +291,11 @@ export default {
             ],
         }
     },
+    mounted() {
+        this.categoriesStore.fetchListCategory()
+    },
     computed: {
-        ...mapStores(useUiStore),
+        ...mapStores(useUiStore, useCategoriesStore),
     },
 }
 </script>
