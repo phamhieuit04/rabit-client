@@ -30,4 +30,9 @@ export const en: ILanguage = {
         title2: 'The best of the best',
         showAll: 'Show all',
     },
+    product: {
+        category: 'Category',
+        addToCart: 'Add to cart',
+        description: 'Description',
+    },
 }

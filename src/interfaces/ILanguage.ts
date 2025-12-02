@@ -28,4 +28,9 @@ export interface ILanguage {
         title2: string
         showAll: string
     }
+    product: {
+        category: string
+        addToCart: string
+        description: string
+    }
 }

@@ -30,4 +30,9 @@ export const vi: ILanguage = {
         title2: 'Sản phẩm tốt nhất',
         showAll: 'Xem tất cả',
     },
+    product: {
+        category: 'Danh mục',
+        addToCart: 'Thêm vào giỏ hàng',
+        description: 'Mô tả sản phẩm',
+    },
 }

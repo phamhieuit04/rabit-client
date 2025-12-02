@@ -2,6 +2,7 @@
 import { Search } from 'lucide-vue-next'
 import { useUiStore } from '@/stores/ui'
 import { mapStores } from 'pinia'
+import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import { mapStores } from 'pinia'
                     <img :src="item.image" class="object-contain" />
                     <div class="absolute bottom-0 mb-2.5 flex w-full items-center justify-center">
                         <div
+                            @click="uiStore.setDisplayProductQuickView(true)"
                             class="flex -translate-y-5 cursor-pointer items-center justify-center rounded-full bg-white p-3 opacity-0 drop-shadow-2xl transition duration-200 group-hover:translate-y-0 group-hover:opacity-100"
                         >
                             <Search size="20" />
@@ -35,10 +37,17 @@ import { mapStores } from 'pinia'
             </h1>
         </button>
     </div>
+
+    <!-- Start product quick view modal -->
+    <ProductQuickViewModal />
+    <!-- End product quick view modal -->
 </template>
 
 <script>
 export default {
     props: ['listProduct'],
+    computed: {
+        ...mapStores(useUiStore),
+    },
 }
 </script>
