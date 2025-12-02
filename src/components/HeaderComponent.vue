@@ -21,7 +21,7 @@ import { mapStores } from 'pinia'
 
 <template>
     <div class="flex items-center justify-center">
-        <div class="container mx-auto">
+        <div class="container mx-auto max-w-7xl">
             <!-- Start main header -->
             <div class="flex items-center justify-between pt-6">
                 <!-- Start left items -->
@@ -79,8 +79,8 @@ import { mapStores } from 'pinia'
                                     </div>
                                 </div>
                                 <h1
-                                    class="pt-6 text-3xl font-medium"
-                                    style="font-family: 'Ysabeau Office'"
+                                    class="pt-6 text-4xl font-medium"
+                                    style="font-family: 'Cormorant Garamond'"
                                 >
                                     {{ $t('search.featuredCategories') }}
                                 </h1>

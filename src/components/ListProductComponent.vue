@@ -7,7 +7,7 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
 
 <template>
     <div class="container mx-auto flex flex-col items-center justify-center py-16">
-        <h1 class="text-3xl font-medium" style="font-family: 'Ysabeau Office'">
+        <h1 class="text-4xl font-medium" style="font-family: 'Cormorant Garamond'">
             {{ $t('products.title') }}
         </h1>
         <ul class="grid grid-cols-4 gap-5 py-6">

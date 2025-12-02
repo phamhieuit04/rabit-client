@@ -32,5 +32,10 @@ export interface ILanguage {
         category: string
         addToCart: string
         description: string
+        buyNow: string
+    }
+    quote: {
+        title: string
+        detail: string
     }
 }
