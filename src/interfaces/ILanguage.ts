@@ -1,8 +1,8 @@
 export interface ILanguage {
     header: {
-        shop: String
-        contact: String
-        home: String
+        shop: string
+        contact: string
+        home: string
     }
     footer: {
         slogan: string
@@ -17,22 +17,41 @@ export interface ILanguage {
         newsletter_desc: string
     }
     auth: {
-        login: String
-        signup: String
-        logout: String
+        login: string
+        signup: string
+        logout: string
     }
     settings: {
-        languages: String
-        english: String
-        vietnamese: String
+        languages: string
+        english: string
+        vietnamese: string
     }
     cart: {
-        title: String
-        totalBill: String
-        checkout: String
+        title: string
+        totalBill: string
+        checkout: string
     }
     search: {
-        placeholder: String
-        featuredCategories: String
+        placeholder: string
+        featuredCategories: string
+    }
+    products: {
+        title: string
+        title2: string
+        showAll: string
+    }
+    product: {
+        category: string
+        addToCart: string
+        description: string
+        buyNow: string
+    }
+    quote: {
+        title: string
+        detail: string
+    }
+    contact: {
+        description: string
+        follow: string
     }
 }
