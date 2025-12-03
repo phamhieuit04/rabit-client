@@ -38,4 +38,8 @@ export interface ILanguage {
         title: string
         detail: string
     }
+    contact: {
+        description: string
+        follow: string
+    }
 }

@@ -40,4 +40,9 @@ export const vi: ILanguage = {
         title: 'Chọn lựa chất liệu cho sự sáng tạo',
         detail: 'Thương hiệu của chúng tôi mang đến hệ sinh thái sản phẩm đa dạng, đáp ứng trọn vẹn mọi nhu cầu ghi chép – sáng tạo – thủ công cho người dùng hiện đại. Từ những cuốn sổ tay và vở viết chỉn chu đến các dòng văn phòng phẩm tiện dụng và set đồ chơi thủ công đầy cảm hứng, mỗi sản phẩm đều được thiết kế với sự tinh tế, cập nhật xu hướng và tối ưu trải nghiệm sử dụng.',
     },
+    contact: {
+        description:
+            'Theo dõi Rabit trên Instagram để cập nhật các xu hướng dùng sổ mới nhất, cảm hứng ghi chép mỗi ngày và cách chúng mình tạo nên từng sản phẩm!',
+        follow: 'Theo dõi',
+    },
 }

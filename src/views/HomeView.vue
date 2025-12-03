@@ -63,6 +63,50 @@ import ListProductComponent from '@/components/ListProductComponent.vue'
         </li>
     </ul>
     <!-- End images parallax -->
+
+    <!-- Start contact card -->
+    <div
+        class="container mx-auto my-12 flex h-[600px] w-full max-w-7xl justify-between rounded-4xl bg-[#f4f4f4] p-4"
+    >
+        <div class="flex w-full max-w-[45%] flex-col items-center justify-center gap-4 p-16">
+            <h1 class="text-4xl font-medium" style="font-family: 'Cormorant Garamond'">
+                Instagram
+            </h1>
+            <p class="text-justify text-gray-600">{{ $t('contact.description') }}</p>
+            <button
+                class="cursor-pointer self-start rounded-md bg-[#5c5c5c] px-6 py-2 text-white hover:opacity-75"
+            >
+                {{ $t('contact.follow') }} <span>@Rabit</span>
+            </button>
+        </div>
+        <div class="grid grid-cols-3 gap-4 overflow-hidden">
+            <ul class="flex flex-col gap-4 overflow-hidden rounded-xl">
+                <li
+                    v-for="item in imagesContact[0]"
+                    class="flex h-96 w-54 shrink-0 -translate-y-32 items-center justify-center overflow-hidden rounded-xl"
+                >
+                    <img class="h-full w-full object-cover" :src="item.image_url" alt="" />
+                </li>
+            </ul>
+            <ul class="flex flex-col gap-4 overflow-hidden rounded-xl">
+                <li
+                    v-for="item in imagesContact[1]"
+                    class="flex h-96 w-54 shrink-0 items-center justify-center overflow-hidden rounded-xl"
+                >
+                    <img class="h-full w-full object-cover" :src="item.image_url" alt="" />
+                </li>
+            </ul>
+            <ul class="flex flex-col gap-4 overflow-hidden rounded-xl">
+                <li
+                    v-for="item in imagesContact[2]"
+                    class="flex h-96 w-54 shrink-0 -translate-y-32 items-center justify-center overflow-hidden rounded-xl"
+                >
+                    <img class="h-full w-full object-cover" :src="item.image_url" alt="" />
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- End contact card -->
 </template>
 
 <script>
@@ -158,6 +202,50 @@ export default {
                     description:
                         'Quis sit amet nulla reprehenderit occaecat nostrud velit consectetur in non. Dolor ullamco exercitation non commodo et cillum ad qui elit in Lorem non do. Deserunt voluptate reprehenderit amet Lorem. Adipisicing voluptate cupidatat culpa cupidatat duis.',
                 },
+            ],
+            imagesContact: [
+                [
+                    {
+                        image_url:
+                            'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/img_cus_1.jpg?1763605000974',
+                    },
+                    {
+                        image_url:
+                            'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/img_cus_2.jpg?1763605000974',
+                    },
+                    {
+                        image_url:
+                            'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/img_cus_3.jpg?1763605000974',
+                    },
+                ],
+                [
+                    {
+                        image_url:
+                            'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/img_cus_4.jpg?1763605000974',
+                    },
+                    {
+                        image_url:
+                            'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/img_cus_3.jpg?1763605000974',
+                    },
+                    {
+                        image_url:
+                            'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/img_cus_1.jpg?1763605000974',
+                    },
+                ],
+                [
+                    {
+                        image_url:
+                            'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/img_cus_5.jpg?1763605000974',
+                    },
+                    {
+                        image_url:
+                            'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/img_cus_6.jpg?1763605000974',
+                    },
+                    {
+                        image_url:
+                            'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/img_cus_2.jpg?1763605000974',
+                    },
+                ],
             ],
         }
     },
