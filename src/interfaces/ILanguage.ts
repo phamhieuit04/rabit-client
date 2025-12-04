@@ -39,6 +39,8 @@ export interface ILanguage {
         title: string
         title2: string
         showAll: string
+        showMore: string
+        empty: string
     }
     product: {
         category: string

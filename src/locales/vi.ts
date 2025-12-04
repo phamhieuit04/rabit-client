@@ -42,6 +42,8 @@ export const vi: ILanguage = {
         title: 'Sản phẩm mới',
         title2: 'Sản phẩm tốt nhất',
         showAll: 'Xem tất cả',
+        showMore: 'Xem thêm',
+        empty: 'Không có sản phẩm...',
     },
     product: {
         category: 'Danh mục',

@@ -42,6 +42,8 @@ export const en: ILanguage = {
         title: 'New products',
         title2: 'The best of the best',
         showAll: 'Show all',
+        showMore: 'Show more',
+        empty: 'Empty...',
     },
     product: {
         category: 'Category',

@@ -1,6 +1,7 @@
 <script setup>
 import { useCategoriesStore } from '@/stores/categories'
 import { useUiStore } from '@/stores/ui'
+import { useProductsStore } from '@/stores/products'
 import {
     MapPin,
     MessageCircleQuestionMark,
@@ -229,12 +230,16 @@ import { mapStores } from 'pinia'
 
             <!-- Start list category -->
             <ul class="flex items-center justify-center py-6">
-                <li class="cursor-pointer">
+                <li class="cursor-pointer" @click="navigateToHome">
                     <span class="text-md px-3 font-medium hover:opacity-75">
                         {{ $t('header.home') }}
                     </span>
                 </li>
-                <li v-for="item in categoriesStore.listCategory" class="group cursor-pointer">
+                <li
+                    v-for="item in categoriesStore.listCategory"
+                    @click="navigateToProducts(item.id)"
+                    class="group cursor-pointer"
+                >
                     <span class="text-md relative px-3 pb-8 font-medium hover:opacity-75">
                         {{ item.name }}
                     </span>
@@ -249,6 +254,7 @@ import { mapStores } from 'pinia'
                         <ul class="grid grid-cols-2 gap-4 px-6 py-4">
                             <li
                                 v-for="child in item.childrens"
+                                @click.stop="navigateToProducts(child.id)"
                                 class="cursor-pointer hover:opacity-75"
                             >
                                 <span>{{ child.name }}</span>
@@ -320,7 +326,23 @@ export default {
         this.categoriesStore.fetchListCategory()
     },
     computed: {
-        ...mapStores(useUiStore, useCategoriesStore),
+        ...mapStores(useUiStore, useCategoriesStore, useProductsStore),
+    },
+    methods: {
+        navigateToHome() {
+            this.$router.push('/')
+        },
+        navigateToProducts(categoryId) {
+            let query = { sortType: 'default' }
+            if (categoryId != null) {
+                query['categoryId'] = categoryId
+            }
+            this.$router.push({
+                path: '/products',
+                query: query,
+            })
+            this.productsStore.fetchListProduct(0, 16, categoryId)
+        },
     },
 }
 </script>
