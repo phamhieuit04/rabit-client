@@ -11,33 +11,38 @@
 
             <!-- Start Register Form -->
             <textarea
+                v-model="name"
                 class="mb-4 ml-4 size-14 w-lg content-center rounded-md border-1 border-gray-400 pl-6"
                 name="name"
                 id="name"
                 placeholder="Tên tài khoản"
             ></textarea>
             <textarea
+                v-model="email"
                 class="mb-4 ml-4 size-14 w-lg content-center rounded-md border-1 border-gray-400 pl-6"
                 name="email"
                 id="email"
                 placeholder="Email"
             ></textarea>
-            <textarea
+            <input type="password"
+                v-model="password"
                 class="mb-4 ml-4 size-14 w-lg content-center rounded-md border-1 border-gray-400 pl-6"
                 name="password"
                 id="password"
                 placeholder="Mật khẩu"
-            ></textarea>
-            <textarea
+            ></input>
+            <input type="password"
+                v-model="rePassword"
                 class="mb-4 ml-4 size-14 w-lg content-center rounded-md border-1 border-gray-400 pl-6"
                 name="re-password"
                 id="re-password"
                 placeholder="Nhập lại mật khẩu"
-            ></textarea>
+            ></input>
             <!-- End Register Form -->
 
             <!-- Start Buttons -->
             <button
+                @click="register()"
                 class="mb-4 ml-4 size-14 w-lg cursor-pointer rounded-md bg-gray-600 text-xl font-light text-amber-50 uppercase hover:bg-gray-500 hover:font-medium"
             >
                 Đăng ký
@@ -52,3 +57,48 @@
         </div>
     </div>
 </template>
+
+<script setup>
+import { apiHelper } from '@/helpers/axios';
+</script>
+
+<script>
+export default {
+    data() {
+        return {
+            name: '',
+            email: '',
+            password: '',
+            rePassword: '',
+        }
+    },
+
+    methods: {
+        register() {
+            if (
+                this.email == '' ||
+                this.password == '' ||
+                this.rePassword == ''
+            ) {
+                alert('Vui lòng điền đầy đủ thông tin')
+            }
+            if (this.password !== this.rePassword) {
+                alert('Mật khẩu xác nhận chưa trùng khớp')
+            }
+
+            const formData = new FormData();
+            formData.append('name', this.name);
+            formData.append('email', this.email);
+            formData.append('password', this.password);
+            apiHelper.post('/signup', formData).then((res) => {
+                if (res.status === 200) {
+                    alert("Đăng ký tài khoản thành công! Bạn có thể đăng nhập và bắt đầu mua sắm");
+                }
+            }).catch((err) => {
+                console.log(err);
+
+            })
+        },
+    },
+}
+</script>
