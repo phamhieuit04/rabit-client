@@ -1,4 +1,4 @@
-interface ILanguage {
+export interface ILanguage {
     header: {
         shop: String
         contact: String
@@ -8,6 +8,16 @@ interface ILanguage {
         login: String
         signup: String
         logout: String
+        here: string
+        accountAlreadyExist: string
+        namePlaceholder: string
+        emailPlaceholder: string
+        passwordPlaceholder: string
+        repasswordPlaceholder: string
+        orLoginWith: string
+        signupSuccess: string
+        validateFail: string
+        repasswordFail: string
     }
     settings: {
         languages: String
