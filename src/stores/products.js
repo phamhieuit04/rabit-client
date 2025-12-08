@@ -36,6 +36,18 @@ export const useProductsStore = defineStore('products', {
                     console.log(err)
                 })
         },
+        fetchCurrentProduct(productId) {
+            apiHelper
+                .get('/product/show/' + productId)
+                .then((res) => {
+                    if (res.status == 200) {
+                        this.currentProduct = res.data.data
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
         setCurrentProduct(product) {
             this.currentProduct = product
         },
