@@ -1,6 +1,7 @@
 <script setup>
 import { useCategoriesStore } from '@/stores/categories'
 import { useUiStore } from '@/stores/ui'
+import { useProductsStore } from '@/stores/products'
 import {
     MapPin,
     MessageCircleQuestionMark,
@@ -229,7 +230,7 @@ import { mapStores } from 'pinia'
 
             <!-- Start list category -->
             <ul class="flex items-center justify-center py-6">
-                <li class="cursor-pointer">
+                <li class="cursor-pointer" @click="navigateToHome">
                     <span class="text-md px-3 font-medium hover:opacity-75">
                         {{ $t('header.home') }}
                     </span>
@@ -325,9 +326,12 @@ export default {
         this.categoriesStore.fetchListCategory()
     },
     computed: {
-        ...mapStores(useUiStore, useCategoriesStore),
+        ...mapStores(useUiStore, useCategoriesStore, useProductsStore),
     },
     methods: {
+        navigateToHome() {
+            this.$router.push('/')
+        },
         goToLogin() {
             this.$router.push('login')
         },

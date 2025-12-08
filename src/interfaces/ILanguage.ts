@@ -51,6 +51,17 @@ export interface ILanguage {
         title: string
         title2: string
         showAll: string
+        showMore: string
+        empty: string
+        allProduct: string
+        sortBy: string
+        sortType: {
+            default: string
+            newest: string
+            bestSeller: string
+            priceLowToHigh: string
+            priceHighToLow: string
+        }
     }
     product: {
         category: string

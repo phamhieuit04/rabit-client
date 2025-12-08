@@ -54,6 +54,17 @@ export const vi: ILanguage = {
         title: 'Sản phẩm mới',
         title2: 'Sản phẩm tốt nhất',
         showAll: 'Xem tất cả',
+        showMore: 'Xem thêm',
+        empty: 'Không có sản phẩm...',
+        allProduct: 'Toàn bộ sản phẩm',
+        sortBy: 'Sắp xếp theo',
+        sortType: {
+            default: 'Mặc định',
+            newest: 'Mới nhất',
+            bestSeller: 'Bán chạy nhất',
+            priceLowToHigh: 'Giá thấp đến cao',
+            priceHighToLow: 'Giá cao đến thấp',
+        },
     },
     product: {
         category: 'Danh mục',
