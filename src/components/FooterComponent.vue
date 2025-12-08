@@ -1,5 +1,5 @@
 <template>
-    <div class="flex min-h-80 w-full justify-center bg-[#3d3c3c] p-12">
+    <div class="mt-30 flex min-h-80 w-full justify-center bg-[#3d3c3c] p-12">
         <div class="container mx-auto grid w-full max-w-7xl grid-cols-4 gap-6 text-white">
             <div class="flex flex-col gap-3">
                 <p>{{ $t('footer.slogan') }}</p>

@@ -10,28 +10,28 @@
             <!-- Start Register Form -->
             <textarea
                 v-model="name"
-                class="mb-4 ml-4 size-14 w-lg content-center rounded-md border-1 border-gray-400 pl-6"
+                class="mb-4 ml-4 size-14 w-lg content-center rounded-md border border-gray-400 pl-6"
                 name="name"
                 id="name"
                 :placeholder="$t('auth.namePlaceholder')"
             ></textarea>
             <textarea
                 v-model="email"
-                class="mb-4 ml-4 size-14 w-lg content-center rounded-md border-1 border-gray-400 pl-6"
+                class="mb-4 ml-4 size-14 w-lg content-center rounded-md border border-gray-400 pl-6"
                 name="email"
                 id="email"
                 :placeholder="$t('auth.emailPlaceholder')"
             ></textarea>
             <input type="password"
                 v-model="password"
-                class="mb-4 ml-4 size-14 w-lg content-center rounded-md border-1 border-gray-400 pl-6"
+                class="mb-4 ml-4 size-14 w-lg content-center rounded-md border border-gray-400 pl-6"
                 name="password"
                 id="password"
                 :placeholder="$t('auth.passwordPlaceholder')"
             ></input>
             <input type="password"
                 v-model="rePassword"
-                class="mb-4 ml-4 size-14 w-lg content-center rounded-md border-1 border-gray-400 pl-6"
+                class="mb-4 ml-4 size-14 w-lg content-center rounded-md border border-gray-400 pl-6"
                 name="re-password"
                 id="re-password"
                 :placeholder="$t('auth.repasswordPlaceholder')"
