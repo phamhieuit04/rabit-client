@@ -8,20 +8,20 @@
             </span>
 
             <!-- Start Register Form -->
-            <textarea
-                v-model="name"
+            <input
+                v-model="name" type="text"
                 class="mb-4 ml-4 size-14 w-lg content-center rounded-md border border-gray-400 pl-6"
                 name="name"
                 id="name"
                 :placeholder="$t('auth.namePlaceholder')"
-            ></textarea>
-            <textarea
-                v-model="email"
+            ></input>
+            <input
+                v-model="email" type="text"
                 class="mb-4 ml-4 size-14 w-lg content-center rounded-md border border-gray-400 pl-6"
                 name="email"
                 id="email"
                 :placeholder="$t('auth.emailPlaceholder')"
-            ></textarea>
+            ></input>
             <input type="password"
                 v-model="password"
                 class="mb-4 ml-4 size-14 w-lg content-center rounded-md border border-gray-400 pl-6"
@@ -58,7 +58,6 @@
 
 <script setup>
 import { apiHelper } from '@/helpers/axios';
-import { isJSDocAuthorTag } from 'typescript';
 </script>
 
 <script>

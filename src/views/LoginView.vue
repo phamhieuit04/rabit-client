@@ -8,13 +8,13 @@
             </span>
 
             <!-- Start Register Form -->
-            <textarea
-                v-model="email"
+            <input
+                v-model="email" type="text"
                 class="mb-4 ml-4 size-14 w-lg content-center rounded-md border border-gray-400 pl-6"
                 name="email"
                 id="email"
                 :placeholder="$t('auth.emailPlaceholder')"
-            ></textarea>
+            ></input>
             <input type="password"
                 v-model="password"
                 class="mb-4 ml-4 size-14 w-lg content-center rounded-md border border-gray-400 pl-6"
@@ -70,7 +70,7 @@ export default {
             apiHelper.post('/login', formData).then((res) => {
                 if (res.status === 200) {
                     alert(this.$t('auth.loginSuccess'));
-                    this.$router.push('home');
+                    this.$router.push('/');
                 }
             }).catch((err) => {
                 console.log(err);
