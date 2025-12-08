@@ -6,6 +6,19 @@ export const vi: ILanguage = {
         contact: 'Liên hệ',
         home: 'Trang chủ',
     },
+    footer: {
+        slogan: 'Sổ tay Made in Vietnam dành cho những người trẻ đầy đam mê!',
+        about_crabit: 'Về Crabit',
+        intro: 'Giới thiệu chung',
+        product_advantages: 'Ưu điểm sản phẩm',
+        inspiration: 'Cảm hứng Crabit Notebuck',
+        customer_policy: 'Chính sách khách hàng',
+        bulk_order: 'Sổ đặt số lượng lớn',
+        personal_order: 'Sổ đặt cá nhân',
+        newsletter: 'Đăng ký bảng tin',
+        newsletter_desc:
+            'Đăng ký nhận tin để là người đầu tiên biết về sản phẩm mới và ưu đãi độc quyền!',
+    },
     auth: {
         login: 'Đăng nhập',
         signup: 'Đăng ký',
@@ -34,5 +47,25 @@ export const vi: ILanguage = {
     search: {
         placeholder: 'Tìm kiếm sản phẩm',
         featuredCategories: 'Danh mục nổi bật',
+    },
+    products: {
+        title: 'Sản phẩm mới',
+        title2: 'Sản phẩm tốt nhất',
+        showAll: 'Xem tất cả',
+    },
+    product: {
+        category: 'Danh mục',
+        addToCart: 'Thêm vào giỏ hàng',
+        description: 'Mô tả sản phẩm',
+        buyNow: 'Mua ngay',
+    },
+    quote: {
+        title: 'Chọn lựa chất liệu cho sự sáng tạo',
+        detail: 'Thương hiệu của chúng tôi mang đến hệ sinh thái sản phẩm đa dạng, đáp ứng trọn vẹn mọi nhu cầu ghi chép – sáng tạo – thủ công cho người dùng hiện đại. Từ những cuốn sổ tay và vở viết chỉn chu đến các dòng văn phòng phẩm tiện dụng và set đồ chơi thủ công đầy cảm hứng, mỗi sản phẩm đều được thiết kế với sự tinh tế, cập nhật xu hướng và tối ưu trải nghiệm sử dụng.',
+    },
+    contact: {
+        description:
+            'Theo dõi Rabit trên Instagram để cập nhật các xu hướng dùng sổ mới nhất, cảm hứng ghi chép mỗi ngày và cách chúng mình tạo nên từng sản phẩm!',
+        follow: 'Theo dõi',
     },
 }

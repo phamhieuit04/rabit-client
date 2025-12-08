@@ -5,6 +5,7 @@ export const useUiStore = defineStore('ui', {
         return {
             currentLocale: 'vi',
             displaySearchCard: false,
+            displayProductQuickView: false,
         }
     },
     actions: {
@@ -13,6 +14,9 @@ export const useUiStore = defineStore('ui', {
         },
         setCurrentLocale(locale) {
             this.currentLocale = locale
+        },
+        setDisplayProductQuickView(value) {
+            this.displayProductQuickView = value
         },
     },
     persist: {
