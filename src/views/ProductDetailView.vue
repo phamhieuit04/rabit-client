@@ -39,7 +39,7 @@ import { mapStores } from 'pinia'
                     {{ productsStore.currentProduct.name }}
                 </h1>
                 <div class="text-sm text-gray-400">
-                    Thể loại: {{ productsStore.currentProduct.category.name }}
+                    {{ $t('product.category') }}: {{ productsStore.currentProduct.category.name }}
                 </div>
                 <div class="text-2xl font-semibold">
                     {{ productsStore.currentProduct.price.toLocaleString('de-DE') }}₫
@@ -72,13 +72,13 @@ import { mapStores } from 'pinia'
                 <button
                     class="w-full cursor-pointer rounded-xl bg-black py-3 font-medium text-white duration-150 hover:bg-gray-900 hover:opacity-75"
                 >
-                    Thêm vào giỏ hàng
+                    {{ $t('product.addToCart') }}
                 </button>
                 <div class="border-t pt-6">
                     <button class="flex w-full items-center justify-between text-left">
                         <span class="flex items-center gap-2 font-medium text-gray-800">
                             <Info />
-                            Thông tin sản phẩm
+                            {{ $t('product.description') }}
                         </span>
                         <span class="text-xl">−</span>
                     </button>
