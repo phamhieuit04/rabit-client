@@ -17,9 +17,19 @@ export interface ILanguage {
         newsletter_desc: string
     }
     auth: {
-        login: string
-        signup: string
-        logout: string
+        login: String
+        signup: String
+        logout: String
+        here: string
+        accountAlreadyExist: string
+        namePlaceholder: string
+        emailPlaceholder: string
+        passwordPlaceholder: string
+        repasswordPlaceholder: string
+        orLoginWith: string
+        signupSuccess: string
+        validateFail: string
+        repasswordFail: string
     }
     settings: {
         languages: string
