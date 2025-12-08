@@ -4,7 +4,7 @@
             <h1 class="m-3 text-4xl font-light" style="font-family: 'Ysabeau Office'">{{ $t('auth.signup') }}</h1>
             <span class="text-lg font-light">
                 {{ $t('auth.accountAlreadyExist') }}
-                <a class="text-gray-400 hover:text-black" href="">{{ $t('auth.here') }}</a>
+                <button @click="goToLogin()" class="text-gray-400 hover:text-black cursor-pointer">{{ $t('auth.here') }}</button>
             </span>
 
             <!-- Start Register Form -->
@@ -71,7 +71,6 @@ export default {
             rePassword: '',
         }
     },
-
     methods: {
         register() {
             if (
@@ -92,12 +91,15 @@ export default {
             apiHelper.post('/signup', formData).then((res) => {
                 if (res.status === 200) {
                     alert(this.$t('auth.signupSuccess'));
+                    this.$router.push('login')
                 }
             }).catch((err) => {
                 console.log(err);
-
             })
         },
+        goToLogin() {
+            this.$router.push('login');
+        }
     },
 }
 </script>
