@@ -234,7 +234,11 @@ import { mapStores } from 'pinia'
                         {{ $t('header.home') }}
                     </span>
                 </li>
-                <li v-for="item in categoriesStore.listCategory" class="group cursor-pointer">
+                <li
+                    v-for="item in categoriesStore.listCategory"
+                    @click="navigateToProducts(item)"
+                    class="group cursor-pointer"
+                >
                     <span class="text-md relative px-3 pb-8 font-medium hover:opacity-75">
                         {{ item.name }}
                     </span>
@@ -249,6 +253,7 @@ import { mapStores } from 'pinia'
                         <ul class="grid grid-cols-2 gap-4 px-6 py-4">
                             <li
                                 v-for="child in item.childrens"
+                                @click.stop="navigateToProducts(child)"
                                 class="cursor-pointer hover:opacity-75"
                             >
                                 <span>{{ child.name }}</span>
@@ -326,8 +331,17 @@ export default {
         goToLogin() {
             this.$router.push('login')
         },
-        goToRegister() {
-            this.$router.push('register')
+        navigateToProducts(category) {
+            let query = { sortType: 'default' }
+            if (category.id != null) {
+                query['categoryId'] = category.id
+            }
+            this.$router.push({
+                path: '/products',
+                query: query,
+            })
+            this.categoriesStore.currentCategory = category
+            this.productsStore.fetchListProduct(0, 16, category.id)
         },
     },
 }

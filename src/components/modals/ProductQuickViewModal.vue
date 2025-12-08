@@ -2,6 +2,7 @@
 import '@splidejs/vue-splide/css'
 import { mapStores } from 'pinia'
 import { useUiStore } from '@/stores/ui'
+import { useProductsStore } from '@/stores/products'
 import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import { Minus, Plus, X } from 'lucide-vue-next'
 </script>
@@ -20,11 +21,15 @@ import { Minus, Plus, X } from 'lucide-vue-next'
             </div>
             <div class="flex w-full max-w-[400px] flex-col items-center gap-4">
                 <div class="size-[400px]">
-                    <img :src="currentImage" alt="" class="h-full w-full object-contain" />
+                    <img
+                        :src="productsStore.currentImage"
+                        alt=""
+                        class="h-full w-full object-contain"
+                    />
                 </div>
                 <Splide :options="carouselOptions" @splide:click="onClick">
                     <SplideSlide
-                        v-for="item in product.images"
+                        v-for="item in productsStore.currentProduct.images"
                         class="size-20 cursor-pointer border-2 border-gray-200 hover:brightness-90"
                     >
                         <img :src="item.image_url" class="h-full w-full object-contain" />
@@ -37,16 +42,18 @@ import { Minus, Plus, X } from 'lucide-vue-next'
                         class="line-clamp-2 text-2xl font-medium"
                         style="font-family: 'Ysabeau Office'"
                     >
-                        {{ product.name }}
+                        {{ productsStore.currentProduct.name }}
                     </h1>
                     <div class="flex items-center gap-2">
                         <p class="font-medium">{{ $t('product.category') }}:</p>
-                        <p class="text-gray-500">{{ product.categoryName }}</p>
+                        <p class="text-gray-500">{{ productsStore.currentProduct.categoryName }}</p>
                     </div>
-                    <p class="text-2xl font-bold">{{ product.price }}</p>
+                    <p class="text-2xl font-bold">
+                        {{ productsStore.currentProduct.price.toLocaleString('de-DE') }}đ
+                    </p>
                     <div>
                         <p class="font-medium">{{ $t('product.description') }}:</p>
-                        <p class="line-clamp-3">{{ product.description }}</p>
+                        <p class="line-clamp-3">{{ productsStore.currentProduct.description }}</p>
                     </div>
                 </div>
                 <div class="flex items-center justify-between">
@@ -99,55 +106,17 @@ export default {
                 omitEnd: true,
                 gap: 4,
             },
-            currentImage:
-                'https://bizweb.dktcdn.net/thumb/large/100/220/344/products/1-48af9730-94be-42ea-b1d1-fd382a3ac292.jpg?v=1761619558357',
             currentQuantity: 1,
-            product: {
-                name: 'Sổ tay A5 kẻ ngang 130gsm 110 trang A Few Notes - Woman Who Think Too Much',
-                images: [
-                    {
-                        image_url:
-                            'https://bizweb.dktcdn.net/thumb/large/100/220/344/products/1-48af9730-94be-42ea-b1d1-fd382a3ac292.jpg?v=1761619558357',
-                    },
-                    {
-                        image_url:
-                            'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/slider_2.jpg?1763605000974',
-                    },
-                    {
-                        image_url:
-                            'https://bizweb.dktcdn.net/thumb/large/100/220/344/products/1-48af9730-94be-42ea-b1d1-fd382a3ac292.jpg?v=1761619558357',
-                    },
-                    {
-                        image_url:
-                            'https://bizweb.dktcdn.net/thumb/large/100/220/344/products/1-48af9730-94be-42ea-b1d1-fd382a3ac292.jpg?v=1761619558357',
-                    },
-                    {
-                        image_url:
-                            'https://bizweb.dktcdn.net/thumb/large/100/220/344/products/1-48af9730-94be-42ea-b1d1-fd382a3ac292.jpg?v=1761619558357',
-                    },
-                    {
-                        image_url:
-                            'https://bizweb.dktcdn.net/thumb/large/100/220/344/products/1-48af9730-94be-42ea-b1d1-fd382a3ac292.jpg?v=1761619558357',
-                    },
-                    {
-                        image_url:
-                            'https://bizweb.dktcdn.net/thumb/large/100/220/344/products/1-48af9730-94be-42ea-b1d1-fd382a3ac292.jpg?v=1761619558357',
-                    },
-                ],
-                price: '59.800₫',
-                categoryName: 'Sổ kẻ ngang',
-                description:
-                    'Tiếp nối cảm hứng từ BST Ribbon 1, bộ sưu tập lần này vẫn mang sự điệu đà, nữ tính của phong cách lãng mạn Toile de jouy, Cottagecore đầy thanh lịch và quý tộc',
-            },
         }
     },
     computed: {
-        ...mapStores(useUiStore),
+        ...mapStores(useUiStore, useProductsStore),
     },
     methods: {
         onClick(slide, event) {
             let index = event.index
-            this.currentImage = this.product.images[index].image_url
+            this.productsStore.currentImage =
+                this.productsStore.currentProduct.images[index].image_url
         },
     },
 }
