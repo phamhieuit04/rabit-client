@@ -42,17 +42,6 @@ export const en: ILanguage = {
         title: 'New products',
         title2: 'The best of the best',
         showAll: 'Show all',
-        showMore: 'Show more',
-        empty: 'Empty...',
-        allProduct: 'All products',
-        sortBy: 'Sort by',
-        sortType: {
-            default: 'Default',
-            newest: 'Newest',
-            bestSeller: 'Best seller',
-            priceLowToHigh: 'Price low to high',
-            priceHighToLow: 'Price high to low',
-        },
     },
     product: {
         category: 'Category',
