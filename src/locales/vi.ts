@@ -44,6 +44,15 @@ export const vi: ILanguage = {
         showAll: 'Xem tất cả',
         showMore: 'Xem thêm',
         empty: 'Không có sản phẩm...',
+        allProduct: 'Toàn bộ sản phẩm',
+        sortBy: 'Sắp xếp theo',
+        sortType: {
+            default: 'Mặc định',
+            newest: 'Mới nhất',
+            bestSeller: 'Bán chạy nhất',
+            priceLowToHight: 'Giá thấp đến cao',
+            priceHightToLow: 'Giá cao đến thấp',
+        },
     },
     product: {
         category: 'Danh mục',

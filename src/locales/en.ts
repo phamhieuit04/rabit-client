@@ -44,6 +44,15 @@ export const en: ILanguage = {
         showAll: 'Show all',
         showMore: 'Show more',
         empty: 'Empty...',
+        allProduct: 'All products',
+        sortBy: 'Sort by',
+        sortType: {
+            default: 'Default',
+            newest: 'Newest',
+            bestSeller: 'Best seller',
+            priceLowToHight: 'Price low to hight',
+            priceHightToLow: 'Price hight to low',
+        },
     },
     product: {
         category: 'Category',

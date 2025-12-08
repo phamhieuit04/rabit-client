@@ -16,12 +16,12 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
             @click="allProducts"
             class="cursor-pointer rounded-md px-4 py-2 outline outline-gray-300 hover:bg-[#838383] hover:text-white"
         >
-            Tất cả sản phẩm
+            {{ $t('products.allProduct') }}
         </button>
         <div class="flex items-center gap-4">
             <div class="flex items-center justify-center gap-2">
                 <ArrowDownAZ />
-                <p class="font-medium">Sắp xếp theo</p>
+                <p class="font-medium">{{ $t('products.sortBy') }}</p>
             </div>
             <ul class="flex gap-4">
                 <li
@@ -32,7 +32,7 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
                             $route.query['sortType'] == 'default',
                     }"
                 >
-                    Mặc định
+                    {{ $t('products.sortType.default') }}
                 </li>
                 <li
                     @click="sortedProducts('newest')"
@@ -42,7 +42,7 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
                             $route.query['sortType'] == 'newest',
                     }"
                 >
-                    Mới nhất
+                    {{ $t('products.sortType.newest') }}
                 </li>
                 <li
                     @click="sortedProducts('best_seller')"
@@ -52,7 +52,7 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
                             $route.query['sortType'] == 'best_seller',
                     }"
                 >
-                    Bán chạy nhất
+                    {{ $t('products.sortType.bestSeller') }}
                 </li>
                 <li
                     @click="sortedProducts('price_asc')"
@@ -62,7 +62,7 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
                             $route.query['sortType'] == 'price_asc',
                     }"
                 >
-                    Giá thấp đến cao
+                    {{ $t('products.sortType.priceLowToHight') }}
                 </li>
                 <li
                     @click="sortedProducts('price_desc')"
@@ -72,7 +72,7 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
                             $route.query['sortType'] == 'price_desc',
                     }"
                 >
-                    Giá cao đến thấp
+                    {{ $t('products.sortType.priceHightToLow') }}
                 </li>
             </ul>
         </div>
