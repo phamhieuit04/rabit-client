@@ -33,6 +33,8 @@ export const vi: ILanguage = {
         signupSuccess: 'Đăng ký tài khoản thành công! Bạn có thể đăng nhập và bắt đầu mua sắm',
         validateFail: 'Vui lòng điền đầy đủ thông tin',
         repasswordFail: 'Mật khẩu xác nhận chưa trùng khớp',
+        dontHaveAccount: 'Bạn chưa có tài khoản? đăng ký',
+        loginSuccess: 'Đăng nhập thành công!',
     },
     settings: {
         languages: 'Ngôn ngữ',

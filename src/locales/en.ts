@@ -33,6 +33,8 @@ export const en: ILanguage = {
         signupSuccess: 'Your account created successed! Please login for shopping',
         validateFail: 'Please fill all your information',
         repasswordFail: 'Password and Re-password must be the same!',
+        dontHaveAccount: "You don't have an account? Register",
+        loginSuccess: 'Login successed!',
     },
     settings: {
         languages: 'Languages',

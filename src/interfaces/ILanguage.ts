@@ -30,6 +30,8 @@ export interface ILanguage {
         signupSuccess: string
         validateFail: string
         repasswordFail: string
+        dontHaveAccount: string
+        loginSuccess: string
     }
     settings: {
         languages: string
