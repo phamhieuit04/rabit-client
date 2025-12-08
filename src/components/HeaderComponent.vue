@@ -181,7 +181,7 @@ import { mapStores } from 'pinia'
                                     <div class="flex size-8 items-center justify-center">
                                         <LogIn />
                                     </div>
-                                    <span>{{ $t('auth.login') }}</span>
+                                    <span @click="goToLogin()">{{ $t('auth.login') }}</span>
                                 </li>
                                 <li
                                     class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md p-1 hover:bg-[#838380] hover:text-white"
@@ -189,7 +189,7 @@ import { mapStores } from 'pinia'
                                     <div class="flex size-8 items-center justify-center">
                                         <UserPlus2 />
                                     </div>
-                                    <span>{{ $t('auth.signup') }}</span>
+                                    <span @click="goToRegister()">{{ $t('auth.signup') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -321,6 +321,14 @@ export default {
     },
     computed: {
         ...mapStores(useUiStore, useCategoriesStore),
+    },
+    methods: {
+        goToLogin() {
+            this.$router.push('login')
+        },
+        goToRegister() {
+            this.$router.push('register')
+        },
     },
 }
 </script>
