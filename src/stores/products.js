@@ -4,6 +4,8 @@ import { defineStore } from 'pinia'
 export const useProductsStore = defineStore('products', {
     state: () => {
         return {
+            currentProduct: null,
+            currentImage: '',
             listProduct: [],
         }
     },
@@ -39,6 +41,12 @@ export const useProductsStore = defineStore('products', {
                 .catch((err) => {
                     console.log(err)
                 })
+        },
+        setCurrentProduct(product) {
+            this.currentProduct = product
+        },
+        setCurrentImage(image) {
+            this.currentImage = image
         },
     },
     persist: true,

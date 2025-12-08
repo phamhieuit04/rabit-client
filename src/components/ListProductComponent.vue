@@ -106,7 +106,13 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
                     />
                     <div class="absolute bottom-0 mb-2.5 flex w-full items-center justify-center">
                         <div
-                            @click="uiStore.setDisplayProductQuickView(true)"
+                            @click="
+                                () => {
+                                    uiStore.setDisplayProductQuickView(true)
+                                    productsStore.setCurrentProduct(item)
+                                    productsStore.setCurrentImage(item.images[0].image_url)
+                                }
+                            "
                             class="flex -translate-y-5 cursor-pointer items-center justify-center rounded-full bg-white p-3 opacity-0 drop-shadow-2xl transition duration-200 group-hover:translate-y-0 group-hover:opacity-100"
                         >
                             <Search size="20" />
