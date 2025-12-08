@@ -59,18 +59,23 @@ import { mapStores } from 'pinia'
                             <div class="container mx-auto flex flex-col items-center gap-8 py-12">
                                 <div class="flex w-full items-center justify-between">
                                     <div class="flex grow items-center justify-center">
-                                        <div
+                                        <form
+                                            @submit.prevent="searchProducts(searchKey)"
                                             class="flex w-[650px] items-center justify-between bg-[#f2f2f2]"
                                         >
                                             <input
+                                                v-model="searchKey"
                                                 type="text"
                                                 class="w-full px-6 py-4 outline-0"
                                                 :placeholder="$t('search.placeholder')"
                                             />
-                                            <div class="cursor-pointer px-4 hover:opacity-75">
+                                            <div
+                                                class="cursor-pointer px-4 hover:opacity-75"
+                                                @click="searchProducts(searchKey)"
+                                            >
                                                 <Search size="28" />
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                     <div
                                         @click="uiStore.setDisplaySearchCard(false)"
@@ -177,20 +182,22 @@ import { mapStores } from 'pinia'
                         >
                             <ul class="flex flex-col gap-4 p-4">
                                 <li
+                                    @click="navigateToLogin()"
                                     class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md p-1 hover:bg-[#838380] hover:text-white"
                                 >
                                     <div class="flex size-8 items-center justify-center">
                                         <LogIn />
                                     </div>
-                                    <span @click="goToLogin()">{{ $t('auth.login') }}</span>
+                                    <span>{{ $t('auth.login') }}</span>
                                 </li>
                                 <li
+                                    @click="navigateToRegister()"
                                     class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md p-1 hover:bg-[#838380] hover:text-white"
                                 >
                                     <div class="flex size-8 items-center justify-center">
                                         <UserPlus2 />
                                     </div>
-                                    <span @click="goToRegister()">{{ $t('auth.signup') }}</span>
+                                    <span>{{ $t('auth.signup') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -320,6 +327,7 @@ export default {
                         'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/sl-072622-51930-13.jpg?v=1751438476727',
                 },
             ],
+            searchKey: '',
         }
     },
     mounted() {
@@ -332,8 +340,11 @@ export default {
         navigateToHome() {
             this.$router.push('/')
         },
-        goToLogin() {
-            this.$router.push('login')
+        navigateToLogin() {
+            this.$router.push('/login')
+        },
+        navigateToRegister() {
+            this.$router.push('/register')
         },
         navigateToProducts(category) {
             let query = { sortType: 'default' }
@@ -345,7 +356,14 @@ export default {
                 query: query,
             })
             this.categoriesStore.currentCategory = category
-            this.productsStore.fetchListProduct(0, 16, category.id)
+        },
+        searchProducts(searchKey) {
+            this.uiStore.setDisplaySearchCard(false)
+            let query = { sortType: 'default', searchKey: searchKey }
+            this.$router.push({
+                path: '/products',
+                query: query,
+            })
         },
     },
 }

@@ -157,24 +157,41 @@ export default {
     mounted() {
         this.handleRouteQuery()
     },
+    watch: {
+        '$route.query': {
+            handler() {
+                this.handleRouteQuery()
+            },
+            deep: true,
+            immediate: false,
+        },
+    },
     computed: {
         ...mapStores(useUiStore, useProductsStore),
     },
     methods: {
         onClick() {
-            if (this.$route.path == '/') {
-                this.$router.push({ path: '/products', query: { sortType: 'default' } })
-            } else {
-                this.offset += this.limit
-                this.handleFetchProducts()
+            if (this.$route.path === '/') {
+                this.$router.push({
+                    path: '/products',
+                    query: { sortType: 'default' },
+                })
+                return
             }
+            this.offset += this.limit
+            this.handleFetchProducts()
         },
         handleRouteQuery() {
-            if (this.$route.query['categoryId'] != undefined) {
-                this.query['categoryId'] = this.$route.query['categoryId']
+            const q = this.$route.query
+            this.offset = 0
+            this.query = {
+                sortType: q.sortType ?? 'default',
             }
-            if (this.$route.query['sortType'] != undefined) {
-                this.query['sortType'] = this.$route.query['sortType']
+            if (q.categoryId) {
+                this.query['categoryId'] = q.categoryId
+            }
+            if (q.searchKey) {
+                this.query['searchKey'] = q.searchKey
             }
             this.handleFetchProducts()
         },
@@ -182,23 +199,35 @@ export default {
             this.productsStore.fetchListProduct(
                 this.offset,
                 this.limit,
-                this.query['categoryId'],
-                this.query['sortType'],
+                this.query.categoryId,
+                this.query.searchKey,
+                this.query.sortType,
             )
         },
         allProducts() {
-            this.query = {}
-            this.handleFetchProducts()
-            this.$router.push({ path: '/products', query: { sortType: 'default' } })
+            this.query = {
+                categoryId: null,
+                sortType: 'default',
+                searchKey: null,
+            }
+            this.$router.push({
+                path: '/products',
+                query: { sortType: 'default' },
+            })
         },
         sortedProducts(sortType) {
             this.offset = 0
-            if (this.$route.query['categoryId'] != undefined) {
-                this.query['categoryId'] = this.$route.query['categoryId']
+            const newQuery = {
+                categoryId: this.$route.query.categoryId ?? null,
+                sortType,
             }
-            this.query['sortType'] = sortType
-            this.handleFetchProducts()
-            this.$router.push({ path: '/products', query: this.query })
+            if (this.$route.query.searchKey && this.$route.query.searchKey.trim() !== '') {
+                newQuery.searchKey = this.$route.query.searchKey
+            }
+            this.$router.push({
+                path: '/products',
+                query: newQuery,
+            })
         },
     },
 }
