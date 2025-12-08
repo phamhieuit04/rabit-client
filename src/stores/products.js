@@ -10,13 +10,7 @@ export const useProductsStore = defineStore('products', {
         }
     },
     actions: {
-        fetchListProduct(
-            offset = 0,
-            limit = 8,
-            categoryId = null,
-            sortType = null,
-            searchKey = null,
-        ) {
+        fetchListProduct(offset = 0, limit = 8, categoryId = null, searchKey = null, sortType) {
             apiHelper
                 .get('/list-product', {
                     params: {

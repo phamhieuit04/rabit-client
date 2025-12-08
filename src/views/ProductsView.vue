@@ -7,6 +7,7 @@ import { mapStores } from 'pinia'
 <template>
     <div class="container mx-auto flex max-w-7xl flex-col items-center justify-center gap-12">
         <div
+            v-show="!$route.query['searchKey'] || !$route.query['categoryId']"
             class="flex min-h-64 w-full max-w-7xl items-center justify-center bg-cover bg-center bg-no-repeat"
             :style="{
                 backgroundImage: 'url(' + categoriesStore.currentCategory.thumbnail_url + ')',
