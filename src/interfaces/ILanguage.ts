@@ -17,9 +17,21 @@ export interface ILanguage {
         newsletter_desc: string
     }
     auth: {
-        login: string
-        signup: string
-        logout: string
+        login: String
+        signup: String
+        logout: String
+        here: string
+        accountAlreadyExist: string
+        namePlaceholder: string
+        emailPlaceholder: string
+        passwordPlaceholder: string
+        repasswordPlaceholder: string
+        orLoginWith: string
+        signupSuccess: string
+        validateFail: string
+        repasswordFail: string
+        dontHaveAccount: string
+        loginSuccess: string
     }
     settings: {
         languages: string
@@ -39,17 +51,6 @@ export interface ILanguage {
         title: string
         title2: string
         showAll: string
-        showMore: string
-        empty: string
-        allProduct: string
-        sortBy: string
-        sortType: {
-            default: string
-            newest: string
-            bestSeller: string
-            priceLowToHigh: string
-            priceHighToLow: string
-        }
     }
     product: {
         category: string

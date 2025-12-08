@@ -1,7 +1,6 @@
 <script setup>
 import { useCategoriesStore } from '@/stores/categories'
 import { useUiStore } from '@/stores/ui'
-import { useProductsStore } from '@/stores/products'
 import {
     MapPin,
     MessageCircleQuestionMark,
@@ -182,7 +181,7 @@ import { mapStores } from 'pinia'
                                     <div class="flex size-8 items-center justify-center">
                                         <LogIn />
                                     </div>
-                                    <span>{{ $t('auth.login') }}</span>
+                                    <span @click="goToLogin()">{{ $t('auth.login') }}</span>
                                 </li>
                                 <li
                                     class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md p-1 hover:bg-[#838380] hover:text-white"
@@ -190,7 +189,7 @@ import { mapStores } from 'pinia'
                                     <div class="flex size-8 items-center justify-center">
                                         <UserPlus2 />
                                     </div>
-                                    <span>{{ $t('auth.signup') }}</span>
+                                    <span @click="goToRegister()">{{ $t('auth.signup') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -230,7 +229,7 @@ import { mapStores } from 'pinia'
 
             <!-- Start list category -->
             <ul class="flex items-center justify-center py-6">
-                <li class="cursor-pointer" @click="navigateToHome">
+                <li class="cursor-pointer">
                     <span class="text-md px-3 font-medium hover:opacity-75">
                         {{ $t('header.home') }}
                     </span>
@@ -326,11 +325,11 @@ export default {
         this.categoriesStore.fetchListCategory()
     },
     computed: {
-        ...mapStores(useUiStore, useCategoriesStore, useProductsStore),
+        ...mapStores(useUiStore, useCategoriesStore),
     },
     methods: {
-        navigateToHome() {
-            this.$router.push('/')
+        goToLogin() {
+            this.$router.push('login')
         },
         navigateToProducts(category) {
             let query = { sortType: 'default' }
