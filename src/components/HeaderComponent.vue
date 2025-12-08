@@ -184,7 +184,6 @@ import { mapStores } from 'pinia'
                                     <span>{{ $t('auth.login') }}</span>
                                 </li>
                                 <li
-                                    @click="goToSignup()"
                                     class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md p-1 hover:bg-[#838380] hover:text-white"
                                 >
                                     <div class="flex size-8 items-center justify-center">
@@ -322,11 +321,6 @@ export default {
     },
     computed: {
         ...mapStores(useUiStore, useCategoriesStore),
-    },
-    methods: {
-        goToSignup() {
-            this.$router.push('register')
-        },
     },
 }
 </script>
