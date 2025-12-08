@@ -62,7 +62,7 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
                             $route.query['sortType'] == 'price_asc',
                     }"
                 >
-                    {{ $t('products.sortType.priceLowToHight') }}
+                    {{ $t('products.sortType.priceLowToHigh') }}
                 </li>
                 <li
                     @click="sortedProducts('price_desc')"
@@ -72,7 +72,7 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
                             $route.query['sortType'] == 'price_desc',
                     }"
                 >
-                    {{ $t('products.sortType.priceHightToLow') }}
+                    {{ $t('products.sortType.priceHighToLow') }}
                 </li>
             </ul>
         </div>

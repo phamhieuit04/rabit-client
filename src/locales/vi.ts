@@ -50,8 +50,8 @@ export const vi: ILanguage = {
             default: 'Mặc định',
             newest: 'Mới nhất',
             bestSeller: 'Bán chạy nhất',
-            priceLowToHight: 'Giá thấp đến cao',
-            priceHightToLow: 'Giá cao đến thấp',
+            priceLowToHigh: 'Giá thấp đến cao',
+            priceHighToLow: 'Giá cao đến thấp',
         },
     },
     product: {

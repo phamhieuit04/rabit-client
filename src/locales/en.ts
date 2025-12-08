@@ -50,8 +50,8 @@ export const en: ILanguage = {
             default: 'Default',
             newest: 'Newest',
             bestSeller: 'Best seller',
-            priceLowToHight: 'Price low to hight',
-            priceHightToLow: 'Price hight to low',
+            priceLowToHigh: 'Price low to high',
+            priceHighToLow: 'Price high to low',
         },
     },
     product: {

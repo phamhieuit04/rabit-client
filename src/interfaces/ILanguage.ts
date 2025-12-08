@@ -47,8 +47,8 @@ export interface ILanguage {
             default: string
             newest: string
             bestSeller: string
-            priceLowToHight: string
-            priceHightToLow: string
+            priceLowToHigh: string
+            priceHighToLow: string
         }
     }
     product: {

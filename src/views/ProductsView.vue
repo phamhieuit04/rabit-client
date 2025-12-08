@@ -1,7 +1,5 @@
 <script setup>
 import ListProductComponent from '@/components/ListProductComponent.vue'
-import { mapStores } from 'pinia'
-import { useProductsStore } from '@/stores/products'
 </script>
 
 <template>
@@ -9,11 +7,3 @@ import { useProductsStore } from '@/stores/products'
         <ListProductComponent />
     </div>
 </template>
-
-<script>
-export default {
-    computed: {
-        ...mapStores(useProductsStore),
-    },
-}
-</script>
