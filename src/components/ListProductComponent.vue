@@ -3,7 +3,6 @@ import { Search, ArrowDownAZ } from 'lucide-vue-next'
 import { useUiStore } from '@/stores/ui'
 import { useProductsStore } from '@/stores/products'
 import { mapStores } from 'pinia'
-import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
 </script>
 
 <template>
@@ -110,8 +109,8 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
                             @click.stop="
                                 () => {
                                     uiStore.setDisplayProductQuickView(true)
-                                    productsStore.setCurrentProduct(item)
-                                    productsStore.setCurrentImage(item.images[0].image_url)
+                                    productsStore.setPreviewProduct(item)
+                                    productsStore.setPreviewImage(item.images[0].image_url)
                                 }
                             "
                             class="flex -translate-y-5 cursor-pointer items-center justify-center rounded-full bg-white p-3 opacity-0 drop-shadow-2xl transition duration-200 group-hover:translate-y-0 group-hover:opacity-100"
@@ -140,10 +139,6 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
         </button>
     </div>
     <!-- End display products -->
-
-    <!-- Start product quick view modal -->
-    <ProductQuickViewModal />
-    <!-- End product quick view modal -->
 </template>
 
 <script>
