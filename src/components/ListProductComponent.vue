@@ -3,7 +3,6 @@ import { Search, ArrowDownAZ } from 'lucide-vue-next'
 import { useUiStore } from '@/stores/ui'
 import { useProductsStore } from '@/stores/products'
 import { mapStores } from 'pinia'
-import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
 </script>
 
 <template>
@@ -91,7 +90,8 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
         <ul class="grid grid-cols-4 gap-5 py-6">
             <li
                 v-for="item in productsStore.listProduct"
-                class="mb-4 flex max-w-[300px] flex-col gap-2"
+                class="mb-4 flex max-w-[300px] cursor-pointer flex-col gap-2"
+                @click="navigateToProductDetail(item.id)"
             >
                 <div class="group relative h-[380px]">
                     <img
@@ -106,11 +106,11 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
                     />
                     <div class="absolute bottom-0 mb-2.5 flex w-full items-center justify-center">
                         <div
-                            @click="
+                            @click.stop="
                                 () => {
                                     uiStore.setDisplayProductQuickView(true)
-                                    productsStore.setCurrentProduct(item)
-                                    productsStore.setCurrentImage(item.images[0].image_url)
+                                    productsStore.setPreviewProduct(item)
+                                    productsStore.setPreviewImage(item.images[0].image_url)
                                 }
                             "
                             class="flex -translate-y-5 cursor-pointer items-center justify-center rounded-full bg-white p-3 opacity-0 drop-shadow-2xl transition duration-200 group-hover:translate-y-0 group-hover:opacity-100"
@@ -127,7 +127,7 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
         </ul>
         <button
             v-if="productsStore.listProduct.length > 0"
-            @click="onClick"
+            @click="loadMore"
             class="cursor-pointer rounded-md px-6 py-2 opacity-75 outline outline-gray-400 hover:opacity-100"
         >
             <h1 v-if="$route.path == '/'" class="font-medium text-gray-500 uppercase">
@@ -139,10 +139,6 @@ import ProductQuickViewModal from './modals/ProductQuickViewModal.vue'
         </button>
     </div>
     <!-- End display products -->
-
-    <!-- Start product quick view modal -->
-    <ProductQuickViewModal />
-    <!-- End product quick view modal -->
 </template>
 
 <script>
@@ -170,7 +166,10 @@ export default {
         ...mapStores(useUiStore, useProductsStore),
     },
     methods: {
-        onClick() {
+        navigateToProductDetail(id) {
+            this.$router.push('/products/' + id)
+        },
+        loadMore() {
             if (this.$route.path === '/') {
                 this.$router.push({
                     path: '/products',

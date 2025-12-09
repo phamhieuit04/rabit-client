@@ -5,8 +5,10 @@ export const useProductsStore = defineStore('products', {
     state: () => {
         return {
             currentProduct: null,
-            currentImage: '',
+            previewProduct: null,
+            previewImage: '',
             listProduct: [],
+            similarProducts: [],
         }
     },
     actions: {
@@ -36,11 +38,42 @@ export const useProductsStore = defineStore('products', {
                     console.log(err)
                 })
         },
+        fetchCurrentProduct(productId) {
+            apiHelper
+                .get('/product/show/' + productId)
+                .then((res) => {
+                    if (res.status == 200) {
+                        this.currentProduct = res.data.data
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+        fetchSimilarProducts(productId) {
+            apiHelper
+                .get('/product/similar-products/' + productId, {
+                    params: {
+                        limit: 4,
+                    },
+                })
+                .then((res) => {
+                    if (res.status == 200) {
+                        this.similarProducts = res.data.data
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
         setCurrentProduct(product) {
             this.currentProduct = product
         },
-        setCurrentImage(image) {
-            this.currentImage = image
+        setPreviewProduct(product) {
+            this.previewProduct = product
+        },
+        setPreviewImage(image) {
+            this.previewImage = image
         },
     },
     persist: true,

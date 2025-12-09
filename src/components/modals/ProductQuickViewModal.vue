@@ -22,14 +22,14 @@ import { Minus, Plus, X } from 'lucide-vue-next'
             <div class="flex w-full max-w-[400px] flex-col items-center gap-4">
                 <div class="size-[400px]">
                     <img
-                        :src="productsStore.currentImage"
+                        :src="productsStore.previewImage"
                         alt=""
                         class="h-full w-full object-contain"
                     />
                 </div>
                 <Splide :options="carouselOptions" @splide:click="onClick">
                     <SplideSlide
-                        v-for="item in productsStore.currentProduct.images"
+                        v-for="item in productsStore.previewProduct?.images"
                         class="size-20 cursor-pointer border-2 border-gray-200 hover:brightness-90"
                     >
                         <img :src="item.image_url" class="h-full w-full object-contain" />
@@ -42,18 +42,20 @@ import { Minus, Plus, X } from 'lucide-vue-next'
                         class="line-clamp-2 text-2xl font-medium"
                         style="font-family: 'Ysabeau Office'"
                     >
-                        {{ productsStore.currentProduct.name }}
+                        {{ productsStore.previewProduct?.name }}
                     </h1>
                     <div class="flex items-center gap-2">
                         <p class="font-medium">{{ $t('product.category') }}:</p>
-                        <p class="text-gray-500">{{ productsStore.currentProduct.categoryName }}</p>
+                        <p class="text-gray-500">
+                            {{ productsStore.previewProduct?.categoryName }}
+                        </p>
                     </div>
                     <p class="text-2xl font-bold">
-                        {{ productsStore.currentProduct.price.toLocaleString('de-DE') }}đ
+                        {{ productsStore.previewProduct?.price.toLocaleString('de-DE') }}đ
                     </p>
                     <div>
                         <p class="font-medium">{{ $t('product.description') }}:</p>
-                        <p class="line-clamp-3">{{ productsStore.currentProduct.description }}</p>
+                        <p class="line-clamp-3">{{ productsStore.previewProduct?.description }}</p>
                     </div>
                 </div>
                 <div class="flex items-center justify-between">
@@ -115,8 +117,8 @@ export default {
     methods: {
         onClick(slide, event) {
             let index = event.index
-            this.productsStore.currentImage =
-                this.productsStore.currentProduct.images[index].image_url
+            let url = this.productsStore.previewProduct?.images[index].image_url
+            this.productsStore.setPreviewImage(url)
         },
     },
 }
