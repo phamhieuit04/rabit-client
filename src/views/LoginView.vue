@@ -1,3 +1,10 @@
+<script setup>
+import {useAuthStore} from '@/stores/auth'
+import { useUiStore } from '@/stores/ui'
+import { mapStores } from 'pinia';
+import { apiHelper } from '@/helpers/axios';
+</script>
+
 <template>
     <div class="container mx-auto">
         <div class="mt-12 grid grid-rows-3 items-center justify-center gap-2 text-center">
@@ -26,7 +33,7 @@
 
             <!-- Start Buttons -->
             <button
-                @click="register()"
+                @click="login()"
                 class="mb-4 ml-4 size-14 w-lg cursor-pointer rounded-md bg-gray-600 text-xl font-light text-amber-50 uppercase hover:bg-gray-500 hover:font-medium"
             >
                 {{ $t('auth.login') }}
@@ -42,10 +49,6 @@
     </div>
 </template>
 
-<script setup>
-import { apiHelper } from '@/helpers/axios';
-</script>
-
 <script>
 export default {
     data() {
@@ -56,7 +59,7 @@ export default {
     },
 
     methods: {
-        register() {
+        login() {
             if (
                 this.email == '' ||
                 this.password == ''
@@ -69,6 +72,8 @@ export default {
             formData.append('password', this.password);
             apiHelper.post('/login', formData).then((res) => {
                 if (res.status === 200) {
+                    this.authStore.setLoggedInState(true);
+                    this.authStore.setCurrentUser(res.data.data);
                     alert(this.$t('auth.loginSuccess'));
                     this.$router.push('/');
                 }
@@ -80,5 +85,8 @@ export default {
             this.$router.push('register');
         }
     },
+    computed: {
+        ...mapStores(useAuthStore, useUiStore)
+    }
 }
 </script>
