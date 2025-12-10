@@ -2,6 +2,7 @@
 import { useCategoriesStore } from '@/stores/categories'
 import { useUiStore } from '@/stores/ui'
 import { useProductsStore } from '@/stores/products'
+import { useCartStore } from '@/stores/cart'
 import {
     MapPin,
     MessageCircleQuestionMark,
@@ -117,54 +118,87 @@ import { mapStores } from 'pinia'
                             <h1 class="border-b-2 border-gray-300 p-4 font-bold uppercase">
                                 {{ $t('cart.title') }}
                             </h1>
+
                             <ul
-                                class="flex max-h-96 grow flex-col gap-10 overflow-hidden overflow-x-hidden overflow-y-scroll p-4"
+                                class="flex max-h-96 grow flex-col gap-10 overflow-hidden overflow-x-hidden overflow-y-scroll p-4 pr-6"
+                                style="scrollbar-gutter: stable"
                             >
-                                <li v-for="i in 10" class="flex items-center gap-3">
-                                    <img
-                                        class="size-20 object-contain"
-                                        src="https://bizweb.dktcdn.net/thumb/large/100/220/344/products/10-39e98532-986b-4c94-8883-8b5575d17b0b.jpg?v=1761619515263"
-                                        alt=""
-                                    />
-                                    <div class="flex flex-col gap-4">
-                                        <div class="flex">
-                                            <p class="line-clamp-2 text-sm font-medium">
-                                                Móc khoá Trộm vía Hotel Keychainn Keychainn
-                                                Keychainn Keychainn Keychainn
+                                <li
+                                    v-for="item in cartStore.products"
+                                    class="flex w-full items-center gap-3"
+                                >
+                                    <div
+                                        class="aspect-square w-20 shrink-0 overflow-hidden rounded-md"
+                                    >
+                                        <img
+                                            v-if="item.images.length > 0"
+                                            :src="item.images[0].image_url"
+                                            class="h-full w-full object-cover"
+                                        />
+                                        <img
+                                            v-else
+                                            src="../assets/default_thumbnail.jpg"
+                                            class="h-full w-full object-cover"
+                                        />
+                                    </div>
+
+                                    <div class="flex w-full flex-col gap-4">
+                                        <div class="flex w-full items-start">
+                                            <p class="line-clamp-2 flex-1 text-sm font-medium">
+                                                {{ item.name }}
                                             </p>
                                             <div
-                                                class="flex size-10 shrink-0 cursor-pointer justify-end hover:opacity-75"
+                                                class="ml-2 flex size-10 flex-none shrink-0 cursor-pointer justify-end hover:opacity-75"
                                             >
                                                 <CircleX color="gray" />
                                             </div>
                                         </div>
-                                        <div class="flex justify-between">
+
+                                        <div class="flex w-full items-center justify-between">
                                             <div
                                                 class="flex items-center justify-center rounded-sm outline outline-gray-300"
                                             >
                                                 <div
                                                     class="flex size-6 cursor-pointer items-center justify-center rounded-tl-sm rounded-bl-sm outline outline-gray-300 hover:bg-[#f1f1f1]"
+                                                    @click="cartStore.decreaseQuantity(item.id)"
                                                 >
                                                     <Minus size="12" />
                                                 </div>
+
                                                 <span class="w-8 text-center text-sm font-semibold">
-                                                    1
+                                                    {{ item.quantity }}
                                                 </span>
+
                                                 <div
                                                     class="flex size-6 cursor-pointer items-center justify-center rounded-tr-sm rounded-br-sm outline outline-gray-300 hover:bg-[#f1f1f1]"
+                                                    @click="cartStore.increaseQuantity(item.id)"
                                                 >
                                                     <Plus size="12" />
                                                 </div>
                                             </div>
-                                            <p class="font-medium">50.000đ</p>
+
+                                            <p class="font-medium">
+                                                {{
+                                                    (item.price * item.quantity).toLocaleString(
+                                                        'de-DE',
+                                                    )
+                                                }}đ
+                                            </p>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
+
                             <div class="flex justify-between bg-[#f8f8f8] p-4">
                                 <div>
                                     <h1 class="font-medium">{{ $t('cart.totalBill') }}</h1>
-                                    <p class="text-xl font-semibold">50.000đ</p>
+                                    <p class="text-xl font-semibold">
+                                        {{
+                                            cartStore.products
+                                                .reduce((sum, p) => sum + p.price * p.quantity, 0)
+                                                .toLocaleString('de-DE')
+                                        }}đ
+                                    </p>
                                 </div>
                                 <button
                                     class="cursor-pointer rounded-md bg-[#5c5c5c] px-6 py-2 text-white hover:opacity-75"
@@ -291,7 +325,7 @@ export default {
                     icon: ShoppingCart,
                     type: 'cart',
                     onClick: () => {
-                        alert('Day la gio hang')
+                        this.$router.push('/cart')
                     },
                 },
                 {
@@ -332,9 +366,16 @@ export default {
     },
     mounted() {
         this.categoriesStore.fetchListCategory()
+
+        this.cartStore.fetchCartItem().then(() => {
+            this.cartStore.products = this.cartStore.products.map((p) => ({
+                ...p,
+                quantity: p.quantity ?? 1,
+            }))
+        })
     },
     computed: {
-        ...mapStores(useUiStore, useCategoriesStore, useProductsStore),
+        ...mapStores(useUiStore, useCategoriesStore, useProductsStore, useCartStore),
     },
     methods: {
         navigateToHome() {
@@ -364,6 +405,9 @@ export default {
                 path: '/products',
                 query: query,
             })
+        },
+        formatPrice(value) {
+            return value.toLocaleString('vi-VN') + 'đ'
         },
     },
 }
