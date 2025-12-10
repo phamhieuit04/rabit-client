@@ -1,3 +1,30 @@
+<script setup>
+import { mapStores } from 'pinia'
+import { useAuthStore } from '@/stores/auth'
+</script>
+
 <template>
-    <h1>Day la trang thong tin tai khoan</h1>
+    <div class="space-y-6">
+        <h1 class="font-serif text-5xl font-medium" style="font-family: 'Cormorant Garamond'">
+            Thông tin tài khoản
+        </h1>
+        <div class="space-y-4">
+            <p>
+                <span class="font-semibold">Họ tên:</span>
+                {{ authStore.currentUser.name }}
+            </p>
+            <p>
+                <span class="font-semibold">Email:</span>
+                {{ authStore.currentUser.email }}
+            </p>
+        </div>
+    </div>
 </template>
+
+<script>
+export default {
+    computed: {
+        ...mapStores(useAuthStore),
+    },
+}
+</script>
