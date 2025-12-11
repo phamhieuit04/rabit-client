@@ -45,6 +45,11 @@ export const en: ILanguage = {
         title: 'Your cart',
         totalBill: 'Total bill',
         checkout: 'Checkout',
+        productInfo: 'Product information',
+        price: 'Price',
+        quantity: 'Quantity',
+        totalPrice: 'Total price',
+        continueShopping: 'Continue Shopping',
     },
     search: {
         placeholder: 'Search for everything',

@@ -69,6 +69,7 @@ export default {
             formData.append('password', this.password);
             apiHelper.post('/login', formData).then((res) => {
                 if (res.status === 200) {
+                    sessionStorage.setItem('token', res.data.data.token);
                     alert(this.$t('auth.loginSuccess'));
                     this.$router.push('/');
                 }
