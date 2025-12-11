@@ -42,6 +42,11 @@ export interface ILanguage {
         title: string
         totalBill: string
         checkout: string
+        productInfo: string
+        price: string
+        quantity: string
+        totalPrice: string
+        continueShopping: string
     }
     search: {
         placeholder: string

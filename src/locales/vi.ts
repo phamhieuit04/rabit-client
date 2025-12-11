@@ -45,6 +45,11 @@ export const vi: ILanguage = {
         title: 'Giỏ hàng',
         totalBill: 'Tổng tiền',
         checkout: 'Thanh toán',
+        productInfo: 'Thông tin sản phẩm',
+        price: 'Đơn giá',
+        quantity: 'Số lượng',
+        totalPrice: 'Thành tiền',
+        continueShopping: 'Tiếp tục mua sắm',
     },
     search: {
         placeholder: 'Tìm kiếm sản phẩm',
