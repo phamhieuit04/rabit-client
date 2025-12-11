@@ -125,14 +125,18 @@ import { mapStores } from 'pinia'
                             >
                                 <li
                                     v-for="item in cartStore.products"
+                                    :key="item.product.id"
                                     class="flex w-full items-center gap-3"
                                 >
                                     <div
                                         class="aspect-square w-20 shrink-0 overflow-hidden rounded-md"
                                     >
                                         <img
-                                            v-if="item.images.length > 0"
-                                            :src="item.images[0].image_url"
+                                            v-if="
+                                                item.product.images &&
+                                                item.product.images.length > 0
+                                            "
+                                            :src="item.product.images[0].image_url"
                                             class="h-full w-full object-cover"
                                         />
                                         <img
@@ -145,10 +149,11 @@ import { mapStores } from 'pinia'
                                     <div class="flex w-full flex-col gap-4">
                                         <div class="flex w-full items-start">
                                             <p class="line-clamp-2 flex-1 text-sm font-medium">
-                                                {{ item.name }}
+                                                {{ item.product.name }}
                                             </p>
                                             <div
                                                 class="ml-2 flex size-10 flex-none shrink-0 cursor-pointer justify-end hover:opacity-75"
+                                                @click="cartStore.deleteItem(item.product.id)"
                                             >
                                                 <CircleX color="gray" />
                                             </div>
@@ -160,7 +165,9 @@ import { mapStores } from 'pinia'
                                             >
                                                 <div
                                                     class="flex size-6 cursor-pointer items-center justify-center rounded-tl-sm rounded-bl-sm outline outline-gray-300 hover:bg-[#f1f1f1]"
-                                                    @click="cartStore.decreaseQuantity(item.id)"
+                                                    @click="
+                                                        cartStore.decreaseQuantity(item.product.id)
+                                                    "
                                                 >
                                                     <Minus size="12" />
                                                 </div>
@@ -171,7 +178,9 @@ import { mapStores } from 'pinia'
 
                                                 <div
                                                     class="flex size-6 cursor-pointer items-center justify-center rounded-tr-sm rounded-br-sm outline outline-gray-300 hover:bg-[#f1f1f1]"
-                                                    @click="cartStore.increaseQuantity(item.id)"
+                                                    @click="
+                                                        cartStore.increaseQuantity(item.product.id)
+                                                    "
                                                 >
                                                     <Plus size="12" />
                                                 </div>
@@ -179,9 +188,9 @@ import { mapStores } from 'pinia'
 
                                             <p class="font-medium">
                                                 {{
-                                                    (item.price * item.quantity).toLocaleString(
-                                                        'de-DE',
-                                                    )
+                                                    (
+                                                        item.product.price * item.quantity
+                                                    ).toLocaleString('de-DE')
                                                 }}đ
                                             </p>
                                         </div>
@@ -195,7 +204,10 @@ import { mapStores } from 'pinia'
                                     <p class="text-xl font-semibold">
                                         {{
                                             cartStore.products
-                                                .reduce((sum, p) => sum + p.price * p.quantity, 0)
+                                                .reduce(
+                                                    (sum, p) => sum + p.product.price * p.quantity,
+                                                    0,
+                                                )
                                                 .toLocaleString('de-DE')
                                         }}đ
                                     </p>

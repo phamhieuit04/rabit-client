@@ -8,28 +8,52 @@ export const useCartStore = defineStore('cart', {
 
     actions: {
         fetchCartItem() {
-            return apiHelper.get('/list-product').then((res) => {
-                if (res.status === 200) {
-                    this.products = res.data.data.map((p) => ({
-                        ...p,
-                        quantity: p.quantity ?? 1,
-                    }))
-                }
-            })
+            return apiHelper
+                .get('/cart/list-product', {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+                    },
+                })
+                .then((res) => {
+                    if (res.status === 200) {
+                        this.products = res.data.data.map((p) => ({
+                            ...p,
+                            quantity: p.quantity ?? 1,
+                        }))
+                    }
+                })
         },
 
-        increaseQuantity(id) {
-            const product = this.products.find((p) => p.id === id)
-            if (product) product.quantity++
+        increaseQuantity(productId) {
+            const item = this.products.find((p) => p.product.id === productId)
+            if (item) item.quantity++
         },
 
-        decreaseQuantity(id) {
-            const product = this.products.find((p) => p.id === id)
-            if (product && product.quantity > 1) product.quantity--
+        decreaseQuantity(productId) {
+            const item = this.products.find((p) => p.product.id === productId)
+            if (item && item.quantity > 1) item.quantity--
         },
 
-        removeItem(id) {
-            this.products = this.products.filter((p) => p.id !== id)
+        removeItem(productId) {
+            this.products = this.products.filter((p) => p.product.id !== productId)
+        },
+
+        deleteItem(productId) {
+            return apiHelper
+                .get('/cart/update-product', {
+                    headers: {
+                        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+                    },
+                    params: {
+                        product_id: productId,
+                        update_type: 'delete',
+                    },
+                })
+                .then((res) => {
+                    if (res.status === 200) {
+                        this.removeItem(productId)
+                    }
+                })
         },
     },
 
