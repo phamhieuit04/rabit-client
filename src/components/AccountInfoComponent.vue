@@ -6,11 +6,11 @@ import { useAuthStore } from '@/stores/auth'
 <template>
     <div class="space-y-6">
         <h1 class="font-serif text-5xl font-medium" style="font-family: 'Cormorant Garamond'">
-            Thông tin tài khoản
+            {{ $t('profile.accountInfo') }}
         </h1>
         <div class="space-y-4">
             <p>
-                <span class="font-semibold">Họ tên:</span>
+                <span class="font-semibold">{{ $t('auth.namePlaceholder') }}:</span>
                 {{ authStore.currentUser.name }}
             </p>
             <p>

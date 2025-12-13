@@ -81,4 +81,25 @@ export const en: ILanguage = {
             'Follow Rabit on Instagram to stay up to date on the latest notebook trends, daily journaling inspiration, and how we make each product!',
         follow: 'Follow',
     },
+    profile: {
+        title: 'Your profile',
+        hello: 'Hello, ',
+        accountInfo: 'Account information',
+        yourOrder: 'Your orders',
+        address: 'Address',
+    },
+    order: {
+        title: 'Order',
+        date: 'Date',
+        totalPrice: 'Total price',
+        paymentStatus: 'Payment status',
+        emptyOrder: 'Your order is empty',
+    },
+    address: {
+        addressBook: 'Address book',
+        yourAddress: 'Your address',
+        phone: 'Phone number',
+        saveAddress: 'Save address',
+        emptyAddress: "You haven't saved any address",
+    },
 }

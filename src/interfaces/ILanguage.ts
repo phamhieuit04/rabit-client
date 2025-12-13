@@ -77,4 +77,25 @@ export interface ILanguage {
         description: string
         follow: string
     }
+    profile: {
+        title: string
+        hello: string
+        accountInfo: string
+        yourOrder: string
+        address: string
+    }
+    order: {
+        title: string
+        date: string
+        totalPrice: string
+        paymentStatus: string
+        emptyOrder: string
+    }
+    address: {
+        addressBook: string
+        yourAddress: string
+        phone: string
+        saveAddress: string
+        emptyAddress: string
+    }
 }

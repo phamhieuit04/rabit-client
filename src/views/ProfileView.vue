@@ -8,9 +8,9 @@ import { useAuthStore } from '@/stores/auth'
     <div class="mx-auto max-w-7xl px-6 py-10">
         <div class="grid grid-cols-[250px_1fr] gap-10">
             <aside class="space-y-6">
-                <h2 class="text-xl font-semibold tracking-wide">TRANG TÀI KHOẢN</h2>
+                <h2 class="text-xl font-semibold tracking-wide">{{ $t('profile.title') }}</h2>
                 <p class="text-sm">
-                    <span class="font-semibold">Xin chào,</span>
+                    <span class="font-semibold">{{ $t('profile.hello') }}</span>
                     {{ authStore.currentUser.name }}!
                 </p>
                 <nav class="flex flex-col gap-3 text-[15px]">
@@ -19,24 +19,24 @@ import { useAuthStore } from '@/stores/auth'
                         class="hover:text-black/60"
                         active-class="font-semibold"
                     >
-                        Thông tin tài khoản
+                        {{ $t('profile.accountInfo') }}
                     </RouterLink>
                     <RouterLink
                         to="orders"
                         class="hover:text-black/60"
                         active-class="font-semibold"
                     >
-                        Đơn hàng của bạn
+                        {{ $t('profile.yourOrder') }}
                     </RouterLink>
                     <RouterLink
                         to="addresses"
                         class="hover:text-black/60"
                         active-class="font-semibold"
                     >
-                        Địa chỉ giao hàng
+                        {{ $t('profile.address') }}
                     </RouterLink>
                     <button @click="logout" class="cursor-pointer text-left hover:text-black/60">
-                        Đăng xuất
+                        {{ $t('auth.logout') }}
                     </button>
                 </nav>
             </aside>

@@ -211,7 +211,7 @@ import { apiHelper } from '@/helpers/axios'
                                     <div class="flex size-8 items-center justify-center">
                                         <CircleUser />
                                     </div>
-                                    <span>Hồ sơ</span>
+                                    <span>{{ $t('profile.title') }}</span>
                                 </li>
                                 <li
                                     @click="logout"
