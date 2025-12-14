@@ -3,6 +3,7 @@ import { useCategoriesStore } from '@/stores/categories'
 import { useUiStore } from '@/stores/ui'
 import { useProductsStore } from '@/stores/products'
 import { useCartStore } from '@/stores/cart'
+import { useAuthStore } from '@/stores/auth'
 import {
     MapPin,
     MessageCircleQuestionMark,
@@ -17,8 +18,10 @@ import {
     X,
     Languages,
     Settings,
+    LogOut,
 } from 'lucide-vue-next'
 import { mapStores } from 'pinia'
+import { apiHelper } from '@/helpers/axios'
 </script>
 
 <template>
@@ -226,7 +229,7 @@ import { mapStores } from 'pinia'
                             v-if="item.type == 'profile'"
                             class="absolute z-10 hidden min-h-12 w-60 -translate-x-[50%] cursor-default flex-col overflow-hidden rounded-md bg-white drop-shadow-2xl group-hover:flex group-hover:opacity-100"
                         >
-                            <ul class="flex flex-col gap-4 p-4">
+                            <ul v-if="!authStore.isLoggedIn" class="flex flex-col gap-4 p-4">
                                 <li
                                     @click="navigateToLogin()"
                                     class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md p-1 hover:bg-[#838380] hover:text-white"
@@ -244,6 +247,26 @@ import { mapStores } from 'pinia'
                                         <UserPlus2 />
                                     </div>
                                     <span>{{ $t('auth.signup') }}</span>
+                                </li>
+                            </ul>
+                            <ul v-else class="flex flex-col gap-4 p-4">
+                                <li
+                                    @click="navigateToProfile"
+                                    class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md p-1 hover:bg-[#838380] hover:text-white"
+                                >
+                                    <div class="flex size-8 items-center justify-center">
+                                        <CircleUser />
+                                    </div>
+                                    <span>{{ $t('profile.title') }}</span>
+                                </li>
+                                <li
+                                    @click="logout"
+                                    class="flex cursor-pointer items-center justify-start gap-1.5 rounded-md p-1 hover:bg-[#838380] hover:text-white"
+                                >
+                                    <div class="flex size-8 items-center justify-center">
+                                        <LogOut />
+                                    </div>
+                                    <span>{{ $t('auth.logout') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -379,15 +402,17 @@ export default {
     mounted() {
         this.categoriesStore.fetchListCategory()
 
-        this.cartStore.fetchCartItem().then(() => {
-            this.cartStore.products = this.cartStore.products.map((p) => ({
-                ...p,
-                quantity: p.quantity ?? 1,
-            }))
-        })
+        if (this.authStore.isLoggedIn) {
+            this.cartStore.fetchCartItem().then(() => {
+                this.cartStore.products = this.cartStore.products.map((p) => ({
+                    ...p,
+                    quantity: p.quantity ?? 1,
+                }))
+            })
+        }
     },
     computed: {
-        ...mapStores(useUiStore, useCategoriesStore, useProductsStore, useCartStore),
+        ...mapStores(useUiStore, useCategoriesStore, useProductsStore, useAuthStore, useCartStore),
     },
     methods: {
         navigateToHome() {
@@ -417,6 +442,27 @@ export default {
                 path: '/products',
                 query: query,
             })
+        },
+        navigateToProfile() {
+            this.$router.push('/profile/account')
+        },
+        logout() {
+            apiHelper
+                .get('/logout', {
+                    headers: {
+                        Authorization: 'Bearer ' + this.authStore.currentUser.token,
+                    },
+                })
+                .then((res) => {
+                    if (res.status == 200) {
+                        this.authStore.setLoggedInState(false)
+                        this.authStore.setCurrentUser(null)
+                        alert('Đăng xuất thành công!')
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         },
         formatPrice(value) {
             return value.toLocaleString('vi-VN') + 'đ'

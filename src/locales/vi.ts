@@ -86,4 +86,27 @@ export const vi: ILanguage = {
             'Theo dõi Rabit trên Instagram để cập nhật các xu hướng dùng sổ mới nhất, cảm hứng ghi chép mỗi ngày và cách chúng mình tạo nên từng sản phẩm!',
         follow: 'Theo dõi',
     },
+    profile: {
+        title: 'Hồ sơ',
+        hello: 'Xin chào, ',
+        accountInfo: 'Thông tin tài khoản',
+        yourOrder: 'Đơn hàng của bạn',
+        address: 'Địa chỉ',
+    },
+    order: {
+        title: 'Đơn hàng',
+        date: 'Ngày',
+        totalPrice: 'Giá trị đơn hàng',
+        paymentStatus: 'Trạng thái thanh toán',
+        emptyOrder: 'Không có đơn hàng nào.',
+        code: 'Mã đơn hàng',
+        status: 'Trạng thái',
+    },
+    address: {
+        addressBook: 'Sổ địa chỉ',
+        yourAddress: 'Địa chỉ của bạn',
+        phone: 'Số điện thoại',
+        saveAddress: 'Lưu địa chỉ',
+        emptyAddress: 'Không có địa chỉ nào.',
+    },
 }

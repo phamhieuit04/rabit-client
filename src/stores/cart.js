@@ -1,5 +1,6 @@
 import { apiHelper } from '@/helpers/axios'
 import { defineStore } from 'pinia'
+import { useAuthStore } from './auth'
 
 export const useCartStore = defineStore('cart', {
     state: () => ({
@@ -8,10 +9,11 @@ export const useCartStore = defineStore('cart', {
 
     actions: {
         fetchCartItem() {
+            const authStore = useAuthStore()
             return apiHelper
                 .get('/cart/list-product', {
                     headers: {
-                        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+                        Authorization: 'Bearer ' + authStore.currentUser.token,
                     },
                 })
                 .then((res) => {
@@ -39,10 +41,11 @@ export const useCartStore = defineStore('cart', {
         },
 
         deleteItem(productId) {
+            const authStore = useAuthStore()
             return apiHelper
                 .get('/cart/update-product', {
                     headers: {
-                        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+                        Authorization: 'Bearer ' + authStore.currentUser.token,
                     },
                     params: {
                         product_id: productId,

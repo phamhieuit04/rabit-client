@@ -38,6 +38,25 @@ const router = createRouter({
             name: 'cart',
             component: () => import('../views/CartView.vue'),
         },
+        {
+            path: '/profile',
+            name: 'profile',
+            component: () => import('../views/ProfileView.vue'),
+            children: [
+                {
+                    path: 'account',
+                    component: () => import('../components/AccountInfoComponent.vue'),
+                },
+                {
+                    path: 'orders',
+                    component: () => import('../components/ListOrderComponent.vue'),
+                },
+                {
+                    path: 'addresses',
+                    component: () => import('../components/ListAddressesComponent.vue'),
+                },
+            ],
+        },
     ],
 })
 
