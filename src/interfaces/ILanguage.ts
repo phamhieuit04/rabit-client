@@ -90,6 +90,8 @@ export interface ILanguage {
         totalPrice: string
         paymentStatus: string
         emptyOrder: string
+        code: string
+        status: string
     }
     address: {
         addressBook: string

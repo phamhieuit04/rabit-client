@@ -94,6 +94,8 @@ export const vi: ILanguage = {
         totalPrice: 'Giá trị đơn hàng',
         paymentStatus: 'Trạng thái thanh toán',
         emptyOrder: 'Không có đơn hàng nào.',
+        code: 'Mã đơn hàng',
+        status: 'Trạng thái',
     },
     address: {
         addressBook: 'Sổ địa chỉ',

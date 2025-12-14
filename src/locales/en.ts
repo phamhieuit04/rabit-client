@@ -94,6 +94,8 @@ export const en: ILanguage = {
         totalPrice: 'Total price',
         paymentStatus: 'Payment status',
         emptyOrder: 'Your order is empty',
+        code: 'Order code',
+        status: 'Status',
     },
     address: {
         addressBook: 'Address book',
