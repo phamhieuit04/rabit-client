@@ -1,21 +1,3 @@
-<script setup>
-import { useCartStore } from '@/stores/cart'
-import { Minus, Plus, CircleX } from 'lucide-vue-next'
-import { onMounted } from 'vue'
-
-const cartStore = useCartStore()
-
-onMounted(async () => {
-    await cartStore.fetchCartItem()
-    cartStore.products = cartStore.products.map((p) => ({
-        ...p,
-        quantity: p.quantity ?? 1,
-    }))
-})
-
-const formatPrice = (n) => (Number(n) || 0).toLocaleString('de-DE') + 'đ'
-</script>
-
 <template>
     <div class="mx-auto max-w-7xl pt-10">
         <h1 class="mb-8 font-mono text-3xl">{{ $t('cart.title') }}</h1>
@@ -40,7 +22,7 @@ const formatPrice = (n) => (Number(n) || 0).toLocaleString('de-DE') + 'đ'
                         class="flex max-h-28 min-h-28 max-w-28 min-w-28 items-center justify-center overflow-hidden rounded-md border border-gray-300"
                     >
                         <img
-                            v-if="item.product.images.lenght > 0"
+                            v-if="item.product.images.length > 0"
                             :src="item.product.images[0].image_url"
                             class="h-full w-full object-cover"
                         />
@@ -123,6 +105,7 @@ const formatPrice = (n) => (Number(n) || 0).toLocaleString('de-DE') + 'đ'
 
         <div class="mt-5 flex justify-end">
             <button
+                @click="goToCheckout()"
                 class="cursor-pointer rounded-lg bg-gray-700 px-10 py-4 text-lg text-white hover:bg-gray-800"
             >
                 {{ $t('cart.checkout') }}
@@ -130,3 +113,46 @@ const formatPrice = (n) => (Number(n) || 0).toLocaleString('de-DE') + 'đ'
         </div>
     </div>
 </template>
+
+<script>
+import { useCartStore } from '@/stores/cart'
+import { Minus, Plus, CircleX } from 'lucide-vue-next'
+
+export default {
+    name: 'CartView',
+
+    components: {
+        Minus,
+        Plus,
+        CircleX,
+    },
+
+    data() {
+        return {
+            cartStore: useCartStore(),
+        }
+    },
+
+    mounted() {
+        this.initCart()
+    },
+
+    methods: {
+        async initCart() {
+            await this.cartStore.fetchCartItem()
+            this.cartStore.products = this.cartStore.products.map((p) => ({
+                ...p,
+                quantity: p.quantity ?? 1,
+            }))
+        },
+
+        formatPrice(n) {
+            return (Number(n) || 0).toLocaleString('de-DE') + 'đ'
+        },
+
+        goToCheckout() {
+            this.$router.push('/checkout')
+        },
+    },
+}
+</script>
