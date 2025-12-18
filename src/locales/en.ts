@@ -16,8 +16,7 @@ export const en: ILanguage = {
         bulk_order: 'Bulk order notebooks',
         personal_order: 'Personalized notebooks',
         newsletter: 'Newsletter subscription',
-        newsletter_desc:
-            'Subscribe to be the first to know about new products and exclusive offers!',
+        newsletter_desc: 'Subscribe to be the first to know about new products and exclusive offers!',
     },
     auth: {
         login: 'Log in',
@@ -70,6 +69,7 @@ export const en: ILanguage = {
             priceLowToHigh: 'Price low to high',
             priceHighToLow: 'Price high to low',
         },
+        title1: 'products'
     },
     product: {
         category: 'Category',
@@ -82,8 +82,7 @@ export const en: ILanguage = {
         detail: 'Our brand brings a diverse product ecosystem that fully meets all the needs of modern users for note-taking, creativity, and crafting. From meticulously designed notebooks and writing journals to practical stationery lines and inspiring craft toy sets, each product is crafted with sophistication, trend-forward design, and optimized user experience.',
     },
     contact: {
-        description:
-            'Follow Rabit on Instagram to stay up to date on the latest notebook trends, daily journaling inspiration, and how we make each product!',
+        description: 'Follow Rabit on Instagram to stay up to date on the latest notebook trends, daily journaling inspiration, and how we make each product!',
         follow: 'Follow',
     },
     profile: {
@@ -101,6 +100,9 @@ export const en: ILanguage = {
         emptyOrder: 'Your order is empty',
         code: 'Order code',
         status: 'Status',
+        qty: 'Qty',
+        finalPrice: 'Final price',
+        shipping: 'Shipping'
     },
     address: {
         addressBook: 'Address book',
@@ -109,4 +111,14 @@ export const en: ILanguage = {
         saveAddress: 'Save address',
         emptyAddress: "You haven't saved any address",
     },
+    checkout: {
+        shippingInfo: 'Shipping Information',
+        anotherAddress: 'Another address',
+        thankyou: 'Thank you for your order - Rabit'
+    },
+    paymentMethods: {
+        cod: 'Cash on delivery (COD)',
+        online: 'Online payment (bank transfer)',
+        payment: 'Payment method'
+    }
 }

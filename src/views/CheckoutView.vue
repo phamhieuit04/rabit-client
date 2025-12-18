@@ -7,7 +7,7 @@
                 <div class="space-y-8 lg:col-span-2">
                     <!-- Thông tin nhận hàng -->
                     <section class="space-y-4">
-                        <h2 class="text-lg font-semibold">Thông tin nhận hàng</h2>
+                        <h2 class="text-lg font-semibold">{{ $t('checkout.shippingInfo') }}</h2>
 
                         <div class="space-y-3">
                             <!-- Select địa chỉ -->
@@ -15,7 +15,7 @@
                                 v-model="selectedAddressId"
                                 class="w-full rounded-md border px-3 py-2 text-sm"
                             >
-                                <option value="other">Địa chỉ khác...</option>
+                                <option value="other">{{ $t('checkout.anotherAddress') }}...</option>
 
                                 <option v-for="item in listAddress" :key="item.id" :value="item.id">
                                     {{ item.addresses }} - {{ item.phone }}
@@ -47,7 +47,7 @@
                                 <input
                                     type="text"
                                     v-model="form.phone"
-                                    placeholder="Số điện thoại"
+                                    :placeholder="$t('address.phone')"
                                     class="flex-1 rounded-md border px-3 py-2 text-sm"
                                 />
                             </div>
@@ -56,7 +56,7 @@
                             <input
                                 type="text"
                                 v-model="form.address"
-                                placeholder="Địa chỉ"
+                                :placeholder="$t('address.yourAddress')"
                                 class="w-full rounded-md border px-3 py-2 text-sm"
                             />
                         </div>
@@ -64,19 +64,19 @@
 
                     <!-- Thanh toán -->
                     <section class="space-y-3">
-                        <h2 class="text-lg font-semibold">Thanh toán</h2>
+                        <h2 class="text-lg font-semibold">{{ $t('paymentMethods.payment') }}</h2>
                         <div class="space-y-2">
                             <label
                                 class="flex cursor-pointer items-center gap-3 rounded-md border px-4 py-3 text-sm"
                             >
                                 <input type="radio" name="payment" />
-                                <span>Thanh toán khi giao hàng (COD)</span>
+                                <span>{{ $t('paymentMethods.cod') }}</span>
                             </label>
                             <label
                                 class="flex cursor-pointer items-center gap-3 rounded-md border px-4 py-3 text-sm"
                             >
                                 <input type="radio" name="payment" />
-                                <span>Thanh toán online (chuyển khoản)</span>
+                                <span>{{ $t('paymentMethods.online') }}</span>
                             </label>
                         </div>
                     </section>
@@ -85,7 +85,7 @@
                 <!-- Right -->
                 <aside class="space-y-6">
                     <div class="space-y-4 rounded-md border p-4">
-                        <h3 class="font-semibold">Đơn hàng ({{ totalQuantity }} sản phẩm)</h3>
+                        <h3 class="font-semibold">{{ $t('order.title') }} ({{ totalQuantity }} {{ $t('products.title1') }})</h3>
 
                         <!-- Item -->
                         <div
@@ -112,7 +112,7 @@
                                 <p class="line-clamp-2 font-medium">
                                     {{ item.product.name }}
                                 </p>
-                                <p class="text-xs text-gray-500">SL: {{ item.quantity }}</p>
+                                <p class="text-xs text-gray-500">{{ $t('order.qty') }}: {{ item.quantity }}</p>
                             </div>
 
                             <div class="text-sm font-medium">
@@ -123,24 +123,24 @@
                         <!-- Tổng -->
                         <div class="space-y-2 border-t pt-3 text-sm">
                             <div class="flex justify-between">
-                                <span>Tạm tính</span>
+                                <span>{{ $t('order.totalPrice') }}</span>
                                 <span>{{ formatPrice(subTotal) }}</span>
                             </div>
                             <div class="flex justify-between">
-                                <span>Phí vận chuyển</span>
+                                <span>{{ $t('order.shipping') }}</span>
                                 <span>0đ</span>
                             </div>
                         </div>
 
                         <div class="flex items-center justify-between border-t pt-3">
-                            <span class="font-semibold">Tổng cộng</span>
+                            <span class="font-semibold">{{ $t('order.finalPrice') }}</span>
                             <span class="text-xl font-bold">
                                 {{ formatPrice(totalPrice) }}
                             </span>
                         </div>
 
-                        <button class="w-full rounded-md bg-black py-3 font-semibold text-white">
-                            ĐẶT HÀNG
+                        <button class="w-full rounded-md bg-black py-3 font-semibold text-white cursor-pointer">
+                            {{ $t('cart.checkout') }}
                         </button>
                     </div>
                 </aside>
@@ -149,12 +149,7 @@
 
         <!-- Footer -->
         <footer class="border-t py-6 text-center text-sm text-gray-500">
-            <div class="flex justify-center gap-6">
-                <a href="#">Chính sách hoàn trả</a>
-                <a href="#">Chính sách bảo mật</a>
-                <a href="#">Điều khoản sử dụng</a>
-            </div>
-            <p class="mt-2">Rabit cảm ơn bạn đã đặt hàng.</p>
+            <p class="mt-2">{{ $t('checkout.thankyou') }}.</p>
         </footer>
     </div>
 </template>
