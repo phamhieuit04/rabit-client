@@ -87,7 +87,7 @@ export default {
             formData.append('name', this.name);
             formData.append('email', this.email);
             formData.append('password', this.password);
-            apiHelper.post('/signup', formData).then((res) => {
+            apiHelper.use('auth').post('/signup', formData).then((res) => {
                 if (res.status === 200) {
                     alert(this.$t('auth.signupSuccess'));
                     this.$router.push('login')
