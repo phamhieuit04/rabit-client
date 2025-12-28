@@ -3,6 +3,7 @@ import '@splidejs/vue-splide/css'
 import { mapStores } from 'pinia'
 import { useUiStore } from '@/stores/ui'
 import { useProductsStore } from '@/stores/products'
+import { useCartStore } from '@/stores/cart'
 import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import { Minus, Plus, X } from 'lucide-vue-next'
 </script>
@@ -85,6 +86,9 @@ import { Minus, Plus, X } from 'lucide-vue-next'
                         </div>
                     </div>
                     <button
+                        @click="
+                            cartStore.addToCart(productsStore.previewProduct.id, currentQuantity)
+                        "
                         class="cursor-pointer rounded-md bg-[#5c5c5c] px-6 py-2.5 text-white hover:opacity-75"
                     >
                         <h1 class="uppercase">{{ $t('product.addToCart') }}</h1>
@@ -112,7 +116,7 @@ export default {
         }
     },
     computed: {
-        ...mapStores(useUiStore, useProductsStore),
+        ...mapStores(useUiStore, useProductsStore, useCartStore),
     },
     methods: {
         onClick(slide, event) {

@@ -50,6 +50,8 @@ export const en: ILanguage = {
         quantity: 'Quantity',
         totalPrice: 'Total price',
         continueShopping: 'Continue Shopping',
+        addToCartSuccess: 'Add to cart done!',
+        addToCartFail: 'Add to cart failed',
     },
     search: {
         placeholder: 'Search for everything',
