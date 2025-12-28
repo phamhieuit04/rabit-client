@@ -1,6 +1,7 @@
 import { apiHelper } from '@/helpers/axios'
 import { defineStore } from 'pinia'
 import { useAuthStore } from './auth'
+import { i18n } from '@/main'
 
 export const useCartStore = defineStore('cart', {
     state: () => ({
@@ -8,9 +9,9 @@ export const useCartStore = defineStore('cart', {
     }),
 
     actions: {
-        fetchCartItem() {
+        async fetchCartItem() {
             const authStore = useAuthStore()
-            return apiHelper
+            return await apiHelper
                 .get('/cart/list-product', {
                     headers: {
                         Authorization: 'Bearer ' + authStore.currentUser.token,
@@ -40,9 +41,9 @@ export const useCartStore = defineStore('cart', {
             this.products = this.products.filter((p) => p.product.id !== productId)
         },
 
-        deleteItem(productId) {
+        async deleteItem(productId) {
             const authStore = useAuthStore()
-            return apiHelper
+            return await apiHelper
                 .get('/cart/update-product', {
                     headers: {
                         Authorization: 'Bearer ' + authStore.currentUser.token,
@@ -56,6 +57,30 @@ export const useCartStore = defineStore('cart', {
                     if (res.status === 200) {
                         this.removeItem(productId)
                     }
+                })
+        },
+
+        async addToCart(productId, quantity) {
+            const authStore = useAuthStore()
+            return await apiHelper
+                .get('/cart/update-product', {
+                    headers: {
+                        Authorization: 'Bearer ' + authStore.currentUser.token,
+                    },
+                    params: {
+                        product_id: productId,
+                        update_type: 'add',
+                        quantity: quantity,
+                    },
+                })
+                .then((res) => {
+                    if (res.status === 200) {
+                        alert(i18n.global.t('cart.addToCartSuccess'))
+                        this.fetchCartItem()
+                    }
+                })
+                .catch((err) => {
+                    alert(i18n.global.t('cart.addToCartFail'))
                 })
         },
     },

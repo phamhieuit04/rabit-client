@@ -50,6 +50,8 @@ export const vi: ILanguage = {
         quantity: 'Số lượng',
         totalPrice: 'Thành tiền',
         continueShopping: 'Tiếp tục mua sắm',
+        addToCartSuccess: 'Thêm vào giỏ hàng thành công!',
+        addToCartFail: 'Thêm vào giỏ hàng thất bại!',
     },
     search: {
         placeholder: 'Tìm kiếm sản phẩm',

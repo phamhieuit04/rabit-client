@@ -3,6 +3,7 @@ import { useProductsStore } from '@/stores/products'
 import { mapStores } from 'pinia'
 import { Search, Info } from 'lucide-vue-next'
 import { useUiStore } from '@/stores/ui'
+import { useCartStore } from '@/stores/cart'
 </script>
 
 <template>
@@ -71,6 +72,7 @@ import { useUiStore } from '@/stores/ui'
                     </button>
                 </div>
                 <button
+                    @click="cartStore.addToCart(productsStore.currentProduct.id, currentQuantity)"
                     class="w-full cursor-pointer rounded-xl bg-black py-3 font-medium text-white duration-150 hover:bg-gray-900 hover:opacity-75"
                 >
                     {{ $t('product.addToCart') }}
@@ -157,7 +159,7 @@ export default {
         this.handleFetchData(this.$route.params.id)
     },
     computed: {
-        ...mapStores(useUiStore, useProductsStore),
+        ...mapStores(useUiStore, useProductsStore, useCartStore),
     },
     methods: {
         handleFetchData(productId) {

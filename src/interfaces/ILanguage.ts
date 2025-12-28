@@ -47,6 +47,8 @@ export interface ILanguage {
         quantity: string
         totalPrice: string
         continueShopping: string
+        addToCartSuccess: string
+        addToCartFail: string
     }
     search: {
         placeholder: string
