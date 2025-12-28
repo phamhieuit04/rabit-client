@@ -70,7 +70,7 @@ export default {
             const formData = new FormData();
             formData.append('email', this.email);
             formData.append('password', this.password);
-            apiHelper.post('/login', formData).then((res) => {
+            apiHelper.use('auth').post('/login', formData).then((res) => {
                 if (res.status === 200) {
                     this.authStore.setLoggedInState(true);
                     this.authStore.setCurrentUser(res.data.data);
