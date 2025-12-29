@@ -94,7 +94,7 @@ import { useCartStore } from '@/stores/cart'
         </div>
 
         <!-- Start similar products  -->
-        <div class="my-12 px-4 py-10">
+        <div v-show="productsStore.similarProducts.length > 0" class="my-12 px-4 py-10">
             <h2
                 class="mb-16 text-center text-3xl font-medium"
                 style="font-family: 'Cormorant Garamond'"
