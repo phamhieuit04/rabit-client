@@ -16,7 +16,7 @@ import { Minus, Plus, X } from 'lucide-vue-next'
         <div class="relative flex w-full max-w-[920px] gap-8 bg-white pt-8 pr-12 pb-4 pl-12">
             <div
                 class="absolute right-6 cursor-pointer p-4 hover:opacity-75"
-                @click="uiStore.setDisplayProductQuickView(false)"
+                @click="(uiStore.setDisplayProductQuickView(false), (currentQuantity = 1))"
             >
                 <X size="32" />
             </div>
