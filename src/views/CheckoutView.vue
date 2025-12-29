@@ -1,100 +1,114 @@
 <template>
-    <div class="bg-white">
-        <!-- Content -->
-        <main class="mx-auto max-w-7xl py-8">
-            <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                <!-- Left -->
-                <div class="space-y-8 lg:col-span-2">
-                    <!-- Thông tin nhận hàng -->
-                    <section class="space-y-4">
-                        <h2 class="text-lg font-semibold">{{ $t('checkout.shippingInfo') }}</h2>
+    <div class="mx-auto max-w-7xl pt-10">
+        <!-- Title -->
+        <h1 class="mb-8 font-mono text-3xl">
+            {{ $t('checkout.title') }}
+        </h1>
 
-                        <div class="space-y-3">
-                            <!-- Select địa chỉ -->
+        <div class="grid grid-cols-12 gap-8">
+            <!-- LEFT -->
+            <div class="col-span-8 space-y-8">
+                <!-- Shipping info -->
+                <div class="overflow-hidden rounded-xl border border-gray-300">
+                    <div class="bg-gray-100 px-6 py-4 text-lg font-semibold text-gray-600">
+                        {{ $t('checkout.shippingInfo') }}
+                    </div>
+
+                    <div class="space-y-4 px-6 py-6">
+                        <select
+                            v-model="selectedAddressId"
+                            class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                        >
+                            <option value="other">
+                                {{ $t('checkout.anotherAddress') }}...
+                            </option>
+                            <option
+                                v-for="item in listAddress"
+                                :key="item.id"
+                                :value="item.id"
+                            >
+                                {{ item.addresses }} - {{ item.phone }}
+                            </option>
+                        </select>
+
+                        <input
+                            type="email"
+                            disabled
+                            v-model="form.email"
+                            placeholder="Email"
+                            class="w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 text-sm"
+                        />
+
+                        <input
+                            type="text"
+                            v-model="form.fullName"
+                            :placeholder="$t('address.fullName')"
+                            class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                        />
+
+                        <div class="flex gap-3">
                             <select
-                                v-model="selectedAddressId"
-                                class="w-full rounded-md border px-3 py-2 text-sm"
+                                class="w-24 rounded-md border border-gray-300 px-2 py-2 text-sm"
                             >
-                                <option value="other">{{ $t('checkout.anotherAddress') }}...</option>
-
-                                <option v-for="item in listAddress" :key="item.id" :value="item.id">
-                                    {{ item.addresses }} - {{ item.phone }}
-                                </option>
+                                <option>🇻🇳 +84</option>
                             </select>
-
-                            <!-- Email -->
-                            <input
-                                type="email"
-                                disabled
-                                v-model="form.email"
-                                placeholder="Email"
-                                class="w-full rounded-md border bg-gray-100 px-3 py-2 text-sm"
-                            />
-
-                            <!-- Họ tên -->
                             <input
                                 type="text"
-                                v-model="form.fullName"
-                                placeholder="Họ và tên"
-                                class="w-full rounded-md border px-3 py-2 text-sm"
-                            />
-
-                            <!-- Phone -->
-                            <div class="flex gap-2">
-                                <select class="w-20 rounded-md border px-2 py-2 text-sm">
-                                    <option>🇻🇳 +84</option>
-                                </select>
-                                <input
-                                    type="text"
-                                    v-model="form.phone"
-                                    :placeholder="$t('address.phone')"
-                                    class="flex-1 rounded-md border px-3 py-2 text-sm"
-                                />
-                            </div>
-
-                            <!-- Address -->
-                            <input
-                                type="text"
-                                v-model="form.address"
-                                :placeholder="$t('address.yourAddress')"
-                                class="w-full rounded-md border px-3 py-2 text-sm"
+                                v-model="form.phone"
+                                :placeholder="$t('address.phone')"
+                                class="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm"
                             />
                         </div>
-                    </section>
 
-                    <!-- Thanh toán -->
-                    <section class="space-y-3">
-                        <h2 class="text-lg font-semibold">{{ $t('paymentMethods.payment') }}</h2>
-                        <div class="space-y-2">
-                            <label
-                                class="flex cursor-pointer items-center gap-3 rounded-md border px-4 py-3 text-sm"
-                            >
-                                <input type="radio" name="payment" />
-                                <span>{{ $t('paymentMethods.cod') }}</span>
-                            </label>
-                            <label
-                                class="flex cursor-pointer items-center gap-3 rounded-md border px-4 py-3 text-sm"
-                            >
-                                <input type="radio" name="payment" />
-                                <span>{{ $t('paymentMethods.online') }}</span>
-                            </label>
-                        </div>
-                    </section>
+                        <input
+                            type="text"
+                            v-model="form.address"
+                            :placeholder="$t('address.yourAddress')"
+                            class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                        />
+                    </div>
                 </div>
 
-                <!-- Right -->
-                <aside class="space-y-6">
-                    <div class="space-y-4 rounded-md border p-4">
-                        <h3 class="font-semibold">{{ $t('order.title') }} ({{ totalQuantity }} {{ $t('products.title1') }})</h3>
+                <!-- Payment -->
+                <div class="overflow-hidden rounded-xl border border-gray-300">
+                    <div class="bg-gray-100 px-6 py-4 text-lg font-semibold text-gray-600">
+                        {{ $t('paymentMethods.payment') }}
+                    </div>
 
-                        <!-- Item -->
+                    <div class="space-y-3 px-6 py-6">
+                        <label
+                            class="flex cursor-pointer items-center gap-3 rounded-md border border-gray-300 px-4 py-3 text-sm hover:bg-gray-50"
+                        >
+                            <input type="radio" name="payment" />
+                            <span>{{ $t('paymentMethods.cod') }}</span>
+                        </label>
+
+                        <label
+                            class="flex cursor-pointer items-center gap-3 rounded-md border border-gray-300 px-4 py-3 text-sm hover:bg-gray-50"
+                        >
+                            <input type="radio" name="payment" />
+                            <span>{{ $t('paymentMethods.online') }}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-span-4">
+                <div class="overflow-hidden rounded-xl border border-gray-300">
+                    <div class="bg-gray-100 px-6 py-4 text-lg font-semibold text-gray-600">
+                        {{ $t('order.title') }} ({{ totalQuantity }} {{ $t('products.title1') }})
+                    </div>
+
+                    <div class="space-y-4 px-6 py-6">
+                        <!-- Items -->
                         <div
                             v-for="item in cartStore.products"
                             :key="item.product.id"
-                            class="flex gap-3"
+                            class="flex items-start gap-4"
                         >
                             <div
-                                class="flex h-14 w-14 items-center justify-center overflow-hidden rounded border"
+                                class="flex h-16 w-16 items-center justify-center overflow-hidden rounded-md border border-gray-300"
                             >
                                 <img
                                     v-if="item.product.images.length > 0"
@@ -109,19 +123,21 @@
                             </div>
 
                             <div class="flex-1 text-sm">
-                                <p class="line-clamp-2 font-medium">
+                                <p class="line-clamp-2 font-medium text-gray-800">
                                     {{ item.product.name }}
                                 </p>
-                                <p class="text-xs text-gray-500">{{ $t('order.qty') }}: {{ item.quantity }}</p>
+                                <p class="text-xs text-gray-500">
+                                    {{ $t('order.qty') }}: {{ item.quantity }}
+                                </p>
                             </div>
 
-                            <div class="text-sm font-medium">
+                            <div class="text-sm font-semibold text-gray-800">
                                 {{ formatPrice(item.product.price * item.quantity) }}
                             </div>
                         </div>
 
-                        <!-- Tổng -->
-                        <div class="space-y-2 border-t pt-3 text-sm">
+                        <!-- Summary -->
+                        <div class="space-y-2 border-t border-gray-300 pt-4 text-sm">
                             <div class="flex justify-between">
                                 <span>{{ $t('order.totalPrice') }}</span>
                                 <span>{{ formatPrice(subTotal) }}</span>
@@ -132,24 +148,28 @@
                             </div>
                         </div>
 
-                        <div class="flex items-center justify-between border-t pt-3">
-                            <span class="font-semibold">{{ $t('order.finalPrice') }}</span>
-                            <span class="text-xl font-bold">
+                        <div class="flex items-center justify-between border-t border-gray-300 pt-4">
+                            <span class="font-semibold">
+                                {{ $t('order.finalPrice') }}
+                            </span>
+                            <span class="text-xl font-bold text-gray-800">
                                 {{ formatPrice(totalPrice) }}
                             </span>
                         </div>
 
-                        <button class="w-full rounded-md bg-black py-3 font-semibold text-white cursor-pointer">
+                        <button
+                            class="mt-4 w-full rounded-lg bg-gray-700 py-3 font-semibold text-white hover:bg-gray-800"
+                        >
                             {{ $t('cart.checkout') }}
                         </button>
                     </div>
-                </aside>
+                </div>
             </div>
-        </main>
+        </div>
 
         <!-- Footer -->
-        <footer class="border-t py-6 text-center text-sm text-gray-500">
-            <p class="mt-2">{{ $t('checkout.thankyou') }}.</p>
+        <footer class="mt-12 border-t border-gray-300 py-6 text-center text-sm text-gray-500">
+            {{ $t('checkout.thankyou') }}
         </footer>
     </div>
 </template>
