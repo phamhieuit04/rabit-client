@@ -220,6 +220,7 @@ export default {
         selectedAddressId(newVal) {
             if (newVal === 'other') {
                 this.resetForm()
+                this.form.fullName = this.authStore.currentUser.name
             } else {
                 const addr = this.listAddress.find((a) => a.id === newVal)
                 if (addr) this.fillForm(addr)

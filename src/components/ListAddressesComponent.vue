@@ -108,7 +108,7 @@ export default {
                         Authorization: 'Bearer ' + this.authStore.currentUser.token,
                     },
                     params: {
-                        address: this.address,
+                        addresses: this.address,
                         phone: this.phone,
                     },
                 })
