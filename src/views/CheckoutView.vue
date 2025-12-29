@@ -71,6 +71,7 @@
 
                     <div class="space-y-3 px-6 py-6">
                         <label
+                            @click="choosePaymentMethod('cod')"
                             class="flex cursor-pointer items-center gap-3 rounded-md border border-gray-300 px-4 py-3 text-sm hover:bg-gray-50"
                         >
                             <input type="radio" name="payment" />
@@ -78,6 +79,7 @@
                         </label>
 
                         <label
+                            @click="choosePaymentMethod('online')"
                             class="flex cursor-pointer items-center gap-3 rounded-md border border-gray-300 px-4 py-3 text-sm hover:bg-gray-50"
                         >
                             <input type="radio" name="payment" />
@@ -154,6 +156,7 @@
                         </div>
 
                         <button
+                            @click="checkout"
                             class="mt-4 w-full rounded-lg bg-gray-700 py-3 font-semibold text-white hover:bg-gray-800"
                         >
                             {{ $t('cart.checkout') }}
@@ -186,6 +189,8 @@ export default {
             // address
             listAddress: [],
             selectedAddressId: 'other',
+
+            selectedPaymentMethod: 'cod',
 
             // form
             form: {
@@ -279,6 +284,42 @@ export default {
             this.form.province = ''
             this.form.district = ''
             this.form.ward = ''
+        },
+
+        choosePaymentMethod(value) {
+            this.selectedPaymentMethod = value
+        },
+
+        checkout() {
+            const addr = this.listAddress.find((a) => a.id === this.selectedAddressId)
+
+            const items = this.cartStore.products.map((item) => ({
+                id: item.product.id,
+                quantity: item.quantity,
+            }))
+
+            apiHelper
+                .post(
+                    '/bill/create-bill',
+                    {
+                        address: addr.addresses,
+                        method: this.selectedPaymentMethod,
+                        items: items,
+                    },
+                    {
+                        headers: {
+                            Authorization: 'Bearer ' + this.authStore.currentUser.token,
+                        },
+                    },
+                )
+                .then((res) => {
+                    if (res.status == 200) {
+                        console.log(res.data.data)
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         },
     },
 }
