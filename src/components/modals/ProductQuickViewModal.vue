@@ -59,7 +59,7 @@ import { Minus, Plus, X } from 'lucide-vue-next'
                         <p class="line-clamp-3">{{ productsStore.previewProduct?.description }}</p>
                     </div>
                 </div>
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between gap-2">
                     <div
                         class="flex items-center justify-center rounded-sm outline outline-gray-300"
                     >
