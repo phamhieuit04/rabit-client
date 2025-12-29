@@ -15,7 +15,6 @@ export const useCategoriesStore = defineStore('categories', {
                 .then((res) => {
                     if (res.status === 200) {
                         this.listCategory = res.data.data
-                        console.log(res.data.data)
                     }
                 })
                 .catch((error) => {
