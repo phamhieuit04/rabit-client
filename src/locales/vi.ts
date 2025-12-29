@@ -16,8 +16,7 @@ export const vi: ILanguage = {
         bulk_order: 'Sổ đặt số lượng lớn',
         personal_order: 'Sổ đặt cá nhân',
         newsletter: 'Đăng ký bảng tin',
-        newsletter_desc:
-            'Đăng ký nhận tin để là người đầu tiên biết về sản phẩm mới và ưu đãi độc quyền!',
+        newsletter_desc: 'Đăng ký nhận tin để là người đầu tiên biết về sản phẩm mới và ưu đãi độc quyền!',
     },
     auth: {
         login: 'Đăng nhập',
@@ -72,6 +71,7 @@ export const vi: ILanguage = {
             priceLowToHigh: 'Giá thấp đến cao',
             priceHighToLow: 'Giá cao đến thấp',
         },
+        title1: 'Sản phẩm'
     },
     product: {
         category: 'Danh mục',
@@ -84,8 +84,7 @@ export const vi: ILanguage = {
         detail: 'Thương hiệu của chúng tôi mang đến hệ sinh thái sản phẩm đa dạng, đáp ứng trọn vẹn mọi nhu cầu ghi chép – sáng tạo – thủ công cho người dùng hiện đại. Từ những cuốn sổ tay và vở viết chỉn chu đến các dòng văn phòng phẩm tiện dụng và set đồ chơi thủ công đầy cảm hứng, mỗi sản phẩm đều được thiết kế với sự tinh tế, cập nhật xu hướng và tối ưu trải nghiệm sử dụng.',
     },
     contact: {
-        description:
-            'Theo dõi Rabit trên Instagram để cập nhật các xu hướng dùng sổ mới nhất, cảm hứng ghi chép mỗi ngày và cách chúng mình tạo nên từng sản phẩm!',
+        description: 'Theo dõi Rabit trên Instagram để cập nhật các xu hướng dùng sổ mới nhất, cảm hứng ghi chép mỗi ngày và cách chúng mình tạo nên từng sản phẩm!',
         follow: 'Theo dõi',
     },
     profile: {
@@ -103,6 +102,9 @@ export const vi: ILanguage = {
         emptyOrder: 'Không có đơn hàng nào.',
         code: 'Mã đơn hàng',
         status: 'Trạng thái',
+        qty: 'SL',
+        finalPrice: 'Tổng cộng',
+        shipping: 'Phí vận chuyển'
     },
     address: {
         addressBook: 'Sổ địa chỉ',
@@ -111,4 +113,14 @@ export const vi: ILanguage = {
         saveAddress: 'Lưu địa chỉ',
         emptyAddress: 'Không có địa chỉ nào.',
     },
+    checkout: {
+        shippingInfo: 'Thông tin nhận hàng',
+        anotherAddress: 'Địa chỉ khác',
+        thankyou: 'Rabit cảm ơn bạn đã đặt hàng.'
+    },
+    paymentMethods: {
+        cod: 'Thanh toán khi giao hàng (COD)',
+        online: 'Thanh toán online (chuyển khoản)',
+        payment: 'Phương thức thanh toán'
+    }
 }

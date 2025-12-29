@@ -56,6 +56,7 @@ export interface ILanguage {
     }
     products: {
         title: string
+        title1: string
         title2: string
         showAll: string
         showMore: string
@@ -99,6 +100,9 @@ export interface ILanguage {
         emptyOrder: string
         code: string
         status: string
+        qty: string
+        shipping: string
+        finalPrice: string
     }
     address: {
         addressBook: string
@@ -106,5 +110,15 @@ export interface ILanguage {
         phone: string
         saveAddress: string
         emptyAddress: string
+    }
+    checkout: {
+        shippingInfo: string
+        anotherAddress: string
+        thankyou: string
+    }
+    paymentMethods: {
+        payment: string
+        cod: string
+        online: string
     }
 }

@@ -216,6 +216,7 @@ import { apiHelper } from '@/helpers/axios'
                                     </p>
                                 </div>
                                 <button
+                                    @click="goToCheckout"
                                     class="cursor-pointer rounded-md bg-[#5c5c5c] px-6 py-2 text-white hover:opacity-75"
                                 >
                                     {{ $t('cart.checkout') }}
@@ -466,6 +467,9 @@ export default {
         },
         formatPrice(value) {
             return value.toLocaleString('vi-VN') + 'đ'
+        },
+        goToCheckout() {
+            this.$router.push('/checkout')
         },
     },
 }
