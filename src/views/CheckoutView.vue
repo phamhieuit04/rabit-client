@@ -2,7 +2,7 @@
     <div class="mx-auto max-w-7xl pt-10">
         <!-- Title -->
         <h1 class="mb-8 font-mono text-3xl">
-            {{ $t('checkout.title') }}
+            {{ $t('checkout.shippingInfo') }}
         </h1>
 
         <div class="grid grid-cols-12 gap-8">
@@ -19,14 +19,8 @@
                             v-model="selectedAddressId"
                             class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
                         >
-                            <option value="other">
-                                {{ $t('checkout.anotherAddress') }}...
-                            </option>
-                            <option
-                                v-for="item in listAddress"
-                                :key="item.id"
-                                :value="item.id"
-                            >
+                            <option value="other">{{ $t('checkout.anotherAddress') }}...</option>
+                            <option v-for="item in listAddress" :key="item.id" :value="item.id">
                                 {{ item.addresses }} - {{ item.phone }}
                             </option>
                         </select>
@@ -148,7 +142,9 @@
                             </div>
                         </div>
 
-                        <div class="flex items-center justify-between border-t border-gray-300 pt-4">
+                        <div
+                            class="flex items-center justify-between border-t border-gray-300 pt-4"
+                        >
                             <span class="font-semibold">
                                 {{ $t('order.finalPrice') }}
                             </span>
