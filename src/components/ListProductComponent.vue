@@ -88,7 +88,20 @@ import { useCategoriesStore } from '@/stores/categories'
         >
             {{ $t('products.title') }}
         </h1>
-        <ul class="grid grid-cols-4 gap-5 py-6">
+
+        <div
+            v-if="productsStore.listProduct.length === 0"
+            class="flex min-h-[400px] flex-col items-center justify-center gap-4 py-6"
+        >
+            <p class="text-3xl text-black">
+                {{ $t('products.noProducts') }}
+            </p>
+            <p class="text-gray-400">
+                {{ $t('products.tryDifferentSearch') }}
+            </p>
+        </div>
+
+        <ul v-else class="grid grid-cols-4 gap-5 py-6">
             <li
                 v-for="item in productsStore.listProduct"
                 class="mb-4 flex max-w-[300px] cursor-pointer flex-col gap-2"
@@ -132,6 +145,7 @@ import { useCategoriesStore } from '@/stores/categories'
                 <p class="text-gray-400">{{ item.price.toLocaleString('de-DE') }}đ</p>
             </li>
         </ul>
+
         <button
             v-if="shouldShowLoadMoreButton"
             @click="loadMore"

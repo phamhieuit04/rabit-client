@@ -46,7 +46,9 @@ import { apiHelper } from '@/helpers/axios'
                 </ul>
                 <!-- End left items -->
 
-                <h1 class="text-2xl font-bold uppercase">Rabit</h1>
+                <h1 @click="navigateToHome" class="cursor-pointer text-2xl font-bold uppercase">
+                    Rabit
+                </h1>
 
                 <!-- Start right items -->
                 <ul class="flex min-w-2xs items-center justify-end">
@@ -121,107 +123,123 @@ import { apiHelper } from '@/helpers/axios'
                             <h1 class="border-b-2 border-gray-300 p-4 font-bold uppercase">
                                 {{ $t('cart.title') }}
                             </h1>
-
-                            <ul
-                                class="flex max-h-96 grow flex-col gap-10 overflow-hidden overflow-x-hidden overflow-y-scroll p-4 pr-6"
-                                style="scrollbar-gutter: stable"
+                            <div
+                                v-if="cartStore.products.length === 0"
+                                class="flex grow flex-col items-center justify-center gap-4 p-8"
                             >
-                                <li
-                                    v-for="item in cartStore.products"
-                                    :key="item.product.id"
-                                    class="flex w-full items-center gap-3"
-                                >
-                                    <div
-                                        class="aspect-square w-20 shrink-0 overflow-hidden rounded-md"
-                                    >
-                                        <img
-                                            v-if="
-                                                item.product.images &&
-                                                item.product.images.length > 0
-                                            "
-                                            :src="item.product.images[0].image_url"
-                                            class="h-full w-full object-cover"
-                                        />
-                                        <img
-                                            v-else
-                                            src="../assets/default_thumbnail.jpg"
-                                            class="h-full w-full object-cover"
-                                        />
-                                    </div>
-
-                                    <div class="flex w-full flex-col gap-4">
-                                        <div class="flex w-full items-start">
-                                            <p class="line-clamp-2 flex-1 text-sm font-medium">
-                                                {{ item.product.name }}
-                                            </p>
-                                            <div
-                                                class="ml-2 flex size-10 flex-none shrink-0 cursor-pointer justify-end hover:opacity-75"
-                                                @click="cartStore.deleteItem(item.product.id)"
-                                            >
-                                                <CircleX color="gray" />
-                                            </div>
-                                        </div>
-
-                                        <div class="flex w-full items-center justify-between">
-                                            <div
-                                                class="flex items-center justify-center rounded-sm outline outline-gray-300"
-                                            >
-                                                <div
-                                                    class="flex size-6 cursor-pointer items-center justify-center rounded-tl-sm rounded-bl-sm outline outline-gray-300 hover:bg-[#f1f1f1]"
-                                                    @click="
-                                                        cartStore.decreaseQuantity(item.product.id)
-                                                    "
-                                                >
-                                                    <Minus size="12" />
-                                                </div>
-
-                                                <span class="w-8 text-center text-sm font-semibold">
-                                                    {{ item.quantity }}
-                                                </span>
-
-                                                <div
-                                                    class="flex size-6 cursor-pointer items-center justify-center rounded-tr-sm rounded-br-sm outline outline-gray-300 hover:bg-[#f1f1f1]"
-                                                    @click="
-                                                        cartStore.increaseQuantity(item.product.id)
-                                                    "
-                                                >
-                                                    <Plus size="12" />
-                                                </div>
-                                            </div>
-
-                                            <p class="font-medium">
-                                                {{
-                                                    (
-                                                        item.product.price * item.quantity
-                                                    ).toLocaleString('de-DE')
-                                                }}đ
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-
-                            <div class="flex justify-between bg-[#f8f8f8] p-4">
-                                <div>
-                                    <h1 class="font-medium">{{ $t('cart.totalBill') }}</h1>
-                                    <p class="text-xl font-semibold">
-                                        {{
-                                            cartStore.products
-                                                .reduce(
-                                                    (sum, p) => sum + p.product.price * p.quantity,
-                                                    0,
-                                                )
-                                                .toLocaleString('de-DE')
-                                        }}đ
-                                    </p>
-                                </div>
-                                <button
-                                    @click="goToCheckout"
-                                    class="cursor-pointer rounded-md bg-[#5c5c5c] px-6 py-2 text-white hover:opacity-75"
-                                >
-                                    {{ $t('cart.checkout') }}
-                                </button>
+                                <p class="text-center text-gray-500">
+                                    {{ $t('cart.emptyCart') }}
+                                </p>
                             </div>
+                            <template v-else>
+                                <ul
+                                    class="flex max-h-96 grow flex-col gap-10 overflow-hidden overflow-x-hidden overflow-y-scroll p-4 pr-6"
+                                    style="scrollbar-gutter: stable"
+                                >
+                                    <li
+                                        v-for="item in cartStore.products"
+                                        :key="item.product.id"
+                                        class="flex w-full items-center gap-3"
+                                    >
+                                        <div
+                                            class="aspect-square w-20 shrink-0 overflow-hidden rounded-md"
+                                        >
+                                            <img
+                                                v-if="
+                                                    item.product.images &&
+                                                    item.product.images.length > 0
+                                                "
+                                                :src="item.product.images[0].image_url"
+                                                class="h-full w-full object-cover"
+                                            />
+                                            <img
+                                                v-else
+                                                src="../assets/default_thumbnail.jpg"
+                                                class="h-full w-full object-cover"
+                                            />
+                                        </div>
+
+                                        <div class="flex w-full flex-col gap-4">
+                                            <div class="flex w-full items-start">
+                                                <p class="line-clamp-2 flex-1 text-sm font-medium">
+                                                    {{ item.product.name }}
+                                                </p>
+                                                <div
+                                                    class="ml-2 flex size-10 flex-none shrink-0 cursor-pointer justify-end hover:opacity-75"
+                                                    @click="cartStore.deleteItem(item.product.id)"
+                                                >
+                                                    <CircleX color="gray" />
+                                                </div>
+                                            </div>
+
+                                            <div class="flex w-full items-center justify-between">
+                                                <div
+                                                    class="flex items-center justify-center rounded-sm outline outline-gray-300"
+                                                >
+                                                    <div
+                                                        class="flex size-6 cursor-pointer items-center justify-center rounded-tl-sm rounded-bl-sm outline outline-gray-300 hover:bg-[#f1f1f1]"
+                                                        @click="
+                                                            cartStore.decreaseQuantity(
+                                                                item.product.id,
+                                                            )
+                                                        "
+                                                    >
+                                                        <Minus size="12" />
+                                                    </div>
+
+                                                    <span
+                                                        class="w-8 text-center text-sm font-semibold"
+                                                    >
+                                                        {{ item.quantity }}
+                                                    </span>
+
+                                                    <div
+                                                        class="flex size-6 cursor-pointer items-center justify-center rounded-tr-sm rounded-br-sm outline outline-gray-300 hover:bg-[#f1f1f1]"
+                                                        @click="
+                                                            cartStore.increaseQuantity(
+                                                                item.product.id,
+                                                            )
+                                                        "
+                                                    >
+                                                        <Plus size="12" />
+                                                    </div>
+                                                </div>
+
+                                                <p class="font-medium">
+                                                    {{
+                                                        (
+                                                            item.product.price * item.quantity
+                                                        ).toLocaleString('de-DE')
+                                                    }}đ
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div class="flex justify-between bg-[#f8f8f8] p-4">
+                                    <div>
+                                        <h1 class="font-medium">{{ $t('cart.totalBill') }}</h1>
+                                        <p class="text-xl font-semibold">
+                                            {{
+                                                cartStore.products
+                                                    .reduce(
+                                                        (sum, p) =>
+                                                            sum + p.product.price * p.quantity,
+                                                        0,
+                                                    )
+                                                    .toLocaleString('de-DE')
+                                            }}đ
+                                        </p>
+                                    </div>
+                                    <button
+                                        @click="goToCheckout"
+                                        class="cursor-pointer rounded-md bg-[#5c5c5c] px-6 py-2 text-white hover:opacity-75"
+                                    >
+                                        {{ $t('cart.checkout') }}
+                                    </button>
+                                </div>
+                            </template>
                         </div>
                         <!-- End cart hover card -->
 

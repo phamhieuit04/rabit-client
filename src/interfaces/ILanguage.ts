@@ -49,6 +49,7 @@ export interface ILanguage {
         continueShopping: string
         addToCartSuccess: string
         addToCartFail: string
+        emptyCart: string
     }
     search: {
         placeholder: string
@@ -70,6 +71,8 @@ export interface ILanguage {
             priceLowToHigh: string
             priceHighToLow: string
         }
+        noProducts: string
+        tryDifferentSearch: string
     }
     product: {
         category: string
