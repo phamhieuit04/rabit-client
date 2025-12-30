@@ -417,6 +417,7 @@ export default {
     },
     methods: {
         navigateToHome() {
+            this.productsStore.fetchListProduct()
             this.$router.push('/')
         },
         navigateToLogin() {
@@ -434,7 +435,7 @@ export default {
                 path: '/products',
                 query: query,
             })
-            this.categoriesStore.currentCategory = category
+            this.categoriesStore.setCurrentCategory(category)
         },
         searchProducts(searchKey) {
             this.uiStore.setDisplaySearchCard(false)
@@ -443,6 +444,7 @@ export default {
                 path: '/products',
                 query: query,
             })
+            this.categoriesStore.clearCurrentCategory()
         },
         navigateToProfile() {
             this.$router.push('/profile/account')
