@@ -399,22 +399,22 @@ export default {
                 {
                     name: 'Sổ kẻ ngang',
                     thumnail:
-                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/sl-072622-51930-13.jpg?v=1751438476727',
+                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/rule.jpg?v=1751439042707',
                 },
                 {
-                    name: 'Sổ kẻ ngang',
+                    name: 'Sổ tay',
+                    thumnail:
+                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/dot.jpg?v=1751438833820',
+                },
+                {
+                    name: 'Vở viết',
                     thumnail:
                         'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/sl-072622-51930-13.jpg?v=1751438476727',
                 },
                 {
-                    name: 'Sổ kẻ ngang',
+                    name: 'Phụ kiện',
                     thumnail:
-                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/sl-072622-51930-13.jpg?v=1751438476727',
-                },
-                {
-                    name: 'Sổ kẻ ngang',
-                    thumnail:
-                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/sl-072622-51930-13.jpg?v=1751438476727',
+                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/plain.jpg?v=1751438557053',
                 },
             ],
             searchKey: '',
