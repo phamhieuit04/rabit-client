@@ -87,6 +87,14 @@ export interface ILanguage {
     contact: {
         description: string
         follow: string
+        subtitle: string
+        address: string
+        formTitle: string
+        name: string
+        email: string
+        phone: string
+        message: string
+        submit: string
     }
     profile: {
         title: string
@@ -123,5 +131,11 @@ export interface ILanguage {
         payment: string
         cod: string
         online: string
+    }
+    stores: {
+        title: string
+        selectProvince: string
+        selectDistrict: string
+        selectWard: string
     }
 }

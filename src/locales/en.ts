@@ -91,6 +91,14 @@ export const en: ILanguage = {
         description:
             'Follow Rabit on Instagram to stay up to date on the latest notebook trends, daily journaling inspiration, and how we make each product!',
         follow: 'Follow',
+        subtitle: 'Made in Vietnam notebooks for passionate young people!',
+        address: 'Address:',
+        formTitle: 'Contact Us',
+        name: 'Pham Hieu',
+        email: 'tomnguyen@example.com',
+        phone: 'Phone',
+        message: 'Message',
+        submit: 'SEND MESSAGE',
     },
     profile: {
         title: 'Your profile',
@@ -127,5 +135,11 @@ export const en: ILanguage = {
         cod: 'Cash on delivery (COD)',
         online: 'Online payment (bank transfer)',
         payment: 'Payment method',
+    },
+    stores: {
+        title: 'Our Stores',
+        selectProvince: 'Select province',
+        selectDistrict: 'Select district',
+        selectWard: 'Select ward',
     },
 }

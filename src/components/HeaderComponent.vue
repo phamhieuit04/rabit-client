@@ -32,12 +32,14 @@ import { apiHelper } from '@/helpers/axios'
                 <!-- Start left items -->
                 <ul class="flex min-w-2xs items-center gap-8">
                     <li
+                        @click="navigateToStoreLocation"
                         class="flex cursor-pointer items-center justify-center gap-1.5 hover:opacity-75"
                     >
                         <MapPin />
                         <span>{{ $t('header.shop') }}</span>
                     </li>
                     <li
+                        @click="navigateToContact"
                         class="flex cursor-pointer items-center justify-center gap-1.5 hover:opacity-75"
                     >
                         <MessageCircleQuestionMark />
@@ -490,6 +492,12 @@ export default {
         },
         goToCheckout() {
             this.$router.push('/checkout')
+        },
+        navigateToStoreLocation() {
+            this.$router.push('/locations')
+        },
+        navigateToContact() {
+            this.$router.push('/contact')
         },
     },
 }
