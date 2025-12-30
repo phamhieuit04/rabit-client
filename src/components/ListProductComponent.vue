@@ -3,6 +3,7 @@ import { Search, ArrowDownAZ } from 'lucide-vue-next'
 import { useUiStore } from '@/stores/ui'
 import { useProductsStore } from '@/stores/products'
 import { mapStores } from 'pinia'
+import { useCategoriesStore } from '@/stores/categories'
 </script>
 
 <template>
@@ -154,6 +155,7 @@ export default {
             query: {},
             offset: 0,
             limit: 16,
+            categoriesStore: useCategoriesStore(),
         }
     },
     mounted() {
@@ -225,6 +227,7 @@ export default {
                 path: '/products',
                 query: { sortType: 'default' },
             })
+            this.categoriesStore.clearCurrentCategory()
         },
         sortedProducts(sortType) {
             this.offset = 0
