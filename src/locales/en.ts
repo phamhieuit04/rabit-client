@@ -16,7 +16,8 @@ export const en: ILanguage = {
         bulk_order: 'Bulk order notebooks',
         personal_order: 'Personalized notebooks',
         newsletter: 'Newsletter subscription',
-        newsletter_desc: 'Subscribe to be the first to know about new products and exclusive offers!',
+        newsletter_desc:
+            'Subscribe to be the first to know about new products and exclusive offers!',
     },
     auth: {
         login: 'Log in',
@@ -51,6 +52,8 @@ export const en: ILanguage = {
         continueShopping: 'Continue Shopping',
         addToCartSuccess: 'Add to cart done!',
         addToCartFail: 'Add to cart failed',
+        emptyCart: 'No products in cart...',
+        shouldLogin: 'You should logged in first!',
     },
     search: {
         placeholder: 'Search for everything',
@@ -71,7 +74,9 @@ export const en: ILanguage = {
             priceLowToHigh: 'Price low to high',
             priceHighToLow: 'Price high to low',
         },
-        title1: 'products'
+        title1: 'products',
+        noProducts: 'No products found',
+        tryDifferentSearch: 'Please try a different search term or select another category',
     },
     product: {
         category: 'Category',
@@ -84,8 +89,17 @@ export const en: ILanguage = {
         detail: 'Our brand brings a diverse product ecosystem that fully meets all the needs of modern users for note-taking, creativity, and crafting. From meticulously designed notebooks and writing journals to practical stationery lines and inspiring craft toy sets, each product is crafted with sophistication, trend-forward design, and optimized user experience.',
     },
     contact: {
-        description: 'Follow Rabit on Instagram to stay up to date on the latest notebook trends, daily journaling inspiration, and how we make each product!',
+        description:
+            'Follow Rabit on Instagram to stay up to date on the latest notebook trends, daily journaling inspiration, and how we make each product!',
         follow: 'Follow',
+        subtitle: 'Made in Vietnam notebooks for passionate young people!',
+        address: 'Address:',
+        formTitle: 'Contact Us',
+        name: 'Pham Hieu',
+        email: 'tomnguyen@example.com',
+        phone: 'Phone',
+        message: 'Message',
+        submit: 'SEND MESSAGE',
     },
     profile: {
         title: 'Your profile',
@@ -104,7 +118,7 @@ export const en: ILanguage = {
         status: 'Status',
         qty: 'Qty',
         finalPrice: 'Final price',
-        shipping: 'Shipping'
+        shipping: 'Shipping',
     },
     address: {
         addressBook: 'Address book',
@@ -116,11 +130,17 @@ export const en: ILanguage = {
     checkout: {
         shippingInfo: 'Shipping Information',
         anotherAddress: 'Another address',
-        thankyou: 'Thank you for your order - Rabit'
+        thankyou: 'Thank you for your order - Rabit',
     },
     paymentMethods: {
         cod: 'Cash on delivery (COD)',
         online: 'Online payment (bank transfer)',
-        payment: 'Payment method'
-    }
+        payment: 'Payment method',
+    },
+    stores: {
+        title: 'Our Stores',
+        selectProvince: 'Select province',
+        selectDistrict: 'Select district',
+        selectWard: 'Select ward',
+    },
 }

@@ -9,6 +9,7 @@ export const useProductsStore = defineStore('products', {
             previewImage: '',
             listProduct: [],
             similarProducts: [],
+            hasMoreProducts: true,
         }
     },
     actions: {
@@ -25,13 +26,17 @@ export const useProductsStore = defineStore('products', {
                 })
                 .then((res) => {
                     if (res.status == 200) {
+                        const newProducts = res.data.data
+
                         if (offset == 0) {
-                            this.listProduct = res.data.data
+                            this.listProduct = newProducts
                         } else {
-                            res.data.data.forEach((product) => {
+                            newProducts.forEach((product) => {
                                 this.listProduct.push(product)
                             })
                         }
+
+                        this.hasMoreProducts = newProducts.length >= limit
                     }
                 })
                 .catch((err) => {
@@ -74,6 +79,18 @@ export const useProductsStore = defineStore('products', {
         },
         setPreviewImage(image) {
             this.previewImage = image
+        },
+        fetchPreviewProduct(productId) {
+            apiHelper
+                .get('/product/show/' + productId)
+                .then((res) => {
+                    if (res.status == 200) {
+                        this.previewProduct = res.data.data
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         },
     },
     persist: true,

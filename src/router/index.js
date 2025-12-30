@@ -62,6 +62,16 @@ const router = createRouter({
                 },
             ],
         },
+        {
+            path: '/locations',
+            name: 'location',
+            component: () => import('../views/StoreLocationView.vue'),
+        },
+        {
+            path: '/contact',
+            name: 'contact',
+            component: () => import('../views/ContactView.vue'),
+        },
     ],
 })
 

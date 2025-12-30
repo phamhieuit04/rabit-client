@@ -3,6 +3,7 @@ import { Search, ArrowDownAZ } from 'lucide-vue-next'
 import { useUiStore } from '@/stores/ui'
 import { useProductsStore } from '@/stores/products'
 import { mapStores } from 'pinia'
+import { useCategoriesStore } from '@/stores/categories'
 </script>
 
 <template>
@@ -87,7 +88,20 @@ import { mapStores } from 'pinia'
         >
             {{ $t('products.title') }}
         </h1>
-        <ul class="grid grid-cols-4 gap-5 py-6">
+
+        <div
+            v-if="productsStore.listProduct.length === 0"
+            class="flex min-h-[400px] flex-col items-center justify-center gap-4 py-6"
+        >
+            <p class="text-3xl text-black">
+                {{ $t('products.noProducts') }}
+            </p>
+            <p class="text-gray-400">
+                {{ $t('products.tryDifferentSearch') }}
+            </p>
+        </div>
+
+        <ul v-else class="grid grid-cols-4 gap-5 py-6">
             <li
                 v-for="item in productsStore.listProduct"
                 class="mb-4 flex max-w-[300px] cursor-pointer flex-col gap-2"
@@ -109,8 +123,14 @@ import { mapStores } from 'pinia'
                             @click.stop="
                                 () => {
                                     uiStore.setDisplayProductQuickView(true)
-                                    productsStore.setPreviewProduct(item)
-                                    productsStore.setPreviewImage(item.images[0].image_url)
+                                    productsStore.fetchPreviewProduct(item.id)
+                                    if (item.images.length > 0) {
+                                        productsStore.setPreviewImage(item.images[0].image_url)
+                                    } else {
+                                        productsStore.setPreviewImage(
+                                            'http://localhost:5173/src/assets/default_thumbnail.jpg',
+                                        )
+                                    }
                                 }
                             "
                             class="flex -translate-y-5 cursor-pointer items-center justify-center rounded-full bg-white p-3 opacity-0 drop-shadow-2xl transition duration-200 group-hover:translate-y-0 group-hover:opacity-100"
@@ -125,8 +145,9 @@ import { mapStores } from 'pinia'
                 <p class="text-gray-400">{{ item.price.toLocaleString('de-DE') }}đ</p>
             </li>
         </ul>
+
         <button
-            v-if="productsStore.listProduct.length > 0"
+            v-if="shouldShowLoadMoreButton"
             @click="loadMore"
             class="cursor-pointer rounded-md px-6 py-2 opacity-75 outline outline-gray-400 hover:opacity-100"
         >
@@ -148,6 +169,7 @@ export default {
             query: {},
             offset: 0,
             limit: 16,
+            categoriesStore: useCategoriesStore(),
         }
     },
     mounted() {
@@ -164,6 +186,12 @@ export default {
     },
     computed: {
         ...mapStores(useUiStore, useProductsStore),
+        shouldShowLoadMoreButton() {
+            if (this.$route.path === '/') {
+                return this.productsStore.listProduct.length > 0
+            }
+            return this.productsStore.listProduct.length > 0 && this.productsStore.hasMoreProducts
+        },
     },
     methods: {
         navigateToProductDetail(id) {
@@ -213,6 +241,7 @@ export default {
                 path: '/products',
                 query: { sortType: 'default' },
             })
+            this.categoriesStore.clearCurrentCategory()
         },
         sortedProducts(sortType) {
             this.offset = 0

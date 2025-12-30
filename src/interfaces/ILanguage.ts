@@ -49,6 +49,8 @@ export interface ILanguage {
         continueShopping: string
         addToCartSuccess: string
         addToCartFail: string
+        emptyCart: string
+        shouldLogin: string
     }
     search: {
         placeholder: string
@@ -70,6 +72,8 @@ export interface ILanguage {
             priceLowToHigh: string
             priceHighToLow: string
         }
+        noProducts: string
+        tryDifferentSearch: string
     }
     product: {
         category: string
@@ -84,6 +88,14 @@ export interface ILanguage {
     contact: {
         description: string
         follow: string
+        subtitle: string
+        address: string
+        formTitle: string
+        name: string
+        email: string
+        phone: string
+        message: string
+        submit: string
     }
     profile: {
         title: string
@@ -120,5 +132,11 @@ export interface ILanguage {
         payment: string
         cod: string
         online: string
+    }
+    stores: {
+        title: string
+        selectProvince: string
+        selectDistrict: string
+        selectWard: string
     }
 }

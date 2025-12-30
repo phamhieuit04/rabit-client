@@ -16,7 +16,8 @@ export const vi: ILanguage = {
         bulk_order: 'Sổ đặt số lượng lớn',
         personal_order: 'Sổ đặt cá nhân',
         newsletter: 'Đăng ký bảng tin',
-        newsletter_desc: 'Đăng ký nhận tin để là người đầu tiên biết về sản phẩm mới và ưu đãi độc quyền!',
+        newsletter_desc:
+            'Đăng ký nhận tin để là người đầu tiên biết về sản phẩm mới và ưu đãi độc quyền!',
     },
     auth: {
         login: 'Đăng nhập',
@@ -51,6 +52,8 @@ export const vi: ILanguage = {
         continueShopping: 'Tiếp tục mua sắm',
         addToCartSuccess: 'Thêm vào giỏ hàng thành công!',
         addToCartFail: 'Thêm vào giỏ hàng thất bại!',
+        emptyCart: 'Không có sản phẩm trong giỏ hàng...',
+        shouldLogin: 'Bạn phải đăng nhập trước khi thêm vào giỏ hàng!',
     },
     search: {
         placeholder: 'Tìm kiếm sản phẩm',
@@ -71,7 +74,9 @@ export const vi: ILanguage = {
             priceLowToHigh: 'Giá thấp đến cao',
             priceHighToLow: 'Giá cao đến thấp',
         },
-        title1: 'Sản phẩm'
+        title1: 'Sản phẩm',
+        noProducts: 'Không tìm thấy sản phẩm',
+        tryDifferentSearch: 'Vui lòng thử tìm kiếm với từ khóa khác hoặc chọn danh mục khác',
     },
     product: {
         category: 'Danh mục',
@@ -84,8 +89,17 @@ export const vi: ILanguage = {
         detail: 'Thương hiệu của chúng tôi mang đến hệ sinh thái sản phẩm đa dạng, đáp ứng trọn vẹn mọi nhu cầu ghi chép – sáng tạo – thủ công cho người dùng hiện đại. Từ những cuốn sổ tay và vở viết chỉn chu đến các dòng văn phòng phẩm tiện dụng và set đồ chơi thủ công đầy cảm hứng, mỗi sản phẩm đều được thiết kế với sự tinh tế, cập nhật xu hướng và tối ưu trải nghiệm sử dụng.',
     },
     contact: {
-        description: 'Theo dõi Rabit trên Instagram để cập nhật các xu hướng dùng sổ mới nhất, cảm hứng ghi chép mỗi ngày và cách chúng mình tạo nên từng sản phẩm!',
+        description:
+            'Theo dõi Rabit trên Instagram để cập nhật các xu hướng dùng sổ mới nhất, cảm hứng ghi chép mỗi ngày và cách chúng mình tạo nên từng sản phẩm!',
         follow: 'Theo dõi',
+        subtitle: 'Sổ tay Made in Vietnam dành cho những người trẻ đầy đam mê!',
+        address: 'Địa chỉ:',
+        formTitle: 'Liên hệ với chúng tôi',
+        name: 'Phạm Hiếu',
+        email: 'tomnguyen@example.com',
+        phone: 'Điện thoại',
+        message: 'Nội dung',
+        submit: 'GỬI TIN NHẮN',
     },
     profile: {
         title: 'Hồ sơ',
@@ -104,7 +118,7 @@ export const vi: ILanguage = {
         status: 'Trạng thái',
         qty: 'SL',
         finalPrice: 'Tổng cộng',
-        shipping: 'Phí vận chuyển'
+        shipping: 'Phí vận chuyển',
     },
     address: {
         addressBook: 'Sổ địa chỉ',
@@ -116,11 +130,17 @@ export const vi: ILanguage = {
     checkout: {
         shippingInfo: 'Thông tin nhận hàng',
         anotherAddress: 'Địa chỉ khác',
-        thankyou: 'Rabit cảm ơn bạn đã đặt hàng.'
+        thankyou: 'Rabit cảm ơn bạn đã đặt hàng.',
     },
     paymentMethods: {
         cod: 'Thanh toán khi giao hàng (COD)',
         online: 'Thanh toán online (chuyển khoản)',
-        payment: 'Phương thức thanh toán'
-    }
+        payment: 'Phương thức thanh toán',
+    },
+    stores: {
+        title: 'Cửa Hàng',
+        selectProvince: 'Chọn tỉnh thành',
+        selectDistrict: 'Chọn quận/huyện',
+        selectWard: 'Chọn phường/xã',
+    },
 }
