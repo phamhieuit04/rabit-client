@@ -128,6 +128,7 @@ export interface ILanguage {
         shippingInfo: string
         anotherAddress: string
         thankyou: string
+        processing: string
     }
     paymentMethods: {
         payment: string

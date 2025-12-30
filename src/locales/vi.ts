@@ -132,6 +132,7 @@ export const vi: ILanguage = {
         shippingInfo: 'Thông tin nhận hàng',
         anotherAddress: 'Địa chỉ khác',
         thankyou: 'Rabit cảm ơn bạn đã đặt hàng.',
+        processing: 'Đang xử lý...',
     },
     paymentMethods: {
         cod: 'Thanh toán khi giao hàng (COD)',

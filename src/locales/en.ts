@@ -132,6 +132,7 @@ export const en: ILanguage = {
         shippingInfo: 'Shipping Information',
         anotherAddress: 'Another address',
         thankyou: 'Thank you for your order - Rabit',
+        processing: 'Processing...',
     },
     paymentMethods: {
         cod: 'Cash on delivery (COD)',
