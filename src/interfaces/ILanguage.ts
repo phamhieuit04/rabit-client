@@ -141,4 +141,13 @@ export interface ILanguage {
         selectDistrict: string
         selectWard: string
     }
+    orders: {
+        status: {
+            failed: string
+            processing: string
+            pending: string
+            paid: string
+            unknown: string
+        }
+    }
 }

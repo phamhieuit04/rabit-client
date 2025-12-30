@@ -145,4 +145,13 @@ export const en: ILanguage = {
         selectDistrict: 'Select district',
         selectWard: 'Select ward',
     },
+    orders: {
+        status: {
+            failed: 'Failed',
+            processing: 'Processing',
+            pending: 'Pending payment',
+            paid: 'Paid',
+            unknown: 'Unknown',
+        },
+    },
 }

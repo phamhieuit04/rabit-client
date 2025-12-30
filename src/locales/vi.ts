@@ -145,4 +145,13 @@ export const vi: ILanguage = {
         selectDistrict: 'Chọn quận/huyện',
         selectWard: 'Chọn phường/xã',
     },
+    orders: {
+        status: {
+            failed: 'Thất bại',
+            processing: 'Đang xử lý',
+            pending: 'Chờ thanh toán',
+            paid: 'Đã thanh toán',
+            unknown: 'Không xác định',
+        },
+    },
 }

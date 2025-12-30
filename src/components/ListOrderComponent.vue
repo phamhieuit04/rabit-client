@@ -39,7 +39,12 @@ import { apiHelper } from '@/helpers/axios'
                         {{ item.total_price.toLocaleString() }}
                     </td>
                     <td class="border border-gray-300 px-4 py-3">
-                        {{ item.status }}
+                        <span
+                            class="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium tracking-wide whitespace-nowrap"
+                            :class="getStatusInfo(item.status).class"
+                        >
+                            {{ getStatusInfo(item.status).text }}
+                        </span>
                     </td>
                 </tr>
                 <tr v-else>
@@ -59,12 +64,15 @@ export default {
             listBill: [],
         }
     },
+
     mounted() {
         this.fetchListBill()
     },
+
     computed: {
         ...mapStores(useAuthStore),
     },
+
     methods: {
         fetchListBill() {
             apiHelper
@@ -74,13 +82,60 @@ export default {
                     },
                 })
                 .then((res) => {
-                    if (res.status == 200) {
+                    if (res.status === 200) {
                         this.listBill = res.data.data
                     }
                 })
-                .catch((err) => {
-                    console.log(err)
-                })
+        },
+
+        getStatusInfo(status) {
+            switch (status) {
+                case 0:
+                    return {
+                        text: this.$t('orders.status.failed'),
+                        class: `
+                            bg-rose-50
+                            text-rose-700
+                            border border-rose-200
+                        `,
+                    }
+                case 1:
+                    return {
+                        text: this.$t('orders.status.processing'),
+                        class: `
+                            bg-indigo-50
+                            text-indigo-700
+                            border border-indigo-200
+                        `,
+                    }
+                case 2:
+                    return {
+                        text: this.$t('orders.status.pending'),
+                        class: `
+                            bg-amber-50
+                            text-amber-700
+                            border border-amber-200
+                        `,
+                    }
+                case 3:
+                    return {
+                        text: this.$t('orders.status.paid'),
+                        class: `
+                            bg-emerald-50
+                            text-emerald-700
+                            border border-emerald-200
+                        `,
+                    }
+                default:
+                    return {
+                        text: this.$t('orders.status.unknown'),
+                        class: `
+                            bg-gray-50
+                            text-gray-600
+                            border border-gray-200
+                        `,
+                    }
+            }
         },
     },
 }
