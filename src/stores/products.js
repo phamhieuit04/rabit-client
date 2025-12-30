@@ -80,6 +80,18 @@ export const useProductsStore = defineStore('products', {
         setPreviewImage(image) {
             this.previewImage = image
         },
+        fetchPreviewProduct(productId) {
+            apiHelper
+                .get('/product/show/' + productId)
+                .then((res) => {
+                    if (res.status == 200) {
+                        this.previewProduct = res.data.data
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
     },
     persist: true,
 })

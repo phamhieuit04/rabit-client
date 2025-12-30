@@ -109,8 +109,14 @@ import { mapStores } from 'pinia'
                             @click.stop="
                                 () => {
                                     uiStore.setDisplayProductQuickView(true)
-                                    productsStore.setPreviewProduct(item)
-                                    productsStore.setPreviewImage(item.images[0].image_url)
+                                    productsStore.fetchPreviewProduct(item.id)
+                                    if (item.images.length > 0) {
+                                        productsStore.setPreviewImage(item.images[0].image_url)
+                                    } else {
+                                        productsStore.setPreviewImage(
+                                            'http://localhost:5173/src/assets/default_thumbnail.jpg',
+                                        )
+                                    }
                                 }
                             "
                             class="flex -translate-y-5 cursor-pointer items-center justify-center rounded-full bg-white p-3 opacity-0 drop-shadow-2xl transition duration-200 group-hover:translate-y-0 group-hover:opacity-100"
