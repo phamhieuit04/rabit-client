@@ -126,7 +126,7 @@ import { mapStores } from 'pinia'
             </li>
         </ul>
         <button
-            v-if="productsStore.listProduct.length > 0"
+            v-if="shouldShowLoadMoreButton"
             @click="loadMore"
             class="cursor-pointer rounded-md px-6 py-2 opacity-75 outline outline-gray-400 hover:opacity-100"
         >
@@ -164,6 +164,12 @@ export default {
     },
     computed: {
         ...mapStores(useUiStore, useProductsStore),
+        shouldShowLoadMoreButton() {
+            if (this.$route.path === '/') {
+                return this.productsStore.listProduct.length > 0
+            }
+            return this.productsStore.listProduct.length > 0 && this.productsStore.hasMoreProducts
+        },
     },
     methods: {
         navigateToProductDetail(id) {
