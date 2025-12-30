@@ -126,11 +126,13 @@ export const en: ILanguage = {
         phone: 'Phone number',
         saveAddress: 'Save address',
         emptyAddress: "You haven't saved any address",
+        fullName: 'Your name...',
     },
     checkout: {
         shippingInfo: 'Shipping Information',
         anotherAddress: 'Another address',
         thankyou: 'Thank you for your order - Rabit',
+        processing: 'Processing...',
     },
     paymentMethods: {
         cod: 'Cash on delivery (COD)',
@@ -142,5 +144,17 @@ export const en: ILanguage = {
         selectProvince: 'Select province',
         selectDistrict: 'Select district',
         selectWard: 'Select ward',
+    },
+    orders: {
+        status: {
+            failed: 'Failed',
+            processing: 'Processing',
+            pending: 'Pending payment',
+            paid: 'Paid',
+            unknown: 'Unknown',
+        },
+        checkingPayment: 'Verifying payment status...',
+        paymentSuccess: 'Payment verification successful',
+        paymentFailed: 'Payment verification failed',
     },
 }

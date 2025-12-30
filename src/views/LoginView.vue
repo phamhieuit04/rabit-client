@@ -3,6 +3,7 @@ import {useAuthStore} from '@/stores/auth'
 import { useUiStore } from '@/stores/ui'
 import { mapStores } from 'pinia';
 import { apiHelper } from '@/helpers/axios';
+import { useCartStore } from '@/stores/cart'
 </script>
 
 <template>
@@ -53,6 +54,7 @@ import { apiHelper } from '@/helpers/axios';
 export default {
     data() {
         return {
+            cartStore: useCartStore(),
             email: '',
             password: '',
         }
@@ -74,6 +76,7 @@ export default {
                 if (res.status === 200) {
                     this.authStore.setLoggedInState(true);
                     this.authStore.setCurrentUser(res.data.data);
+                    this.cartStore.fetchCartItem()
                     alert(this.$t('auth.loginSuccess'));
                     this.$router.push('/');
                 }

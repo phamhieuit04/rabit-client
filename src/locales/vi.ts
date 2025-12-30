@@ -126,11 +126,13 @@ export const vi: ILanguage = {
         phone: 'Số điện thoại',
         saveAddress: 'Lưu địa chỉ',
         emptyAddress: 'Không có địa chỉ nào.',
+        fullName: 'Tên người nhận...',
     },
     checkout: {
         shippingInfo: 'Thông tin nhận hàng',
         anotherAddress: 'Địa chỉ khác',
         thankyou: 'Rabit cảm ơn bạn đã đặt hàng.',
+        processing: 'Đang xử lý...',
     },
     paymentMethods: {
         cod: 'Thanh toán khi giao hàng (COD)',
@@ -142,5 +144,17 @@ export const vi: ILanguage = {
         selectProvince: 'Chọn tỉnh thành',
         selectDistrict: 'Chọn quận/huyện',
         selectWard: 'Chọn phường/xã',
+    },
+    orders: {
+        status: {
+            failed: 'Thất bại',
+            processing: 'Đang xử lý',
+            pending: 'Chờ thanh toán',
+            paid: 'Đã thanh toán',
+            unknown: 'Không xác định',
+        },
+        checkingPayment: 'Đang xác nhận trạng thái thanh toán...',
+        paymentSuccess: 'Xác thực thanh toán thành công',
+        paymentFailed: 'Xác thực thanh toán thất bại',
     },
 }

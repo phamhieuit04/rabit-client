@@ -20,7 +20,11 @@
                             class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
                         >
                             <option value="other">{{ $t('checkout.anotherAddress') }}...</option>
-                            <option v-for="item in listAddress" :key="item.id" :value="item.id">
+                            <option
+                                v-for="(item, index) in listAddress"
+                                :key="index"
+                                :value="index"
+                            >
                                 {{ item.addresses }} - {{ item.phone }}
                             </option>
                         </select>
@@ -73,14 +77,24 @@
                         <label
                             class="flex cursor-pointer items-center gap-3 rounded-md border border-gray-300 px-4 py-3 text-sm hover:bg-gray-50"
                         >
-                            <input type="radio" name="payment" />
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="cod"
+                                v-model="selectedPaymentMethod"
+                            />
                             <span>{{ $t('paymentMethods.cod') }}</span>
                         </label>
 
                         <label
                             class="flex cursor-pointer items-center gap-3 rounded-md border border-gray-300 px-4 py-3 text-sm hover:bg-gray-50"
                         >
-                            <input type="radio" name="payment" />
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="online"
+                                v-model="selectedPaymentMethod"
+                            />
                             <span>{{ $t('paymentMethods.online') }}</span>
                         </label>
                     </div>
@@ -154,9 +168,34 @@
                         </div>
 
                         <button
-                            class="mt-4 w-full rounded-lg bg-gray-700 py-3 font-semibold text-white hover:bg-gray-800"
+                            @click="checkout"
+                            :disabled="isLoading || !isFormValid"
+                            class="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-gray-700 py-3 font-semibold text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-60"
                         >
-                            {{ $t('cart.checkout') }}
+                            <svg
+                                v-if="isLoading"
+                                class="h-5 w-5 animate-spin"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                            >
+                                <circle
+                                    class="opacity-25"
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    stroke-width="4"
+                                ></circle>
+                                <path
+                                    class="opacity-75"
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                ></path>
+                            </svg>
+                            <span>{{
+                                isLoading ? $t('checkout.processing') : $t('cart.checkout')
+                            }}</span>
                         </button>
                     </div>
                 </div>
@@ -182,12 +221,10 @@ export default {
     data() {
         return {
             cartStore: useCartStore(),
-
-            // address
             listAddress: [],
             selectedAddressId: 'other',
-
-            // form
+            selectedPaymentMethod: 'cod',
+            isLoading: false,
             form: {
                 email: '',
                 fullName: '',
@@ -214,18 +251,36 @@ export default {
         totalPrice() {
             return this.subTotal
         },
+
+        isFormValid() {
+            if (!this.cartStore.products.length) return false
+            if (!this.selectedPaymentMethod) return false
+
+            if (!this.form.email) return false
+            if (!this.form.fullName) return false
+            if (!this.form.phone) return false
+
+            if (this.selectedAddressId === 'other') {
+                if (!this.form.address) return false
+            } else {
+                if (!this.listAddress[this.selectedAddressId]) return false
+            }
+
+            return true
+        },
     },
 
     watch: {
         selectedAddressId(newVal) {
             if (newVal === 'other') {
                 this.resetForm()
-            } else {
-                const addr = this.listAddress.find((a) => a.id === newVal)
-                if (addr) this.fillForm(addr)
+                this.form.fullName = this.authStore.currentUser.name
+                return
             }
-        },
 
+            const addr = this.listAddress[newVal]
+            if (addr) this.fillForm(addr)
+        },
         'authStore.currentUser': {
             immediate: true,
             handler(user) {
@@ -259,6 +314,7 @@ export default {
                     if (res.status === 200) {
                         this.listAddress = res.data.data
                     }
+                    this.selectedAddressId = 'other'
                 })
         },
 
@@ -278,6 +334,43 @@ export default {
             this.form.province = ''
             this.form.district = ''
             this.form.ward = ''
+        },
+
+        checkout() {
+            if (!this.isFormValid) return
+
+            this.isLoading = true
+
+            const addr =
+                this.selectedAddressId === 'other' ? null : this.listAddress[this.selectedAddressId]
+
+            const items = this.cartStore.products.map((item) => ({
+                id: item.product.id,
+                quantity: item.quantity,
+            }))
+
+            apiHelper
+                .post(
+                    '/bill/create-bill',
+                    {
+                        address: addr ? addr.addresses : this.form.address,
+                        method: this.selectedPaymentMethod,
+                        items,
+                    },
+                    {
+                        headers: {
+                            Authorization: 'Bearer ' + this.authStore.currentUser.token,
+                        },
+                    },
+                )
+                .then((res) => {
+                    if (res.status == 200) {
+                        window.location.href = res.data.data.payment.data.checkoutUrl
+                    }
+                })
+                .finally(() => {
+                    this.isLoading = false
+                })
         },
     },
 }
