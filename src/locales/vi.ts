@@ -52,6 +52,8 @@ export const vi: ILanguage = {
         continueShopping: 'Tiếp tục mua sắm',
         addToCartSuccess: 'Thêm vào giỏ hàng thành công!',
         addToCartFail: 'Thêm vào giỏ hàng thất bại!',
+        emptyCart: 'Không có sản phẩm trong giỏ hàng...',
+        shouldLogin: 'Bạn phải đăng nhập trước khi thêm vào giỏ hàng!',
     },
     search: {
         placeholder: 'Tìm kiếm sản phẩm',
@@ -73,6 +75,8 @@ export const vi: ILanguage = {
             priceHighToLow: 'Giá cao đến thấp',
         },
         title1: 'Sản phẩm',
+        noProducts: 'Không tìm thấy sản phẩm',
+        tryDifferentSearch: 'Vui lòng thử tìm kiếm với từ khóa khác hoặc chọn danh mục khác',
     },
     product: {
         category: 'Danh mục',
@@ -88,6 +92,14 @@ export const vi: ILanguage = {
         description:
             'Theo dõi Rabit trên Instagram để cập nhật các xu hướng dùng sổ mới nhất, cảm hứng ghi chép mỗi ngày và cách chúng mình tạo nên từng sản phẩm!',
         follow: 'Theo dõi',
+        subtitle: 'Sổ tay Made in Vietnam dành cho những người trẻ đầy đam mê!',
+        address: 'Địa chỉ:',
+        formTitle: 'Liên hệ với chúng tôi',
+        name: 'Phạm Hiếu',
+        email: 'tomnguyen@example.com',
+        phone: 'Điện thoại',
+        message: 'Nội dung',
+        submit: 'GỬI TIN NHẮN',
     },
     profile: {
         title: 'Hồ sơ',
@@ -125,5 +137,11 @@ export const vi: ILanguage = {
         cod: 'Thanh toán khi giao hàng (COD)',
         online: 'Thanh toán online (chuyển khoản)',
         payment: 'Phương thức thanh toán',
+    },
+    stores: {
+        title: 'Cửa Hàng',
+        selectProvince: 'Chọn tỉnh thành',
+        selectDistrict: 'Chọn quận/huyện',
+        selectWard: 'Chọn phường/xã',
     },
 }

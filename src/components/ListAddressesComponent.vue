@@ -115,6 +115,8 @@ export default {
                 .then((res) => {
                     if (res.status == 200) {
                         this.fetchListAddress()
+                        this.address = null
+                        this.phone = null
                     }
                 })
                 .catch((err) => {

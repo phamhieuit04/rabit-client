@@ -62,6 +62,10 @@ export const useCartStore = defineStore('cart', {
 
         async addToCart(productId, quantity) {
             const authStore = useAuthStore()
+            if (!authStore.isLoggedIn) {
+                alert(i18n.global.t('cart.shouldLogin'))
+                return
+            }
             return await apiHelper
                 .get('/cart/update-product', {
                     headers: {

@@ -106,7 +106,7 @@ import { useCartStore } from '@/stores/cart'
                 <li
                     v-for="item in productsStore.similarProducts"
                     class="mb-4 flex max-w-[300px] cursor-pointer flex-col gap-2"
-                    @click="handleFetchData(item.id)"
+                    @click="$router.push('/products/' + item.id)"
                 >
                     <div class="group relative h-[380px]">
                         <img
@@ -148,25 +148,31 @@ import { useCartStore } from '@/stores/cart'
 </template>
 
 <script>
+import { mapStores } from 'pinia'
+import { useProductsStore } from '@/stores/products'
+import { useUiStore } from '@/stores/ui'
+import { useCartStore } from '@/stores/cart'
+
 export default {
     data() {
         return {
-            currentId: null,
             currentQuantity: 1,
         }
     },
-    mounted() {
-        this.handleFetchData(this.$route.params.id)
-    },
+
     computed: {
         ...mapStores(useUiStore, useProductsStore, useCartStore),
     },
-    methods: {
-        handleFetchData(productId) {
-            this.currentQuantity = 1
-            this.productsStore.fetchCurrentProduct(productId)
-            this.productsStore.fetchSimilarProducts(productId)
-            this.$router.push('/products/' + productId)
+
+    watch: {
+        '$route.params.id': {
+            immediate: true,
+            handler(newId) {
+                if (!newId) return
+                this.currentQuantity = 1
+                this.productsStore.fetchCurrentProduct(newId)
+                this.productsStore.fetchSimilarProducts(newId)
+            },
         },
     },
 }

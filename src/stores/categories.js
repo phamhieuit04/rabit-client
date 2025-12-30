@@ -9,6 +9,12 @@ export const useCategoriesStore = defineStore('categories', {
         }
     },
     actions: {
+        clearCurrentCategory() {
+            this.currentCategory = null
+        },
+        setCurrentCategory(item) {
+            this.currentCategory = item
+        },
         fetchListCategory() {
             apiHelper
                 .get('/list-category')

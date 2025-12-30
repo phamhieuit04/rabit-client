@@ -129,12 +129,12 @@ export default {
                 {
                     name: 'Notebook',
                     thumbnail_url:
-                        'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/slider_2.jpg?1763605000974',
+                        'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/slider_2.jpg?1765418275267',
                 },
                 {
                     name: 'Notebook',
                     thumbnail_url:
-                        'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/slider_4.jpg?1763605000974',
+                        'https://bizweb.dktcdn.net/100/220/344/themes/1030367/assets/slider_4.jpg?1765418275267',
                 },
             ],
             imagesParallax: [

@@ -48,7 +48,7 @@ import { Minus, Plus, X } from 'lucide-vue-next'
                     <div class="flex items-center gap-2">
                         <p class="font-medium">{{ $t('product.category') }}:</p>
                         <p class="text-gray-500">
-                            {{ productsStore.previewProduct?.categoryName }}
+                            {{ productsStore.previewProduct?.category.name }}
                         </p>
                     </div>
                     <p class="text-2xl font-bold">
@@ -111,6 +111,7 @@ export default {
                 focus: 0,
                 omitEnd: true,
                 gap: 4,
+                arrows: false,
             },
             currentQuantity: 1,
         }
