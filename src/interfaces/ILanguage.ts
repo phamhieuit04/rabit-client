@@ -50,6 +50,7 @@ export interface ILanguage {
         addToCartSuccess: string
         addToCartFail: string
         emptyCart: string
+        shouldLogin: string
     }
     search: {
         placeholder: string

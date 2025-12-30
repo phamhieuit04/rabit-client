@@ -53,6 +53,7 @@ export const vi: ILanguage = {
         addToCartSuccess: 'Thêm vào giỏ hàng thành công!',
         addToCartFail: 'Thêm vào giỏ hàng thất bại!',
         emptyCart: 'Không có sản phẩm trong giỏ hàng...',
+        shouldLogin: 'Bạn phải đăng nhập trước khi thêm vào giỏ hàng!',
     },
     search: {
         placeholder: 'Tìm kiếm sản phẩm',

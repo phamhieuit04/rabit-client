@@ -119,7 +119,7 @@ import { apiHelper } from '@/helpers/axios'
 
                         <!-- Start cart hover card  -->
                         <div
-                            v-if="item.type == 'cart'"
+                            v-if="item.type == 'cart' && authStore.isLoggedIn"
                             class="absolute z-10 hidden min-h-80 w-96 -translate-x-[50%] cursor-default flex-col overflow-hidden rounded-md bg-white drop-shadow-2xl group-hover:flex group-hover:opacity-100"
                         >
                             <h1 class="border-b-2 border-gray-300 p-4 font-bold uppercase">
@@ -381,6 +381,10 @@ export default {
                     icon: ShoppingCart,
                     type: 'cart',
                     onClick: () => {
+                        if (!this.authStore.isLoggedIn) {
+                            alert('Bạn phải đăng nhập trước!')
+                            return
+                        }
                         this.$router.push('/cart')
                     },
                 },

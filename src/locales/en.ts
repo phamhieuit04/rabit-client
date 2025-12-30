@@ -53,6 +53,7 @@ export const en: ILanguage = {
         addToCartSuccess: 'Add to cart done!',
         addToCartFail: 'Add to cart failed',
         emptyCart: 'No products in cart...',
+        shouldLogin: 'You should logged in first!',
     },
     search: {
         placeholder: 'Search for everything',
