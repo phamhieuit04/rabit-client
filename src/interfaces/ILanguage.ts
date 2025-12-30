@@ -149,5 +149,8 @@ export interface ILanguage {
             paid: string
             unknown: string
         }
+        checkingPayment: string
+        paymentSuccess: string
+        paymentFailed: string
     }
 }

@@ -153,5 +153,8 @@ export const vi: ILanguage = {
             paid: 'Đã thanh toán',
             unknown: 'Không xác định',
         },
+        checkingPayment: 'Đang xác nhận trạng thái thanh toán...',
+        paymentSuccess: 'Xác thực thanh toán thành công',
+        paymentFailed: 'Xác thực thanh toán thất bại',
     },
 }

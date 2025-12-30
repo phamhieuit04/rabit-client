@@ -153,5 +153,8 @@ export const en: ILanguage = {
             paid: 'Paid',
             unknown: 'Unknown',
         },
+        checkingPayment: 'Verifying payment status...',
+        paymentSuccess: 'Payment verification successful',
+        paymentFailed: 'Payment verification failed',
     },
 }
