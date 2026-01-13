@@ -126,6 +126,7 @@ export const en: ILanguage = {
         phone: 'Phone number',
         saveAddress: 'Save address',
         emptyAddress: "You haven't saved any address",
+        fullName: 'Your name...',
     },
     checkout: {
         shippingInfo: 'Shipping Information',

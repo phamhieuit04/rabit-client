@@ -126,6 +126,7 @@ export const vi: ILanguage = {
         phone: 'Số điện thoại',
         saveAddress: 'Lưu địa chỉ',
         emptyAddress: 'Không có địa chỉ nào.',
+        fullName: 'Tên của bạn...',
     },
     checkout: {
         shippingInfo: 'Thông tin nhận hàng',

@@ -122,6 +122,7 @@ export interface ILanguage {
         phone: string
         saveAddress: string
         emptyAddress: string
+        fullName: string
     }
     checkout: {
         shippingInfo: string

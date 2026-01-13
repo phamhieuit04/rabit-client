@@ -182,7 +182,7 @@ import { apiHelper } from '@/helpers/axios'
                                                     class="flex items-center justify-center rounded-sm outline outline-gray-300"
                                                 >
                                                     <div
-                                                        class="flex size-6 cursor-pointer items-center justify-center rounded-tl-sm rounded-bl-sm outline outline-gray-300 hover:bg-[#f1f1f1]"
+                                                        class="flex size-6 cursor-pointer items-center justify-center rounded-tl-sm rounded-bl-sm outline outline-gray-300 select-none hover:bg-[#f1f1f1]"
                                                         @click="
                                                             cartStore.decreaseQuantity(
                                                                 item.product.id,
@@ -193,13 +193,13 @@ import { apiHelper } from '@/helpers/axios'
                                                     </div>
 
                                                     <span
-                                                        class="w-8 text-center text-sm font-semibold"
+                                                        class="w-8 text-center text-sm font-semibold select-none"
                                                     >
                                                         {{ item.quantity }}
                                                     </span>
 
                                                     <div
-                                                        class="flex size-6 cursor-pointer items-center justify-center rounded-tr-sm rounded-br-sm outline outline-gray-300 hover:bg-[#f1f1f1]"
+                                                        class="flex size-6 cursor-pointer items-center justify-center rounded-tr-sm rounded-br-sm outline outline-gray-300 select-none hover:bg-[#f1f1f1]"
                                                         @click="
                                                             cartStore.increaseQuantity(
                                                                 item.product.id,
@@ -210,7 +210,7 @@ import { apiHelper } from '@/helpers/axios'
                                                     </div>
                                                 </div>
 
-                                                <p class="font-medium">
+                                                <p class="font-medium select-none">
                                                     {{
                                                         (
                                                             item.product.price * item.quantity
