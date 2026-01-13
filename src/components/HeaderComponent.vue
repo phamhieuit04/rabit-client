@@ -103,12 +103,15 @@ import { apiHelper } from '@/helpers/axios'
                                         v-for="item in featuredCategories"
                                         class="flex cursor-pointer flex-col gap-2 hover:opacity-75"
                                     >
-                                        <img
-                                            :src="item.thumnail"
-                                            alt=""
-                                            class="max-w-70 object-contain"
-                                        />
-                                        <h1 class="font-semibold uppercase">
+                                        <div class="flex h-40 w-70 items-center justify-center">
+                                            <img
+                                                :src="item.thumbnail"
+                                                alt=""
+                                                class="h-full w-full object-cover"
+                                            />
+                                        </div>
+
+                                        <h1 class="text-center font-semibold uppercase">
                                             {{ item.name }}
                                         </h1>
                                     </li>
@@ -179,7 +182,7 @@ import { apiHelper } from '@/helpers/axios'
                                                     class="flex items-center justify-center rounded-sm outline outline-gray-300"
                                                 >
                                                     <div
-                                                        class="flex size-6 cursor-pointer items-center justify-center rounded-tl-sm rounded-bl-sm outline outline-gray-300 hover:bg-[#f1f1f1]"
+                                                        class="flex size-6 cursor-pointer items-center justify-center rounded-tl-sm rounded-bl-sm outline outline-gray-300 select-none hover:bg-[#f1f1f1]"
                                                         @click="
                                                             cartStore.decreaseQuantity(
                                                                 item.product.id,
@@ -190,13 +193,13 @@ import { apiHelper } from '@/helpers/axios'
                                                     </div>
 
                                                     <span
-                                                        class="w-8 text-center text-sm font-semibold"
+                                                        class="w-8 text-center text-sm font-semibold select-none"
                                                     >
                                                         {{ item.quantity }}
                                                     </span>
 
                                                     <div
-                                                        class="flex size-6 cursor-pointer items-center justify-center rounded-tr-sm rounded-br-sm outline outline-gray-300 hover:bg-[#f1f1f1]"
+                                                        class="flex size-6 cursor-pointer items-center justify-center rounded-tr-sm rounded-br-sm outline outline-gray-300 select-none hover:bg-[#f1f1f1]"
                                                         @click="
                                                             cartStore.increaseQuantity(
                                                                 item.product.id,
@@ -207,7 +210,7 @@ import { apiHelper } from '@/helpers/axios'
                                                     </div>
                                                 </div>
 
-                                                <p class="font-medium">
+                                                <p class="font-medium select-none">
                                                     {{
                                                         (
                                                             item.product.price * item.quantity
@@ -401,24 +404,22 @@ export default {
             ],
             featuredCategories: [
                 {
-                    name: 'Sổ kẻ ngang',
-                    thumnail:
-                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/rule.jpg?v=1751439042707',
-                },
-                {
                     name: 'Sổ tay',
-                    thumnail:
-                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/dot.jpg?v=1751438833820',
+                    thumbnail: 'http://127.0.0.1:8000/category_backgrounds/S%E1%BB%95%20tay.jpg',
                 },
                 {
                     name: 'Vở viết',
-                    thumnail:
-                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/sl-072622-51930-13.jpg?v=1751438476727',
+                    thumbnail:
+                        'http://127.0.0.1:8000/category_backgrounds/V%E1%BB%9F%20vi%E1%BA%BFt.jpg',
                 },
                 {
                     name: 'Phụ kiện',
-                    thumnail:
-                        'https://bizweb.dktcdn.net/thumb/large/100/220/344/collections/plain.jpg?v=1751438557053',
+                    thumbnail:
+                        'http://127.0.0.1:8000/category_backgrounds/Ph%E1%BB%A5%20ki%E1%BB%87n.jpg',
+                },
+                {
+                    name: 'Art and Craft',
+                    thumbnail: 'http://127.0.0.1:8000/category_backgrounds/Art%20and%20Craft.jpg',
                 },
             ],
             searchKey: '',

@@ -2,6 +2,7 @@ import { apiHelper } from '@/helpers/axios'
 import { defineStore } from 'pinia'
 import { useAuthStore } from './auth'
 import { i18n } from '@/main'
+import { useUiStore } from './ui'
 
 export const useCartStore = defineStore('cart', {
     state: () => ({
@@ -62,6 +63,8 @@ export const useCartStore = defineStore('cart', {
 
         async addToCart(productId, quantity) {
             const authStore = useAuthStore()
+            const uiStore = useUiStore()
+
             if (!authStore.isLoggedIn) {
                 alert(i18n.global.t('cart.shouldLogin'))
                 return
@@ -80,6 +83,7 @@ export const useCartStore = defineStore('cart', {
                 .then((res) => {
                     if (res.status === 200) {
                         alert(i18n.global.t('cart.addToCartSuccess'))
+                        uiStore.setDisplayProductQuickView(false)
                         this.fetchCartItem()
                     }
                 })

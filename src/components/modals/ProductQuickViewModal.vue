@@ -71,7 +71,7 @@ import { Minus, Plus, X } from 'lucide-vue-next'
                                     }
                                 }
                             "
-                            class="flex size-10 cursor-pointer items-center justify-center rounded-tl-sm rounded-bl-sm bg-[#5c5c5c] outline outline-gray-300 hover:opacity-75"
+                            class="flex size-10 cursor-pointer items-center justify-center rounded-tl-sm rounded-bl-sm bg-[#5c5c5c] outline outline-gray-300 select-none hover:opacity-75"
                         >
                             <Minus size="20" class="text-white" />
                         </div>
@@ -80,7 +80,7 @@ import { Minus, Plus, X } from 'lucide-vue-next'
                         </span>
                         <div
                             @click="currentQuantity++"
-                            class="flex size-10 cursor-pointer items-center justify-center rounded-tr-sm rounded-br-sm bg-[#5c5c5c] outline outline-gray-300 hover:opacity-75"
+                            class="flex size-10 cursor-pointer items-center justify-center rounded-tr-sm rounded-br-sm bg-[#5c5c5c] outline outline-gray-300 select-none hover:opacity-75"
                         >
                             <Plus size="20" class="text-white" />
                         </div>
@@ -91,7 +91,7 @@ import { Minus, Plus, X } from 'lucide-vue-next'
                         "
                         class="cursor-pointer rounded-md bg-[#5c5c5c] px-6 py-2.5 text-white hover:opacity-75"
                     >
-                        <h1 class="uppercase">{{ $t('product.addToCart') }}</h1>
+                        <h1 class="uppercase select-none">{{ $t('product.addToCart') }}</h1>
                     </button>
                 </div>
             </div>
