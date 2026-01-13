@@ -128,6 +128,7 @@ export interface ILanguage {
         shippingInfo: string
         anotherAddress: string
         thankyou: string
+        processing: string
     }
     paymentMethods: {
         payment: string
@@ -139,5 +140,17 @@ export interface ILanguage {
         selectProvince: string
         selectDistrict: string
         selectWard: string
+    }
+    orders: {
+        status: {
+            failed: string
+            processing: string
+            pending: string
+            paid: string
+            unknown: string
+        }
+        checkingPayment: string
+        paymentSuccess: string
+        paymentFailed: string
     }
 }
